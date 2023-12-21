@@ -1,14 +1,15 @@
 package com.jammes.boletimnota10.core.repository
 
 import android.util.Log
-import com.jammes.boletimnota10.core.database.AppDatabase
+import com.jammes.boletimnota10.core.database.dao.TipoAtividadeDao
 import com.jammes.boletimnota10.core.database.entity.TipoAtividade
 import com.jammes.boletimnota10.core.model.TipoAtividadeDomain
 import java.util.UUID
+import javax.inject.Inject
 
-class TipoAtividadeRepositoryImpl(appDatabase: AppDatabase): TipoAtividadeRepository {
-
-    private val dao = appDatabase.tipoAtividadeDao()
+class TipoAtividadeRepositoryImpl @Inject constructor(
+    private val dao: TipoAtividadeDao
+): TipoAtividadeRepository {
 
     override suspend fun fetchAll(): List<TipoAtividadeDomain> {
         Log.d(TAG, "Listando todas os Tipos de Atividades.")

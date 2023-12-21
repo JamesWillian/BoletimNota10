@@ -1,14 +1,15 @@
 package com.jammes.boletimnota10.core.repository
 
 import android.util.Log
-import com.jammes.boletimnota10.core.database.AppDatabase
+import com.jammes.boletimnota10.core.database.dao.EscolaDao
 import com.jammes.boletimnota10.core.database.entity.Escola
 import com.jammes.boletimnota10.core.model.EscolaDomain
 import java.util.UUID
+import javax.inject.Inject
 
-class EscolaRepositoryImpl(appDatabase: AppDatabase): EscolaRepository {
-
-    private val dao = appDatabase.escolaDao()
+class EscolaRepositoryImpl @Inject constructor(
+    private val dao: EscolaDao
+): EscolaRepository {
 
     override suspend fun fetchAll(): List<EscolaDomain> {
         Log.d(TAG, "Listando todas as Escolas.")

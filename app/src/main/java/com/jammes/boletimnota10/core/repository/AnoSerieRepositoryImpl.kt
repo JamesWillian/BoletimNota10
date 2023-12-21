@@ -1,14 +1,15 @@
 package com.jammes.boletimnota10.core.repository
 
 import android.util.Log
-import com.jammes.boletimnota10.core.database.AppDatabase
+import com.jammes.boletimnota10.core.database.dao.AnoSerieDao
 import com.jammes.boletimnota10.core.database.entity.AnoSerie
 import com.jammes.boletimnota10.core.model.AnoSerieDomain
 import java.util.UUID
+import javax.inject.Inject
 
-class AnoSerieRepositoryImpl(appDatabase: AppDatabase): AnoSerieRepository {
-
-    private val dao = appDatabase.anoSerieDao()
+class AnoSerieRepositoryImpl @Inject constructor(
+    private val dao: AnoSerieDao
+): AnoSerieRepository {
 
     override suspend fun fetchAll(): List<AnoSerieDomain> {
         Log.d(TAG, "Listando todas as Séries.")

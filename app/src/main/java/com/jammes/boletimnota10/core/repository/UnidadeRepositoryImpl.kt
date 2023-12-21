@@ -1,14 +1,15 @@
 package com.jammes.boletimnota10.core.repository
 
 import android.util.Log
-import com.jammes.boletimnota10.core.database.AppDatabase
+import com.jammes.boletimnota10.core.database.dao.UnidadeDao
 import com.jammes.boletimnota10.core.database.entity.Unidade
 import com.jammes.boletimnota10.core.model.UnidadeDomain
 import java.util.UUID
+import javax.inject.Inject
 
-class UnidadeRepositoryImpl(appDatabase: AppDatabase): UnidadeRepository {
-
-    private val dao = appDatabase.unidadeDao()
+class UnidadeRepositoryImpl @Inject constructor(
+    private val dao: UnidadeDao
+): UnidadeRepository {
 
     override suspend fun fetchAll(): List<UnidadeDomain> {
         Log.d(TAG, "Listando todas as Unidades.")

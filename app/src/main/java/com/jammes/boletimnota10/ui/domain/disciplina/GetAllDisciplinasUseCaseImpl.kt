@@ -3,8 +3,9 @@ package com.jammes.boletimnota10.ui.domain.disciplina
 import android.util.Log
 import com.jammes.boletimnota10.core.repository.DisciplinaRepository
 import com.jammes.boletimnota10.ui.model.DisciplinaItem
+import javax.inject.Inject
 
-class GetAllDisciplinasUseCaseImpl(
+class GetAllDisciplinasUseCaseImpl @Inject constructor(
     private val disciplinaRepository: DisciplinaRepository
 ): GetAllDisciplinasUseCase {
 

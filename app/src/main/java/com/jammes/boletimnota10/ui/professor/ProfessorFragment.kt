@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.jammes.boletimnota10.databinding.FragmentProfessorBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfessorFragment: Fragment() {
 
     private var _binding: FragmentProfessorBinding? = null

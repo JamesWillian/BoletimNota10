@@ -1,15 +1,16 @@
 package com.jammes.boletimnota10.core.repository
 
 import android.util.Log
-import com.jammes.boletimnota10.core.database.AppDatabase
+import com.jammes.boletimnota10.core.database.dao.ProfessorDao
 import com.jammes.boletimnota10.core.database.entity.Disciplina
 import com.jammes.boletimnota10.core.database.entity.Professor
 import com.jammes.boletimnota10.core.model.ProfessorDomain
 import java.util.UUID
+import javax.inject.Inject
 
-class ProfessorRepositoryImpl(appDatabase: AppDatabase): ProfessorRepository {
-
-    private val dao = appDatabase.professorDao()
+class ProfessorRepositoryImpl @Inject constructor(
+    private val dao: ProfessorDao
+): ProfessorRepository {
 
     override suspend fun fetchAll(): List<ProfessorDomain> {
         Log.d(TAG, "Listando todas os Professores.")
@@ -17,7 +18,7 @@ class ProfessorRepositoryImpl(appDatabase: AppDatabase): ProfessorRepository {
             ProfessorDomain(
                 id = prof.uuid,
                 nome = prof.nome,
-                disciplina = Disciplina("","")
+                disciplina = Disciplina(prof.disciplinaId,"")
             )
         }
     }

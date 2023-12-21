@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.jammes.boletimnota10.databinding.FragmentBoletimBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BoletimFragment : Fragment() {
 
     private var _binding: FragmentBoletimBinding? = null

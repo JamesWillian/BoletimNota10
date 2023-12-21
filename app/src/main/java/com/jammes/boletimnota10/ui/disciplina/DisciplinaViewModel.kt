@@ -8,9 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.jammes.boletimnota10.ui.domain.disciplina.GetAllDisciplinasUseCase
 import com.jammes.boletimnota10.ui.domain.disciplina.InsertDisciplinaUseCase
 import com.jammes.boletimnota10.ui.model.DisciplinaItem
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DisciplinaViewModel(
+@HiltViewModel
+class DisciplinaViewModel @Inject constructor(
     private val getAllDisciplinasUseCase: GetAllDisciplinasUseCase,
     private val insertDisciplinaUseCase: InsertDisciplinaUseCase
 ) : ViewModel() {
@@ -42,13 +45,4 @@ class DisciplinaViewModel(
 
     data class UiState(val disciplinaItemList: List<DisciplinaItem>)
 
-    @Suppress("UNCHECKED_CAST")
-    class Factory(
-        private val getAllDisciplinasUseCase: GetAllDisciplinasUseCase,
-        private val insertDisciplinaUseCase: InsertDisciplinaUseCase
-    ): ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return DisciplinaViewModel(getAllDisciplinasUseCase, insertDisciplinaUseCase) as T
-        }
-    }
 }

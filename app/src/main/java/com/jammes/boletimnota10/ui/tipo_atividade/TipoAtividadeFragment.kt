@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.jammes.boletimnota10.databinding.FragmentTipoAtividadeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TipoAtividadeFragment: Fragment() {
 
     private var _binding: FragmentTipoAtividadeBinding? = null
