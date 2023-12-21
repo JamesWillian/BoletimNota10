@@ -12,13 +12,22 @@ class DisciplinaRepositoryImpl @Inject constructor(
 ): DisciplinaRepository {
 
     override suspend fun fetchAll(): List<DisciplinaDomain> {
-        Log.d(TAG, "Listando todas as Disciplinas.")
+        Log.d(TAG, "Listando todas as Disciplinas")
         return dao.fetchDisciplina().map { disciplina ->
             DisciplinaDomain(
                 id = disciplina.uuid,
                 descricao = disciplina.descricao
             )
         }
+    }
+
+    override suspend fun fetchById(disciplinaId: String): DisciplinaDomain {
+        Log.d(TAG, "Buscando Disciplina por Id: $disciplinaId")
+        val disciplina = dao.fetchDisciplinaById(disciplinaId)
+        return DisciplinaDomain(
+            disciplina.uuid,
+            disciplina.descricao
+        )
     }
 
     override suspend fun add(descricao: String) {

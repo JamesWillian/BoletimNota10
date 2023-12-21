@@ -6,6 +6,8 @@ interface DisciplinaRepository {
 
     suspend fun fetchAll(): List<DisciplinaDomain>
 
+    suspend fun fetchById(disciplinaId: String): DisciplinaDomain
+
     suspend fun add(descricao: String)
 
     suspend fun post(disciplinaId: String, descricao: String)

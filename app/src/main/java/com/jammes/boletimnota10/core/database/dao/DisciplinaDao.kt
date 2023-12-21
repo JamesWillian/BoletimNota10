@@ -22,4 +22,6 @@ interface DisciplinaDao {
     @Query("SELECT * FROM disciplina")
     suspend fun fetchDisciplina(): List<Disciplina>
 
+    @Query("SELECT * FROM disciplina WHERE uuid = :disciplinaId")
+    suspend fun fetchDisciplinaById(disciplinaId: String): Disciplina
 }
