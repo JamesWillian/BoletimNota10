@@ -12,14 +12,39 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_boletim"
         android:name="com.jammes.boletimnota10.ui.boletim.BoletimFragment"
         android:label="@string/menu_boletim"
         tools:layout="@layout/fragment_boletim" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_disciplinas"
         android:name="com.jammes.boletimnota10.ui.disciplinas.DisciplinaFragment"
         android:label="@string/menu_disciplinas"
         tools:layout="@layout/fragment_disciplina" />
+    <fragment
+        android:id="@+id/nav_escolas"
+        android:name="com.jammes.boletimnota10.ui.escola.EscolaFragment"
+        android:label="@string/menu_escolas"
+        tools:layout="@layout/fragment_escola"/>
+    <fragment
+        android:id="@+id/nav_ano_series"
+        android:name="com.jammes.boletimnota10.ui.ano_serie.AnoSerieFragment"
+        android:label="@string/menu_ano_series"
+        tools:layout="@layout/fragment_ano_serie" />
+    <fragment
+        android:id="@+id/nav_professores"
+        android:name="com.jammes.boletimnota10.ui.professor.ProfessorFragment"
+        android:label="@string/menu_professores"
+        tools:layout="@layout/fragment_professor" />
+    <fragment
+        android:id="@+id/nav_unidades"
+        android:name="com.jammes.boletimnota10.ui.unidade.UnidadeFragment"
+        android:label="@string/menu_unidades"
+        tools:layout="@layout/fragment_unidade" />
+    <fragment
+        android:id="@+id/nav_tipo_atividades"
+        android:name="com.jammes.boletimnota10.ui.tipo_atividade.TipoAtividadeFragment"
+        android:label="@string/menu_tipos_atividades"
+        tools:layout="@layout/fragment_tipo_atividade" />
 </navigation>

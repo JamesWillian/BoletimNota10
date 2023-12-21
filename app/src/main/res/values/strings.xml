@@ -10,4 +10,9 @@
     <string name="menu_home">Início</string>
     <string name="menu_boletim">Boletim</string>
     <string name="menu_disciplinas">Disciplinas</string>
+    <string name="menu_escolas">Escolas</string>
+    <string name="menu_ano_series">Ano/Séries</string>
+    <string name="menu_professores">Professores</string>
+    <string name="menu_tipos_atividades">Tipos de Atividades</string>
+    <string name="menu_unidades">Unidades</string>
 </resources>

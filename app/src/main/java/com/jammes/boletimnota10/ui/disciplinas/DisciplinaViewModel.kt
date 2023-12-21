@@ -15,11 +15,6 @@ class DisciplinaViewModel(
     private val insertDisciplinaUseCase: InsertDisciplinaUseCase
 ) : ViewModel() {
 
-//    private val _text = MutableLiveData<String>().apply {
-//        value = "This is disciplinas Fragment"
-//    }
-//    val text: LiveData<String> = _text
-
     private val uiState: MutableLiveData<UiState> by lazy {
         MutableLiveData<UiState>(UiState(disciplinaItemList = emptyList()))
     }
