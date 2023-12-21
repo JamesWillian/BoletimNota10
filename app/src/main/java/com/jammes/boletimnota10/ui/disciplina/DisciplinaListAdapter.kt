@@ -1,4 +1,4 @@
-package com.jammes.boletimnota10.ui.disciplinas
+package com.jammes.boletimnota10.ui.disciplina
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

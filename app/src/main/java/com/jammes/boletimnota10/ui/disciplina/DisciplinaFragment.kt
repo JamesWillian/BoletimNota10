@@ -1,4 +1,4 @@
-package com.jammes.boletimnota10.ui.disciplinas
+package com.jammes.boletimnota10.ui.disciplina
 
 import android.os.Bundle
 import android.text.Editable
@@ -6,16 +6,14 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jammes.boletimnota10.core.database.AppDatabase
 import com.jammes.boletimnota10.core.repository.DisciplinaRepositoryImpl
 import com.jammes.boletimnota10.databinding.FragmentDisciplinaBinding
-import com.jammes.boletimnota10.ui.domain.GetAllDisciplinasUseCaseImpl
-import com.jammes.boletimnota10.ui.domain.InsertDisciplinaUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.disciplina.GetAllDisciplinasUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.disciplina.InsertDisciplinaUseCaseImpl
 
 class DisciplinaFragment : Fragment() {
 

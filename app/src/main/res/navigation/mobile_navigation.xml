@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/nav_disciplinas"
-        android:name="com.jammes.boletimnota10.ui.disciplinas.DisciplinaFragment"
+        android:name="com.jammes.boletimnota10.ui.disciplina.DisciplinaFragment"
         android:label="@string/menu_disciplinas"
         tools:layout="@layout/fragment_disciplina" />
     <fragment

@@ -1,4 +1,4 @@
-package com.jammes.boletimnota10.ui.domain
+package com.jammes.boletimnota10.ui.domain.disciplina
 
 import android.util.Log
 import com.jammes.boletimnota10.core.repository.DisciplinaRepository

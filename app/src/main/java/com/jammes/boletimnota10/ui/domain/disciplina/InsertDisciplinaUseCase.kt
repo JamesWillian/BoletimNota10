@@ -1,4 +1,4 @@
-package com.jammes.boletimnota10.ui.domain
+package com.jammes.boletimnota10.ui.domain.disciplina
 
 interface InsertDisciplinaUseCase {
 

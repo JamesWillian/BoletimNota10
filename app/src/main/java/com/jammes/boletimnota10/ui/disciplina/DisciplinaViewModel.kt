@@ -1,12 +1,12 @@
-package com.jammes.boletimnota10.ui.disciplinas
+package com.jammes.boletimnota10.ui.disciplina
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.jammes.boletimnota10.ui.domain.GetAllDisciplinasUseCase
-import com.jammes.boletimnota10.ui.domain.InsertDisciplinaUseCase
+import com.jammes.boletimnota10.ui.domain.disciplina.GetAllDisciplinasUseCase
+import com.jammes.boletimnota10.ui.domain.disciplina.InsertDisciplinaUseCase
 import com.jammes.boletimnota10.ui.model.DisciplinaItem
 import kotlinx.coroutines.launch
 
