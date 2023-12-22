@@ -6,9 +6,9 @@ interface TurmaRepository {
 
     suspend fun fetchAll(): List<TurmaDomain>
 
-    suspend fun add(nome: String, periodo: String)
+    suspend fun add(nome: String, escola: String, periodo: String, turno: String, ano: Int)
 
-    suspend fun post(turmaId: String, nome: String, periodo: String)
+    suspend fun post(turmaId: String, nome: String, escola: String, periodo: String, turno: String, ano: Int)
 
     suspend fun delete(turmaId: String)
 

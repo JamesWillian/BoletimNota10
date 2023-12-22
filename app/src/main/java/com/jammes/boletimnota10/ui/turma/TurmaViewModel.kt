@@ -15,7 +15,7 @@ import javax.inject.Inject
 class TurmaViewModel @Inject constructor(
     private val getAllTurmasUseCase: GetAllTurmasUseCase,
     private val insertTurmaUseCase: InsertTurmaUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val uiState: MutableLiveData<UiState> by lazy {
         MutableLiveData<UiState>(UiState(turmaItemList = emptyList()))
@@ -29,9 +29,9 @@ class TurmaViewModel @Inject constructor(
         uiState.postValue(UiState(getAllTurmasUseCase()))
     }
 
-    fun saveTurma(nome: String, periodo: String) {
+    fun saveTurma(nome: String, escola: String, periodo: String, turno: String, ano: Int) {
         viewModelScope.launch {
-            insertTurmaUseCase(nome, periodo)
+            insertTurmaUseCase(nome, escola, periodo, turno, ano)
             refreshTurmaList()
         }
     }

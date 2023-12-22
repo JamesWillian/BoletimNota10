@@ -7,5 +7,8 @@ import androidx.room.PrimaryKey
 data class Turma(
     @PrimaryKey val uuid: String,
     val nome: String,
-    val periodo: String
+    val escola: String,
+    val periodo: String,
+    val turno: String,
+    val ano: Int
 )

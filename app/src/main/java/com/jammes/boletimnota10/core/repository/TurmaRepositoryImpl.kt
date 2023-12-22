@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class TurmaRepositoryImpl @Inject constructor(
     private val dao: TurmaDao
-): TurmaRepository {
+) : TurmaRepository {
 
     override suspend fun fetchAll(): List<TurmaDomain> {
         Log.d(TAG, "Listando todas as Turmas")
@@ -17,27 +17,49 @@ class TurmaRepositoryImpl @Inject constructor(
             TurmaDomain(
                 id = turma.uuid,
                 nome = turma.nome,
-                periodo = turma.periodo
+                escola = turma.escola,
+                periodo = turma.periodo,
+                turno = turma.turno,
+                ano = turma.ano
             )
         }
     }
 
-    override suspend fun add(nome: String, periodo: String) {
+    override suspend fun add(
+        nome: String,
+        escola: String,
+        periodo: String,
+        turno: String,
+        ano: Int
+    ) {
         Log.d(TAG, "Adicionando nova Turma: $nome")
         val turma = Turma(
             uuid = UUID.randomUUID().toString(),
             nome = nome,
-            periodo = periodo
+            escola = escola,
+            periodo = periodo,
+            turno = turno,
+            ano = ano
         )
         dao.insert(turma)
     }
 
-    override suspend fun post(turmaId: String, nome: String, periodo: String) {
+    override suspend fun post(
+        turmaId: String,
+        nome: String,
+        escola: String,
+        periodo: String,
+        turno: String,
+        ano: Int
+    ) {
         Log.d(TAG, "Atualizando a Turma: $nome")
         val turma = Turma(
             uuid = turmaId,
             nome = nome,
-            periodo = periodo
+            escola = escola,
+            periodo = periodo,
+            turno = turno,
+            ano = ano
         )
         dao.update(turma)
     }
@@ -47,7 +69,10 @@ class TurmaRepositoryImpl @Inject constructor(
         val turma = Turma(
             uuid = turmaId,
             nome = "",
-            periodo = ""
+            escola = "",
+            periodo = "",
+            turno = "",
+            ano = 0
         )
         dao.delete(turma)
     }

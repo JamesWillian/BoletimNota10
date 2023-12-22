@@ -8,10 +8,16 @@ class InsertTurmaUseCaseImpl @Inject constructor(
     private val turmaRepository: TurmaRepository
 ): InsertTurmaUseCase {
 
-    override suspend fun invoke(nome: String, periodo: String): Boolean {
+    override suspend fun invoke(
+        nome: String,
+        escola: String,
+        periodo: String,
+        turno: String,
+        ano: Int
+    ): Boolean {
         Log.d(TAG, "Gravando nova Turma: $nome")
 
-        turmaRepository.add(nome, periodo)
+        turmaRepository.add(nome, escola, periodo, turno, ano)
 
         return true
     }

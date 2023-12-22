@@ -19,7 +19,10 @@ class GetAllTurmasUseCaseImpl @Inject constructor(
                 TurmaItem(
                     id = it.id,
                     nome = it.nome,
-                    periodo = it.periodo
+                    escola = it.escola,
+                    periodo = it.periodo,
+                    turno = it.turno,
+                    ano = it.ano
                 )
             }
     }
