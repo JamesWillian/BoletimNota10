@@ -13,13 +13,13 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_boletim" />
         <item
-            android:id="@+id/nav_escolas"
+            android:id="@+id/nav_turmas"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_escolas" />
+            android:title="@string/menu_turmas" />
         <item
-            android:id="@+id/nav_ano_series"
+            android:id="@+id/nav_aluno"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_ano_series" />
+            android:title="@string/menu_aluno" />
         <item
             android:id="@+id/nav_unidades"
             android:icon="@drawable/ic_menu_slideshow"

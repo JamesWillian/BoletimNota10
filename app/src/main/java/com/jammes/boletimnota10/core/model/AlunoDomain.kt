@@ -1,6 +1,6 @@
 package com.jammes.boletimnota10.core.model
 
-data class EscolaDomain(
+data class AlunoDomain(
     val id: String,
     val nome: String
 )

@@ -1,17 +1,17 @@
 package com.jammes.boletimnota10.di
 
-import com.jammes.boletimnota10.ui.domain.ano_serie.GetAllAnoSeriesUseCase
-import com.jammes.boletimnota10.ui.domain.ano_serie.GetAllAnoSeriesUseCaseImpl
-import com.jammes.boletimnota10.ui.domain.ano_serie.InsertAnoSerieUseCase
-import com.jammes.boletimnota10.ui.domain.ano_serie.InsertAnoSerieUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.aluno.GetAlunoUseCase
+import com.jammes.boletimnota10.ui.domain.aluno.GetAlunoUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.aluno.InsertAlunoUseCase
+import com.jammes.boletimnota10.ui.domain.aluno.InsertAlunoUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.disciplina.GetAllDisciplinasUseCase
 import com.jammes.boletimnota10.ui.domain.disciplina.GetAllDisciplinasUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.disciplina.InsertDisciplinaUseCase
 import com.jammes.boletimnota10.ui.domain.disciplina.InsertDisciplinaUseCaseImpl
-import com.jammes.boletimnota10.ui.domain.escola.GetAllEscolasUseCase
-import com.jammes.boletimnota10.ui.domain.escola.GetAllEscolasUseCaseImpl
-import com.jammes.boletimnota10.ui.domain.escola.InsertEscolaUseCase
-import com.jammes.boletimnota10.ui.domain.escola.InsertEscolaUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.turma.GetAllTurmasUseCase
+import com.jammes.boletimnota10.ui.domain.turma.GetAllTurmasUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.turma.InsertTurmaUseCase
+import com.jammes.boletimnota10.ui.domain.turma.InsertTurmaUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.professor.GetAllProfessoresUseCase
 import com.jammes.boletimnota10.ui.domain.professor.GetAllProfessoresUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.professor.InsertProfessorUseCase
@@ -36,27 +36,27 @@ abstract class UseCaseModule {
 
     @Singleton
     @Binds
-    abstract fun providesGetAllEscolasUseCase(
-        impl: GetAllEscolasUseCaseImpl
-    ): GetAllEscolasUseCase
+    abstract fun providesGetAllTurmasUseCase(
+        impl: GetAllTurmasUseCaseImpl
+    ): GetAllTurmasUseCase
 
     @Singleton
     @Binds
-    abstract fun providesInsertEscolaUseCase(
-        impl: InsertEscolaUseCaseImpl
-    ): InsertEscolaUseCase
+    abstract fun providesInsertTurmaUseCase(
+        impl: InsertTurmaUseCaseImpl
+    ): InsertTurmaUseCase
 
     @Singleton
     @Binds
-    abstract fun providesGetAllAnoSeriesUseCase(
-        impl: GetAllAnoSeriesUseCaseImpl
-    ): GetAllAnoSeriesUseCase
+    abstract fun providesGetAlunoUseCase(
+        impl: GetAlunoUseCaseImpl
+    ): GetAlunoUseCase
 
     @Singleton
     @Binds
-    abstract fun providesInsertAnoSerieUseCase(
-        impl: InsertAnoSerieUseCaseImpl
-    ): InsertAnoSerieUseCase
+    abstract fun providesInsertAlunoUseCase(
+        impl: InsertAlunoUseCaseImpl
+    ): InsertAlunoUseCase
 
     @Singleton
     @Binds

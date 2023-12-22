@@ -1,6 +1,5 @@
 package com.jammes.boletimnota10.core.repository
 
-import com.jammes.boletimnota10.core.model.AnoSerieDomain
 import com.jammes.boletimnota10.core.model.UnidadeDomain
 
 interface UnidadeRepository {

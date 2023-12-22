@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.nav_home,
                 R.id.nav_boletim,
-                R.id.nav_escolas,
-                R.id.nav_ano_series,
+                R.id.nav_turmas,
+                R.id.nav_aluno,
                 R.id.nav_unidades,
                 R.id.nav_disciplinas,
                 R.id.nav_professores,

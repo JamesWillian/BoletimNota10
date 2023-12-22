@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ano_serie.AnoSerieFragment">
+    tools:context=".ui.turma.TurmaFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/anoSerieCardView"
+        android:id="@+id/turmaCardView"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:elevation="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/anoSerieRecyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/turmaRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +22,7 @@
             android:layout_marginHorizontal="15dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/anoSerieTextInputLayout"
+                android:id="@+id/turmaTextInputLayout"
                 style="?attr/textInputOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ano/Série" />
+                    android:hint="Turma" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -55,12 +55,12 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/anoSerieRecyclerView"
+        android:id="@+id/turmaRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/anoSerieCardView" />
+        app:layout_constraintTop_toBottomOf="@id/turmaCardView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

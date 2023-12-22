@@ -1,6 +1,6 @@
 package com.jammes.boletimnota10.ui.model
 
-data class AnoSerieItem(
+data class AlunoItem(
     val id: String,
-    val descricao: String
+    val nome: String
 )

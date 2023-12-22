@@ -23,15 +23,15 @@
         android:label="@string/menu_disciplinas"
         tools:layout="@layout/fragment_disciplina" />
     <fragment
-        android:id="@+id/nav_escolas"
-        android:name="com.jammes.boletimnota10.ui.escola.EscolaFragment"
-        android:label="@string/menu_escolas"
-        tools:layout="@layout/fragment_escola"/>
+        android:id="@+id/nav_turmas"
+        android:name="com.jammes.boletimnota10.ui.turma.TurmaFragment"
+        android:label="@string/menu_turmas"
+        tools:layout="@layout/fragment_turma"/>
     <fragment
-        android:id="@+id/nav_ano_series"
-        android:name="com.jammes.boletimnota10.ui.ano_serie.AnoSerieFragment"
-        android:label="@string/menu_ano_series"
-        tools:layout="@layout/fragment_ano_serie" />
+        android:id="@+id/nav_aluno"
+        android:name="com.jammes.boletimnota10.ui.aluno.AlunoFragment"
+        android:label="@string/menu_aluno"
+        tools:layout="@layout/fragment_aluno" />
     <fragment
         android:id="@+id/nav_professores"
         android:name="com.jammes.boletimnota10.ui.professor.ProfessorFragment"

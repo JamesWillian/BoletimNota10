@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.escola.EscolaFragment">
+    tools:context=".ui.aluno.AlunoFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/escolaCardView"
+        android:id="@+id/alunoCardView"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:elevation="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/escolaRecyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/alunoRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +22,7 @@
             android:layout_marginHorizontal="15dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/escolaTextInputLayout"
+                android:id="@+id/alunoTextInputLayout"
                 style="?attr/textInputOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Escola" />
+                    android:hint="Aluno" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -55,12 +55,12 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/escolaRecyclerView"
+        android:id="@+id/alunoRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/escolaCardView" />
+        app:layout_constraintTop_toBottomOf="@id/alunoCardView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
