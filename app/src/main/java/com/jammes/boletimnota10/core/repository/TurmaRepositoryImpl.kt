@@ -31,7 +31,7 @@ class TurmaRepositoryImpl @Inject constructor(
         periodo: String,
         turno: String,
         ano: Int
-    ) {
+    ): String {
         Log.d(TAG, "Adicionando nova Turma: $nome")
         val turma = Turma(
             uuid = UUID.randomUUID().toString(),
@@ -42,6 +42,7 @@ class TurmaRepositoryImpl @Inject constructor(
             ano = ano
         )
         dao.insert(turma)
+        return turma.uuid
     }
 
     override suspend fun post(

@@ -8,19 +8,19 @@ import com.jammes.boletimnota10.core.database.dao.AlunoDao
 import com.jammes.boletimnota10.core.database.dao.DisciplinaDao
 import com.jammes.boletimnota10.core.database.dao.TurmaDao
 import com.jammes.boletimnota10.core.database.dao.ProfessorDao
-import com.jammes.boletimnota10.core.database.dao.TipoAtividadeDao
+import com.jammes.boletimnota10.core.database.dao.TurmaDisciplinaDao
 import com.jammes.boletimnota10.core.database.dao.UnidadeDao
 import com.jammes.boletimnota10.core.database.entity.Aluno
 import com.jammes.boletimnota10.core.database.entity.Disciplina
 import com.jammes.boletimnota10.core.database.entity.Turma
 import com.jammes.boletimnota10.core.database.entity.Professor
-import com.jammes.boletimnota10.core.database.entity.TipoAtividade
+import com.jammes.boletimnota10.core.database.entity.TurmaDisciplina
 import com.jammes.boletimnota10.core.database.entity.Unidade
 
 @Database(
     entities = [Turma::class, Aluno::class, Disciplina::class, Professor::class,
-        TipoAtividade::class, Unidade::class],
-    version = 1,
+        TurmaDisciplina::class, Unidade::class],
+    version = 2,
     exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
 
@@ -28,7 +28,7 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun AlunoDao(): AlunoDao
     abstract fun disciplinaDao(): DisciplinaDao
     abstract fun professorDao(): ProfessorDao
-    abstract fun tipoAtividadeDao(): TipoAtividadeDao
+    abstract fun turmaDisciplinaDao(): TurmaDisciplinaDao
     abstract fun unidadeDao(): UnidadeDao
 
     companion object {
@@ -42,6 +42,7 @@ abstract class AppDatabase: RoomDatabase() {
                         AppDatabase::class.java,
                         DATABASE_NAME
                     )
+                        .fallbackToDestructiveMigration()
                         .build()
                 }
             }

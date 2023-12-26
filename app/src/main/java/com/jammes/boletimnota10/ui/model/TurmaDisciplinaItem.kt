@@ -1,6 +1,6 @@
 package com.jammes.boletimnota10.ui.model
 
-data class TipoAtividadeItem(
+data class TurmaDisciplinaItem(
     val id: String,
-    val descricao: String
+    val disciplina: String
 )

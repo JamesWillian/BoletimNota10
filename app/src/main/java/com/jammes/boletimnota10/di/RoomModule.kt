@@ -6,7 +6,7 @@ import com.jammes.boletimnota10.core.database.dao.AlunoDao
 import com.jammes.boletimnota10.core.database.dao.DisciplinaDao
 import com.jammes.boletimnota10.core.database.dao.TurmaDao
 import com.jammes.boletimnota10.core.database.dao.ProfessorDao
-import com.jammes.boletimnota10.core.database.dao.TipoAtividadeDao
+import com.jammes.boletimnota10.core.database.dao.TurmaDisciplinaDao
 import com.jammes.boletimnota10.core.database.dao.UnidadeDao
 import dagger.Module
 import dagger.Provides
@@ -56,7 +56,7 @@ object RoomModule {
 
     @Singleton
     @Provides
-    fun providesTipoAtividadeDao(database: AppDatabase): TipoAtividadeDao {
-        return database.tipoAtividadeDao()
+    fun providesTurmaDisciplinaDao(database: AppDatabase): TurmaDisciplinaDao {
+        return database.turmaDisciplinaDao()
     }
 }

@@ -14,12 +14,10 @@ class InsertTurmaUseCaseImpl @Inject constructor(
         periodo: String,
         turno: String,
         ano: Int
-    ): Boolean {
+    ): String {
         Log.d(TAG, "Gravando nova Turma: $nome")
 
-        turmaRepository.add(nome, escola, periodo, turno, ano)
-
-        return true
+        return turmaRepository.add(nome, escola, periodo, turno, ano)
     }
 
     companion object {

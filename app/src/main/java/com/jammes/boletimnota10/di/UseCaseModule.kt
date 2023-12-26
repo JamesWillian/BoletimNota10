@@ -16,10 +16,10 @@ import com.jammes.boletimnota10.ui.domain.professor.GetAllProfessoresUseCase
 import com.jammes.boletimnota10.ui.domain.professor.GetAllProfessoresUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.professor.InsertProfessorUseCase
 import com.jammes.boletimnota10.ui.domain.professor.InsertProfessorUseCaseImpl
-import com.jammes.boletimnota10.ui.domain.tipo_atividade.GetAllTiposAtividadesUseCase
-import com.jammes.boletimnota10.ui.domain.tipo_atividade.GetAllTiposAtividadesUseCaseImpl
-import com.jammes.boletimnota10.ui.domain.tipo_atividade.InsertTipoAtividadeUseCase
-import com.jammes.boletimnota10.ui.domain.tipo_atividade.InsertTipoAtividadeUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.turma_disciplina.GetAllTurmaDisciplinasUseCase
+import com.jammes.boletimnota10.ui.domain.turma_disciplina.GetAllTurmaDisciplinasUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.turma_disciplina.InsertTurmaDisciplinaUseCase
+import com.jammes.boletimnota10.ui.domain.turma_disciplina.InsertTurmaDisciplinaUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.unidade.GetAllUnidadesUseCase
 import com.jammes.boletimnota10.ui.domain.unidade.GetAllUnidadesUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.unidade.InsertUnidadeUseCase
@@ -96,13 +96,13 @@ abstract class UseCaseModule {
 
     @Singleton
     @Binds
-    abstract fun providesGetAllTiposAtividadesUseCase(
-        impl: GetAllTiposAtividadesUseCaseImpl
-    ): GetAllTiposAtividadesUseCase
+    abstract fun providesGetAllTurmaDisciplinasUseCase(
+        impl: GetAllTurmaDisciplinasUseCaseImpl
+    ): GetAllTurmaDisciplinasUseCase
 
     @Singleton
     @Binds
-    abstract fun providesInsertTipoAtividadeUseCase(
-        impl: InsertTipoAtividadeUseCaseImpl
-    ): InsertTipoAtividadeUseCase
+    abstract fun providesInsertTurmaDisciplinasUseCase(
+        impl: InsertTurmaDisciplinaUseCaseImpl
+    ): InsertTurmaDisciplinaUseCase
 }

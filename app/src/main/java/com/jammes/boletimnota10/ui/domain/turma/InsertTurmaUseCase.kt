@@ -8,5 +8,5 @@ interface InsertTurmaUseCase {
         periodo: String,
         turno: String,
         ano: Int
-    ): Boolean
+    ): String
 }
