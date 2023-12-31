@@ -8,11 +8,8 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Início</string>
-    <string name="menu_boletim">Boletim</string>
     <string name="menu_disciplinas">Disciplinas</string>
-    <string name="menu_turmas">Turmas</string>
+    <string name="menu_form_turma">Nova Turma</string>
+    <string name="menu_avaliacoes">Avaliações</string>
     <string name="menu_aluno">Aluno</string>
-    <string name="menu_professores">Professores</string>
-    <string name="menu_tipos_atividades">Tipos de Atividades</string>
-    <string name="menu_unidades">Unidades</string>
 </resources>

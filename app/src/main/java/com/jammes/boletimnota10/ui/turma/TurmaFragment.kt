@@ -79,6 +79,7 @@ class TurmaFragment : Fragment() {
             uiState.disciplinaItemList.map {
                 TurmaDisciplinaItem(
                     it.id,
+                    "",
                     it.descricao
                 )
             }

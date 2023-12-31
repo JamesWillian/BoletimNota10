@@ -10,5 +10,6 @@ data class Turma(
     val escola: String,
     val periodo: String,
     val turno: String,
-    val ano: Int
+    val ano: Int,
+    val concluido: Boolean = false
 )

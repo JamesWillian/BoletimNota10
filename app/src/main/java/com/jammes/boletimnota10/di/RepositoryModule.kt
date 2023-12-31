@@ -6,12 +6,10 @@ import com.jammes.boletimnota10.core.repository.DisciplinaRepository
 import com.jammes.boletimnota10.core.repository.DisciplinaRepositoryImpl
 import com.jammes.boletimnota10.core.repository.TurmaRepository
 import com.jammes.boletimnota10.core.repository.TurmaRepositoryImpl
-import com.jammes.boletimnota10.core.repository.ProfessorRepository
-import com.jammes.boletimnota10.core.repository.ProfessorRepositoryImpl
+import com.jammes.boletimnota10.core.repository.AvaliacaoRepository
+import com.jammes.boletimnota10.core.repository.AvaliacaoRepositoryImpl
 import com.jammes.boletimnota10.core.repository.TurmaDisciplinaRepository
 import com.jammes.boletimnota10.core.repository.TurmaDisciplinaRepositoryImpl
-import com.jammes.boletimnota10.core.repository.UnidadeRepository
-import com.jammes.boletimnota10.core.repository.UnidadeRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -32,15 +30,11 @@ abstract class RepositoryModule {
 
     @Singleton
     @Binds
-    abstract fun providesUnidadeRepository(impl: UnidadeRepositoryImpl): UnidadeRepository
-
-    @Singleton
-    @Binds
     abstract fun providesDisciplinaRepository(impl: DisciplinaRepositoryImpl): DisciplinaRepository
 
     @Singleton
     @Binds
-    abstract fun providesProfessorRepository(impl: ProfessorRepositoryImpl): ProfessorRepository
+    abstract fun providesAvaliacaoRepository(impl: AvaliacaoRepositoryImpl): AvaliacaoRepository
 
     @Singleton
     @Binds

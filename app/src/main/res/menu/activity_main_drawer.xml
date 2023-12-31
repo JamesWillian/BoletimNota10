@@ -9,32 +9,16 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_boletim"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_boletim" />
-        <item
-            android:id="@+id/nav_turmas"
+            android:id="@+id/nav_form_turma"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_turmas" />
-        <item
-            android:id="@+id/nav_aluno"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_aluno" />
-        <item
-            android:id="@+id/nav_unidades"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_unidades" />
+            android:title="@string/menu_form_turma" />
         <item
             android:id="@+id/nav_disciplinas"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_disciplinas" />
         <item
-            android:id="@+id/nav_professores"
+            android:id="@+id/nav_aluno"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_professores" />
-        <item
-            android:id="@+id/nav_tipo_atividades"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_tipos_atividades" />
+            android:title="@string/menu_aluno" />
     </group>
 </menu>

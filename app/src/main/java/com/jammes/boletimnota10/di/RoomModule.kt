@@ -5,9 +5,8 @@ import com.jammes.boletimnota10.core.database.AppDatabase
 import com.jammes.boletimnota10.core.database.dao.AlunoDao
 import com.jammes.boletimnota10.core.database.dao.DisciplinaDao
 import com.jammes.boletimnota10.core.database.dao.TurmaDao
-import com.jammes.boletimnota10.core.database.dao.ProfessorDao
+import com.jammes.boletimnota10.core.database.dao.AvaliacaoDao
 import com.jammes.boletimnota10.core.database.dao.TurmaDisciplinaDao
-import com.jammes.boletimnota10.core.database.dao.UnidadeDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,20 +37,14 @@ object RoomModule {
 
     @Singleton
     @Provides
-    fun providesUnidadeDao(database: AppDatabase): UnidadeDao {
-        return database.unidadeDao()
-    }
-
-    @Singleton
-    @Provides
     fun providesDisciplinaDao(database: AppDatabase): DisciplinaDao {
         return database.disciplinaDao()
     }
 
     @Singleton
     @Provides
-    fun providesProfessorDao(database: AppDatabase): ProfessorDao {
-        return database.professorDao()
+    fun providesAvaliacaoDao(database: AppDatabase): AvaliacaoDao {
+        return database.avaliacaoDao()
     }
 
     @Singleton

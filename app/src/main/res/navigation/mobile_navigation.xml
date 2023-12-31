@@ -3,19 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/homeFragment">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/homeFragment"
         android:name="com.jammes.boletimnota10.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/nav_boletim"
-        android:name="com.jammes.boletimnota10.ui.boletim.BoletimFragment"
-        android:label="@string/menu_boletim"
-        tools:layout="@layout/fragment_boletim" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_nav_avaliacoes"
+            app:destination="@id/nav_avaliacoes" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_disciplinas"
@@ -23,28 +21,26 @@
         android:label="@string/menu_disciplinas"
         tools:layout="@layout/fragment_disciplina" />
     <fragment
-        android:id="@+id/nav_turmas"
+        android:id="@+id/nav_form_turma"
         android:name="com.jammes.boletimnota10.ui.turma.TurmaFragment"
-        android:label="@string/menu_turmas"
+        android:label="@string/menu_form_turma"
         tools:layout="@layout/fragment_turma"/>
+    <fragment
+        android:id="@+id/nav_avaliacoes"
+        android:name="com.jammes.boletimnota10.ui.avaliacao.AvaliacaoFragment"
+        android:label="@string/menu_avaliacoes"
+        tools:layout="@layout/fragment_avaliacao" >
+        <argument
+            android:name="turma_id"
+            app:argType="string" />
+        <argument
+            android:name="disciplina_id"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/nav_aluno"
         android:name="com.jammes.boletimnota10.ui.aluno.AlunoFragment"
         android:label="@string/menu_aluno"
         tools:layout="@layout/fragment_aluno" />
-    <fragment
-        android:id="@+id/nav_professores"
-        android:name="com.jammes.boletimnota10.ui.professor.ProfessorFragment"
-        android:label="@string/menu_professores"
-        tools:layout="@layout/fragment_professor" />
-    <fragment
-        android:id="@+id/nav_unidades"
-        android:name="com.jammes.boletimnota10.ui.unidade.UnidadeFragment"
-        android:label="@string/menu_unidades"
-        tools:layout="@layout/fragment_unidade" />
-    <fragment
-        android:id="@+id/nav_tipo_atividades"
-        android:name="com.jammes.boletimnota10.ui.turma_disciplina.TurmaDisciplinaFragment"
-        android:label="@string/menu_tipos_atividades"
-        tools:layout="@layout/fragment_tipo_atividade" />
+
 </navigation>

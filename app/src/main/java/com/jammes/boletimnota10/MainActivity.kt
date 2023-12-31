@@ -2,7 +2,6 @@ package com.jammes.boletimnota10
 
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -35,14 +34,10 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home,
-                R.id.nav_boletim,
-                R.id.nav_turmas,
-                R.id.nav_aluno,
-                R.id.nav_unidades,
+                R.id.homeFragment,
+                R.id.nav_form_turma,
                 R.id.nav_disciplinas,
-                R.id.nav_professores,
-                R.id.nav_tipo_atividades,
+                R.id.nav_aluno,
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

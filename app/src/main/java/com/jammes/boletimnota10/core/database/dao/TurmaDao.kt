@@ -19,7 +19,10 @@ interface TurmaDao {
     @Delete
     suspend fun delete(turma: Turma)
 
-    @Query("SELECT * FROM turma")
-    suspend fun fetchTurmas(): List<Turma>
+    @Query("SELECT * FROM turma WHERE NOT concluido LIMIT 1")
+    suspend fun selectTurmaAtiva(): Turma
+
+    @Query("SELECT count(uuid) <> 0 FROM turma")
+    suspend fun existeTurmaCadastrada(): Boolean
 
 }

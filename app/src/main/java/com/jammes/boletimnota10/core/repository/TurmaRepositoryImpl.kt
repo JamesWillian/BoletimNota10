@@ -11,18 +11,25 @@ class TurmaRepositoryImpl @Inject constructor(
     private val dao: TurmaDao
 ) : TurmaRepository {
 
-    override suspend fun fetchAll(): List<TurmaDomain> {
-        Log.d(TAG, "Listando todas as Turmas")
-        return dao.fetchTurmas().map { turma ->
-            TurmaDomain(
+    override suspend fun existeTurmaCadastrada(): Boolean {
+
+        return dao.existeTurmaCadastrada()
+    }
+
+    override suspend fun buscarTurmaAtiva(): TurmaDomain {
+        Log.d(TAG, "Buscando Turma Ativa")
+
+        val turma = dao.selectTurmaAtiva()
+
+        return TurmaDomain(
                 id = turma.uuid,
                 nome = turma.nome,
                 escola = turma.escola,
                 periodo = turma.periodo,
                 turno = turma.turno,
-                ano = turma.ano
+                ano = turma.ano,
+                concluido = turma.concluido
             )
-        }
     }
 
     override suspend fun add(

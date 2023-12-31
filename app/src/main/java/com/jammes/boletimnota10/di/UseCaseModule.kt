@@ -8,22 +8,20 @@ import com.jammes.boletimnota10.ui.domain.disciplina.GetAllDisciplinasUseCase
 import com.jammes.boletimnota10.ui.domain.disciplina.GetAllDisciplinasUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.disciplina.InsertDisciplinaUseCase
 import com.jammes.boletimnota10.ui.domain.disciplina.InsertDisciplinaUseCaseImpl
-import com.jammes.boletimnota10.ui.domain.turma.GetAllTurmasUseCase
-import com.jammes.boletimnota10.ui.domain.turma.GetAllTurmasUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.turma.BuscarTurmaAtualUseCase
+import com.jammes.boletimnota10.ui.domain.turma.BuscarTurmaAtualUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.turma.InsertTurmaUseCase
 import com.jammes.boletimnota10.ui.domain.turma.InsertTurmaUseCaseImpl
-import com.jammes.boletimnota10.ui.domain.professor.GetAllProfessoresUseCase
-import com.jammes.boletimnota10.ui.domain.professor.GetAllProfessoresUseCaseImpl
-import com.jammes.boletimnota10.ui.domain.professor.InsertProfessorUseCase
-import com.jammes.boletimnota10.ui.domain.professor.InsertProfessorUseCaseImpl
-import com.jammes.boletimnota10.ui.domain.turma_disciplina.GetAllTurmaDisciplinasUseCase
-import com.jammes.boletimnota10.ui.domain.turma_disciplina.GetAllTurmaDisciplinasUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.avaliacao.BuscarTodasAvaliacoesUseCase
+import com.jammes.boletimnota10.ui.domain.avaliacao.BuscarTodasAvaliacoesUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.avaliacao.InserirAvaliacaoUseCase
+import com.jammes.boletimnota10.ui.domain.avaliacao.InserirAvaliacaoUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.turma.ExisteTurmaCadastradaUseCase
+import com.jammes.boletimnota10.ui.domain.turma.ExisteTurmaCadastradaUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.turma_disciplina.BuscarDisciplinasDaTurmaUseCase
+import com.jammes.boletimnota10.ui.domain.turma_disciplina.BuscarDisciplinasDaTurmaUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.turma_disciplina.InsertTurmaDisciplinaUseCase
 import com.jammes.boletimnota10.ui.domain.turma_disciplina.InsertTurmaDisciplinaUseCaseImpl
-import com.jammes.boletimnota10.ui.domain.unidade.GetAllUnidadesUseCase
-import com.jammes.boletimnota10.ui.domain.unidade.GetAllUnidadesUseCaseImpl
-import com.jammes.boletimnota10.ui.domain.unidade.InsertUnidadeUseCase
-import com.jammes.boletimnota10.ui.domain.unidade.InsertUnidadeUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -36,9 +34,15 @@ abstract class UseCaseModule {
 
     @Singleton
     @Binds
-    abstract fun providesGetAllTurmasUseCase(
-        impl: GetAllTurmasUseCaseImpl
-    ): GetAllTurmasUseCase
+    abstract fun providesExisteTurmaCadastradaUseCase(
+        impl: ExisteTurmaCadastradaUseCaseImpl
+    ): ExisteTurmaCadastradaUseCase
+
+    @Singleton
+    @Binds
+    abstract fun providesBuscarTurmaAtualUseCase(
+        impl: BuscarTurmaAtualUseCaseImpl
+    ): BuscarTurmaAtualUseCase
 
     @Singleton
     @Binds
@@ -58,17 +62,6 @@ abstract class UseCaseModule {
         impl: InsertAlunoUseCaseImpl
     ): InsertAlunoUseCase
 
-    @Singleton
-    @Binds
-    abstract fun providesGetAllUnidadesUseCase(
-        impl: GetAllUnidadesUseCaseImpl
-    ): GetAllUnidadesUseCase
-
-    @Singleton
-    @Binds
-    abstract fun providesInsertUnidadeUseCase(
-        impl: InsertUnidadeUseCaseImpl
-    ): InsertUnidadeUseCase
 
     @Singleton
     @Binds
@@ -84,21 +77,21 @@ abstract class UseCaseModule {
 
     @Singleton
     @Binds
-    abstract fun providesGetAllProfessoresUseCase(
-        impl: GetAllProfessoresUseCaseImpl
-    ): GetAllProfessoresUseCase
+    abstract fun providesBuscarTodasAvaliacoesUseCase(
+        impl: BuscarTodasAvaliacoesUseCaseImpl
+    ): BuscarTodasAvaliacoesUseCase
 
     @Singleton
     @Binds
-    abstract fun providesInsertProfessorUseCase(
-        impl: InsertProfessorUseCaseImpl
-    ): InsertProfessorUseCase
+    abstract fun providesInserirAvaliacaoUseCase(
+        impl: InserirAvaliacaoUseCaseImpl
+    ): InserirAvaliacaoUseCase
 
     @Singleton
     @Binds
     abstract fun providesGetAllTurmaDisciplinasUseCase(
-        impl: GetAllTurmaDisciplinasUseCaseImpl
-    ): GetAllTurmaDisciplinasUseCase
+        impl: BuscarDisciplinasDaTurmaUseCaseImpl
+    ): BuscarDisciplinasDaTurmaUseCase
 
     @Singleton
     @Binds
