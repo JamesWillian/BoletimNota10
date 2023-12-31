@@ -4,9 +4,13 @@ import com.jammes.boletimnota10.core.model.TurmaDomain
 
 interface TurmaRepository {
 
+    suspend fun existeTurmaCadastrada(): Boolean
+
     suspend fun buscarTurmaAtiva(): TurmaDomain
 
-    suspend fun existeTurmaCadastrada(): Boolean
+    suspend fun buscarTurmaPorId(turmaId: String): TurmaDomain
+
+    suspend fun buscarTodasTurmas(): List<TurmaDomain>
 
     suspend fun add(nome: String, escola: String, periodo: String, turno: String, ano: Int): String
 

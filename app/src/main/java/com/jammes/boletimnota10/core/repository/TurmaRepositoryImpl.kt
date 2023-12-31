@@ -32,6 +32,40 @@ class TurmaRepositoryImpl @Inject constructor(
             )
     }
 
+    override suspend fun buscarTurmaPorId(turmaId: String): TurmaDomain {
+
+        Log.d(TAG, "Buscando Turma: $turmaId")
+
+        val turma = dao.selectTurmaPorId(turmaId)
+
+        return TurmaDomain(
+            id = turma.uuid,
+            nome = turma.nome,
+            escola = turma.escola,
+            periodo = turma.periodo,
+            turno = turma.turno,
+            ano = turma.ano,
+            concluido = turma.concluido
+        )
+    }
+
+    override suspend fun buscarTodasTurmas(): List<TurmaDomain> {
+
+        Log.d(TAG, "Buscando Todas as Turmas")
+
+        return dao.selectTodasTurmas().map { turma ->
+            TurmaDomain(
+                id = turma.uuid,
+                nome = turma.nome,
+                escola = turma.escola,
+                periodo = turma.periodo,
+                turno = turma.turno,
+                ano = turma.ano,
+                concluido = turma.concluido
+            )
+        }
+    }
+
     override suspend fun add(
         nome: String,
         escola: String,

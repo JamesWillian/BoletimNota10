@@ -30,8 +30,20 @@ class HomeViewModel @Inject constructor(
         MutableLiveData<BoletimUiState>(BoletimUiState(emptyList()))
     }
 
+    private val existeTurmaAtiva: MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>(true)
+    }
+
     fun stateTurmaUiState(): LiveData<TurmaUiState> {
         return uiStateTurma
+    }
+
+    private suspend fun verificarTurma() {
+        existeTurmaAtiva.postValue(existeTurmaCadastradaUseCase())
+    }
+
+    fun existeTurma(): LiveData<Boolean> {
+        return existeTurmaAtiva
     }
 
     fun stateBoletimUiStateOnce(): LiveData<BoletimUiState> {
@@ -51,7 +63,8 @@ class HomeViewModel @Inject constructor(
 
     fun listarBoletim() {
         viewModelScope.launch {
-            if (existeTurmaCadastradaUseCase())
+            verificarTurma()
+            if (existeTurmaAtiva.value == true)
                 obterTurmaAtual()
         }
     }

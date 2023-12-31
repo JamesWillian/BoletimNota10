@@ -16,6 +16,10 @@ import com.jammes.boletimnota10.ui.domain.avaliacao.BuscarTodasAvaliacoesUseCase
 import com.jammes.boletimnota10.ui.domain.avaliacao.BuscarTodasAvaliacoesUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.avaliacao.InserirAvaliacaoUseCase
 import com.jammes.boletimnota10.ui.domain.avaliacao.InserirAvaliacaoUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.turma.BuscarTodasTurmasUseCase
+import com.jammes.boletimnota10.ui.domain.turma.BuscarTodasTurmasUseCaseImpl
+import com.jammes.boletimnota10.ui.domain.turma.BuscarTurmaPorIdUseCase
+import com.jammes.boletimnota10.ui.domain.turma.BuscarTurmaPorIdUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.turma.ExisteTurmaCadastradaUseCase
 import com.jammes.boletimnota10.ui.domain.turma.ExisteTurmaCadastradaUseCaseImpl
 import com.jammes.boletimnota10.ui.domain.turma_disciplina.BuscarDisciplinasDaTurmaUseCase
@@ -43,6 +47,18 @@ abstract class UseCaseModule {
     abstract fun providesBuscarTurmaAtualUseCase(
         impl: BuscarTurmaAtualUseCaseImpl
     ): BuscarTurmaAtualUseCase
+
+    @Singleton
+    @Binds
+    abstract fun providesBuscarTodasTurmasUseCase(
+        impl: BuscarTodasTurmasUseCaseImpl
+    ): BuscarTodasTurmasUseCase
+
+    @Singleton
+    @Binds
+    abstract fun providesBuscarTurmaPorIdUseCase(
+        impl: BuscarTurmaPorIdUseCaseImpl
+    ): BuscarTurmaPorIdUseCase
 
     @Singleton
     @Binds

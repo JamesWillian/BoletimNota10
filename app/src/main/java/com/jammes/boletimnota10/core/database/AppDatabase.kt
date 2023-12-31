@@ -18,7 +18,7 @@ import com.jammes.boletimnota10.core.database.entity.TurmaDisciplina
 @Database(
     entities = [Turma::class, Aluno::class, Disciplina::class, Avaliacao::class,
         TurmaDisciplina::class],
-    version = 4,
+    version = 5,
     exportSchema = true)
 abstract class AppDatabase: RoomDatabase() {
 

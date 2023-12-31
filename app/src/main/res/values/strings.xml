@@ -10,6 +10,7 @@
     <string name="menu_home">Início</string>
     <string name="menu_disciplinas">Disciplinas</string>
     <string name="menu_form_turma">Nova Turma</string>
+    <string name="menu_turma">Turmas</string>
     <string name="menu_avaliacoes">Avaliações</string>
     <string name="menu_aluno">Aluno</string>
 </resources>

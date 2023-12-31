@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jammes.boletimnota10.R
 import com.jammes.boletimnota10.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -51,6 +53,12 @@ class HomeFragment : Fragment() {
         homeViewModel.stateBoletimUiStateOnce().observe(viewLifecycleOwner) {uiState ->
             bindUiStateBoletim(uiState)
         }
+
+        homeViewModel.existeTurma().observe(viewLifecycleOwner) {
+            if (!it)
+                findNavController().navigate(R.id.nav_form_turma)
+        }
+
     }
 
     private fun bindUiStateTurma(uiState: HomeViewModel.TurmaUiState) {
