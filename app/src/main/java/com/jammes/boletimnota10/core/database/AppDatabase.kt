@@ -8,23 +8,31 @@ import com.jammes.boletimnota10.core.database.dao.AlunoDao
 import com.jammes.boletimnota10.core.database.dao.DisciplinaDao
 import com.jammes.boletimnota10.core.database.dao.TurmaDao
 import com.jammes.boletimnota10.core.database.dao.AvaliacaoDao
+import com.jammes.boletimnota10.core.database.dao.PeriodoDao
 import com.jammes.boletimnota10.core.database.dao.TurmaDisciplinaDao
 import com.jammes.boletimnota10.core.database.entity.Aluno
 import com.jammes.boletimnota10.core.database.entity.Disciplina
 import com.jammes.boletimnota10.core.database.entity.Turma
 import com.jammes.boletimnota10.core.database.entity.Avaliacao
+import com.jammes.boletimnota10.core.database.entity.Periodo
 import com.jammes.boletimnota10.core.database.entity.TurmaDisciplina
 
 @Database(
-    entities = [Turma::class, Aluno::class, Disciplina::class, Avaliacao::class,
+    entities = [
+        Aluno::class,
+        Disciplina::class,
+        Turma::class,
+        Periodo::class,
+        Avaliacao::class,
         TurmaDisciplina::class],
     version = 5,
     exportSchema = true)
 abstract class AppDatabase: RoomDatabase() {
 
-    abstract fun turmaDao(): TurmaDao
     abstract fun AlunoDao(): AlunoDao
     abstract fun disciplinaDao(): DisciplinaDao
+    abstract fun turmaDao(): TurmaDao
+    abstract fun periodoDao(): PeriodoDao
     abstract fun avaliacaoDao(): AvaliacaoDao
     abstract fun turmaDisciplinaDao(): TurmaDisciplinaDao
 

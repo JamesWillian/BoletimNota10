@@ -8,6 +8,8 @@ import com.jammes.boletimnota10.core.repository.TurmaRepository
 import com.jammes.boletimnota10.core.repository.TurmaRepositoryImpl
 import com.jammes.boletimnota10.core.repository.AvaliacaoRepository
 import com.jammes.boletimnota10.core.repository.AvaliacaoRepositoryImpl
+import com.jammes.boletimnota10.core.repository.PeriodoRepository
+import com.jammes.boletimnota10.core.repository.PeriodoRepositoryImpl
 import com.jammes.boletimnota10.core.repository.TurmaDisciplinaRepository
 import com.jammes.boletimnota10.core.repository.TurmaDisciplinaRepositoryImpl
 import dagger.Binds
@@ -22,15 +24,19 @@ abstract class RepositoryModule {
 
     @Singleton
     @Binds
-    abstract fun providesTurmaRepository(impl: TurmaRepositoryImpl): TurmaRepository
-
-    @Singleton
-    @Binds
     abstract fun providesAlunoRepository(impl: AlunoRepositoryImpl): AlunoRepository
 
     @Singleton
     @Binds
     abstract fun providesDisciplinaRepository(impl: DisciplinaRepositoryImpl): DisciplinaRepository
+
+    @Singleton
+    @Binds
+    abstract fun providesTurmaRepository(impl: TurmaRepositoryImpl): TurmaRepository
+
+    @Singleton
+    @Binds
+    abstract fun providesPeriodoRepository(impl: PeriodoRepositoryImpl): PeriodoRepository
 
     @Singleton
     @Binds
