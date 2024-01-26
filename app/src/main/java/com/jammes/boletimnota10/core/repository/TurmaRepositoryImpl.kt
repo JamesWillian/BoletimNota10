@@ -25,9 +25,10 @@ class TurmaRepositoryImpl @Inject constructor(
                 id = turma.uuid,
                 nome = turma.nome,
                 escola = turma.escola,
-                periodo = turma.periodo,
                 turno = turma.turno,
                 ano = turma.ano,
+                dataInicio = turma.dataInicio,
+                dataFinal = turma.dataFinal,
                 concluido = turma.concluido
             )
     }
@@ -42,9 +43,10 @@ class TurmaRepositoryImpl @Inject constructor(
             id = turma.uuid,
             nome = turma.nome,
             escola = turma.escola,
-            periodo = turma.periodo,
             turno = turma.turno,
             ano = turma.ano,
+            dataInicio = turma.dataInicio,
+            dataFinal = turma.dataFinal,
             concluido = turma.concluido
         )
     }
@@ -58,9 +60,10 @@ class TurmaRepositoryImpl @Inject constructor(
                 id = turma.uuid,
                 nome = turma.nome,
                 escola = turma.escola,
-                periodo = turma.periodo,
                 turno = turma.turno,
                 ano = turma.ano,
+                dataInicio = turma.dataInicio,
+                dataFinal = turma.dataFinal,
                 concluido = turma.concluido
             )
         }
@@ -69,18 +72,20 @@ class TurmaRepositoryImpl @Inject constructor(
     override suspend fun add(
         nome: String,
         escola: String,
-        periodo: String,
         turno: String,
-        ano: Int
+        ano: String,
+        dataInicio: String,
+        dataFinal: String
     ): String {
         Log.d(TAG, "Adicionando nova Turma: $nome")
         val turma = Turma(
             uuid = UUID.randomUUID().toString(),
             nome = nome,
             escola = escola,
-            periodo = periodo,
             turno = turno,
-            ano = ano
+            ano = ano,
+            dataInicio = dataInicio,
+            dataFinal = dataFinal,
         )
         dao.insert(turma)
         return turma.uuid
@@ -90,18 +95,20 @@ class TurmaRepositoryImpl @Inject constructor(
         turmaId: String,
         nome: String,
         escola: String,
-        periodo: String,
         turno: String,
-        ano: Int
+        ano: String,
+        dataInicio: String,
+        dataFinal: String
     ) {
         Log.d(TAG, "Atualizando a Turma: $nome")
         val turma = Turma(
             uuid = turmaId,
             nome = nome,
             escola = escola,
-            periodo = periodo,
             turno = turno,
-            ano = ano
+            ano = ano,
+            dataInicio = dataInicio,
+            dataFinal = dataFinal,
         )
         dao.update(turma)
     }
@@ -112,9 +119,10 @@ class TurmaRepositoryImpl @Inject constructor(
             uuid = turmaId,
             nome = "",
             escola = "",
-            periodo = "",
             turno = "",
-            ano = 0
+            ano = "",
+            dataInicio = "",
+            dataFinal = "",
         )
         dao.delete(turma)
     }

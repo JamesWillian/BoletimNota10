@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/light"
     android:padding="16dp"
-    tools:context=".ui.avaliacao.AvaliacaoFragment">
+    tools:context=".collections.avaliacao.AvaliacaoFragment">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/novaAvaliacaoButton"

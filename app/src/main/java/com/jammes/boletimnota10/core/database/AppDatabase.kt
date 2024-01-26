@@ -9,13 +9,13 @@ import com.jammes.boletimnota10.core.database.dao.DisciplinaDao
 import com.jammes.boletimnota10.core.database.dao.TurmaDao
 import com.jammes.boletimnota10.core.database.dao.AvaliacaoDao
 import com.jammes.boletimnota10.core.database.dao.PeriodoDao
-import com.jammes.boletimnota10.core.database.dao.TurmaDisciplinaDao
+import com.jammes.boletimnota10.core.database.dao.ModuloDao
 import com.jammes.boletimnota10.core.database.entity.Aluno
 import com.jammes.boletimnota10.core.database.entity.Disciplina
 import com.jammes.boletimnota10.core.database.entity.Turma
 import com.jammes.boletimnota10.core.database.entity.Avaliacao
 import com.jammes.boletimnota10.core.database.entity.Periodo
-import com.jammes.boletimnota10.core.database.entity.TurmaDisciplina
+import com.jammes.boletimnota10.core.database.entity.Modulo
 
 @Database(
     entities = [
@@ -23,9 +23,9 @@ import com.jammes.boletimnota10.core.database.entity.TurmaDisciplina
         Disciplina::class,
         Turma::class,
         Periodo::class,
-        Avaliacao::class,
-        TurmaDisciplina::class],
-    version = 5,
+        Modulo::class,
+        Avaliacao::class,],
+    version = 6,
     exportSchema = true)
 abstract class AppDatabase: RoomDatabase() {
 
@@ -33,8 +33,8 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun disciplinaDao(): DisciplinaDao
     abstract fun turmaDao(): TurmaDao
     abstract fun periodoDao(): PeriodoDao
+    abstract fun moduloDao(): ModuloDao
     abstract fun avaliacaoDao(): AvaliacaoDao
-    abstract fun turmaDisciplinaDao(): TurmaDisciplinaDao
 
     companion object {
         private var instance: AppDatabase? = null

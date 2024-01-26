@@ -12,9 +12,24 @@ interface TurmaRepository {
 
     suspend fun buscarTodasTurmas(): List<TurmaDomain>
 
-    suspend fun add(nome: String, escola: String, periodo: String, turno: String, ano: Int): String
+    suspend fun add(
+        nome: String,
+        escola: String,
+        turno: String,
+        ano: String,
+        dataInicio: String,
+        dataFinal: String
+    ): String
 
-    suspend fun post(turmaId: String, nome: String, escola: String, periodo: String, turno: String, ano: Int)
+    suspend fun post(
+        turmaId: String,
+        nome: String,
+        escola: String,
+        turno: String,
+        ano: String,
+        dataInicio: String,
+        dataFinal: String
+    )
 
     suspend fun delete(turmaId: String)
 

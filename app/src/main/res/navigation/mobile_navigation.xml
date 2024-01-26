@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.jammes.boletimnota10.ui.home.HomeFragment"
+        android:name="com.jammes.boletimnota10.collections.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -18,13 +18,13 @@
 
     <fragment
         android:id="@+id/nav_disciplinas"
-        android:name="com.jammes.boletimnota10.ui.disciplina.DisciplinaFragment"
+        android:name="com.jammes.boletimnota10.collections.disciplina.DisciplinaFragment"
         android:label="@string/menu_disciplinas"
         tools:layout="@layout/fragment_disciplina" />
 
     <fragment
         android:id="@+id/nav_form_turma"
-        android:name="com.jammes.boletimnota10.ui.turma.TurmaFormFragment"
+        android:name="com.jammes.boletimnota10.collections.turma.TurmaFormFragment"
         android:label="@string/menu_form_turma"
         tools:layout="@layout/fragment_form_turma">
         <argument
@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/nav_avaliacoes"
-        android:name="com.jammes.boletimnota10.ui.avaliacao.AvaliacaoFragment"
+        android:name="com.jammes.boletimnota10.collections.avaliacao.AvaliacaoFragment"
         android:label="@string/menu_avaliacoes"
         tools:layout="@layout/fragment_avaliacao" >
         <argument
@@ -48,13 +48,13 @@
 
     <fragment
         android:id="@+id/nav_aluno"
-        android:name="com.jammes.boletimnota10.ui.aluno.AlunoFragment"
+        android:name="com.jammes.boletimnota10.collections.aluno.AlunoFragment"
         android:label="@string/menu_aluno"
         tools:layout="@layout/fragment_aluno" />
 
     <fragment
         android:id="@+id/nav_turma"
-        android:name="com.jammes.boletimnota10.ui.turma.TurmaFragment"
+        android:name="com.jammes.boletimnota10.collections.turma.TurmaFragment"
         android:label="@string/menu_turma"
         tools:layout="@layout/fragment_turma">
         <action

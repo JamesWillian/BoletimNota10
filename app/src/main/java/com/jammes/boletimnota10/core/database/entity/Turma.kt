@@ -8,8 +8,9 @@ data class Turma(
     @PrimaryKey val uuid: String,
     val nome: String,
     val escola: String,
-    val periodo: String,
     val turno: String,
-    val ano: Int,
+    val ano: String,
+    val dataInicio: String,
+    val dataFinal: String,
     val concluido: Boolean = false
 )
