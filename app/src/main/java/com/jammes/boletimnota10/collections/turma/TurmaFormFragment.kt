@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -65,8 +66,10 @@ class TurmaFormFragment : Fragment() {
 
         val args: TurmaFormFragmentArgs by navArgs()
 
-        if (!args.turmaId.isNullOrEmpty())
-            turmaViewModel.buscarTurma(args.turmaId!!)
+        if (arguments?.containsKey("turmaId") == true) {
+            if (!args.turmaId.isNullOrEmpty())
+                turmaViewModel.buscarTurma(args.turmaId!!)
+        }
 
         binding.salvarButton.setOnClickListener {
 
@@ -75,12 +78,17 @@ class TurmaFormFragment : Fragment() {
                 binding.escolaTextInputLayout.editText?.text.toString(),
                 binding.turnoTextInputLayout.editText?.text.toString(),
                 binding.anoTextInputLayout.editText?.text.toString(),
-                "", ""
+                binding.dataInicioTextInputLayout.editText?.text.toString(),
+                binding.dataFinalTextInputLayout.editText?.text.toString(),
             )
 
             Snackbar.make(it, "Turma salva com sucesso!", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
 
+        }
+
+        binding.cancelarButton.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

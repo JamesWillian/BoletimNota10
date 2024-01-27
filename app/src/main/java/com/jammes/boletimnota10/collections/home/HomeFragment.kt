@@ -53,8 +53,8 @@ class HomeFragment : Fragment() {
             bindUiStateBoletim(uiState)
         }
 
-        homeViewModel.existeTurma().observe(viewLifecycleOwner) {
-            if (!it)
+        homeViewModel.existeTurma().observe(viewLifecycleOwner) {existeTurma ->
+            if (!existeTurma)
                 findNavController().navigate(R.id.nav_form_turma)
         }
 
@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
         binding.turmaTextView.text = turma.nome
         binding.escolaTextView.text = turma.escola
         binding.turnoTextView.text = turma.turno
-        binding.anoTextView.text = turma.ano.toString()
+        binding.anoTextView.text = turma.ano
         if (turma.concluido)
             binding.concluidoTextView.visibility = View.GONE
     }

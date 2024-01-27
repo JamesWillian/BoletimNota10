@@ -11,17 +11,13 @@
         android:id="@+id/turmaCardView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         app:cardElevation="10dp"
-        app:cardCornerRadius="5dp"
-        android:backgroundTint="@color/light_blue"
+        android:backgroundTint="@color/secondary_green"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/disciplinasRecyclerView">
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScroll">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -44,37 +40,27 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/turmaTextView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/periodoTextView"
+                app:layout_constraintBottom_toTopOf="@id/anoTextView"
                 tools:text="Escola"/>
 
             <TextView
-                android:id="@+id/periodoTextView"
+                android:id="@+id/anoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/escolaTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="Período"/>
+                tools:text="7ª Série"/>
 
             <TextView
                 android:id="@+id/turnoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:layout_constraintTop_toTopOf="@id/periodoTextView"
-                app:layout_constraintStart_toEndOf="@id/periodoTextView"
-                app:layout_constraintBottom_toBottomOf="@id/periodoTextView"
+                app:layout_constraintTop_toTopOf="@id/anoTextView"
+                app:layout_constraintStart_toEndOf="@id/anoTextView"
+                app:layout_constraintBottom_toBottomOf="@id/anoTextView"
                 tools:text="Turno"/>
-
-            <TextView
-                android:id="@+id/anoTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                app:layout_constraintTop_toTopOf="@id/turnoTextView"
-                app:layout_constraintStart_toEndOf="@id/turnoTextView"
-                app:layout_constraintBottom_toBottomOf="@id/turnoTextView"
-                tools:text="2023"/>
 
             <TextView
                 android:id="@+id/concluidoTextView"
@@ -90,6 +76,72 @@
 
     </androidx.cardview.widget.CardView>
 
+    <HorizontalScrollView
+        android:id="@+id/horizontalScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/turmaCardView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            app:singleLine="true"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_marginStart="10dp"
+                android:text="1 Semestre"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="2 Semestre"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="3 Semestre"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="4 Semestre"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="5 Semestre"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="6 Semestre"/>
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/disciplinasRecyclerView"
         android:layout_width="0dp"
@@ -97,7 +149,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintTop_toBottomOf="@id/turmaCardView"
+        app:layout_constraintTop_toBottomOf="@id/horizontalScroll"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
