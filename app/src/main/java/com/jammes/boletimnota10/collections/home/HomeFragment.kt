@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.jammes.boletimnota10.R
 import com.jammes.boletimnota10.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,6 +50,8 @@ class HomeFragment : Fragment() {
 
         binding.disciplinasRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.disciplinasRecyclerView.adapter = adapter
+
+        addingDividerDecoration()
 
         homeViewModel.stateTurmaUiState().observe(viewLifecycleOwner) {uiState ->
             bindUiStateTurma(uiState)
@@ -107,6 +110,17 @@ class HomeFragment : Fragment() {
 
     private fun bindUiStateBoletim(uiState: HomeViewModel.BoletimUiState) {
         adapter.buscarBoletim(uiState.boletimItem)
+    }
+
+    private fun addingDividerDecoration() {
+        val divider = MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+        val resources = requireContext().resources
+
+        divider.isLastItemDecorated = false
+        divider.dividerThickness = resources.getDimensionPixelSize(R.dimen.vertical_margin)
+        divider.dividerColor = ContextCompat.getColor(requireContext(), R.color.soft_blue)
+
+        binding.disciplinasRecyclerView.addItemDecoration(divider)
     }
 
     override fun onResume() {
