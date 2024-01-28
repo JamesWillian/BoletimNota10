@@ -1,9 +1,9 @@
 package com.jammes.boletimnota10.collections.model
 
 data class BoletimItem(
-    val id: String,
+    val moduloId: String,
     val periodoId: String,
-    val disciplina: String,
+    val modulo: String,
     val notaTotal: String,
-    val professor: String
+    val professor: String?
 )

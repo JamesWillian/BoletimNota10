@@ -4,8 +4,8 @@ import com.jammes.boletimnota10.core.model.AvaliacaoDomain
 
 interface AvaliacaoRepository {
 
-    suspend fun buscarTodasAvaliacoes(turmaId: String, disciplinaId: String): List<AvaliacaoDomain>
+    suspend fun buscarTodasAvaliacoes(moduloId: String): List<AvaliacaoDomain>
 
-    suspend fun add(turmaId: String, disciplinaId: String, descricao: String, nota: Float, data: String, recuperacao: Boolean)
+    suspend fun add(moduloId: String, descricao: String, nota: Float, data: String, recuperacao: Boolean)
 
 }

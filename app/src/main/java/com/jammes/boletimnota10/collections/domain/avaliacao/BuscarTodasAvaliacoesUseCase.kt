@@ -4,5 +4,5 @@ import com.jammes.boletimnota10.collections.model.AvaliacaoItem
 
 interface BuscarTodasAvaliacoesUseCase {
 
-    suspend operator fun invoke(turmaId: String, disciplinaId: String): List<AvaliacaoItem>
+    suspend operator fun invoke(moduloId: String): List<AvaliacaoItem>
 }

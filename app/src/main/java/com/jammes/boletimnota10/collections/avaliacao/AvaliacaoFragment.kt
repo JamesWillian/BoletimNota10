@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.jammes.boletimnota10.R
 import com.jammes.boletimnota10.databinding.FragmentAvaliacaoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,8 +24,7 @@ class AvaliacaoFragment: Fragment() {
 
     private lateinit var adapter: AvaliacaoListAdapter
 
-    private lateinit var turmaId: String
-    private lateinit var disciplinaId: String
+    private lateinit var moduloId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,17 +48,17 @@ class AvaliacaoFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val args: AvaliacaoFragmentArgs by navArgs()
-        turmaId = args.turmaId
-        disciplinaId = args.disciplinaId
+        moduloId = args.moduloId
 
         binding.avaliacoesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.avaliacoesRecyclerView.adapter = adapter
 
+        addingDividerDecoration()
+
         binding.novaAvaliacaoButton.setOnClickListener {
             AvaliacaoFormFragment(
                 viewModel,
-                turmaId,
-                disciplinaId
+                moduloId
             ).show(
                 requireActivity().supportFragmentManager, "AvaliacaoFormDialog"
             )
@@ -71,10 +73,21 @@ class AvaliacaoFragment: Fragment() {
         adapter.recarregarAvaliacoes(uiState.avaliacaoItemList)
     }
 
+    private fun addingDividerDecoration() {
+        val divider = MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+        val resources = requireContext().resources
+
+        divider.isLastItemDecorated = false
+        divider.dividerThickness = resources.getDimensionPixelSize(R.dimen.vertical_margin)
+        divider.dividerColor = ContextCompat.getColor(requireContext(), R.color.soft_blue)
+
+        binding.avaliacoesRecyclerView.addItemDecoration(divider)
+    }
+
     override fun onResume() {
         super.onResume()
 
-        viewModel.onResume(turmaId, disciplinaId)
+        viewModel.onResume(moduloId)
     }
 
     override fun onDestroyView() {

@@ -12,8 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AvaliacaoFormFragment(
     private val viewModel: AvaliacaoViewModel,
-    private val turmaId: String,
-    private val disciplinaId: String
+    private val moduloId: String,
 ): DialogFragment() {
 
     private var _binding: FragmentFormAvaliacaoBinding? = null
@@ -36,8 +35,7 @@ class AvaliacaoFormFragment(
 
         binding.salvarButton.setOnClickListener {
             viewModel.salvarAvaliacao(
-                turmaId,
-                disciplinaId,
+                moduloId,
                 binding.avaliacaoTextInputLayout.editText?.text.toString(),
                 binding.notaTextInputLayout.editText?.text.toString().toFloat(),
                 binding.dataTextInputLayout.editText?.text.toString(),

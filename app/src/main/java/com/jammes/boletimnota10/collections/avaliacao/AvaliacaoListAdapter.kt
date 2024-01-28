@@ -28,8 +28,7 @@ class AvaliacaoListAdapter(
             binding.root.setOnClickListener {
                 AvaliacaoFormFragment(
                     viewModel,
-                    avaliacao.turmaId,
-                    avaliacao.disciplinaId)
+                    avaliacao.moduloId)
                     .show(
                         fragmentManager, "AvaliacaoFormDialog"
                     )

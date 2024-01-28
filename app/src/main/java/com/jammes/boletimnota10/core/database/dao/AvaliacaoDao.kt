@@ -19,7 +19,7 @@ interface AvaliacaoDao {
     @Delete
     suspend fun delete(avaliacao: Avaliacao)
 
-    @Query("SELECT * FROM avaliacao WHERE turmaId = :turmaId and disciplinaId = :disciplinaId")
-    suspend fun buscarAvaliacoes(turmaId: String, disciplinaId: String): List<Avaliacao>
+    @Query("SELECT * FROM avaliacao WHERE moduloId = :moduloId")
+    suspend fun buscarAvaliacoes(moduloId: String): List<Avaliacao>
 
 }

@@ -16,12 +16,13 @@ class TurmaRepositoryImpl @Inject constructor(
         return dao.existeTurmaCadastrada()
     }
 
-    override suspend fun buscarTurmaAtiva(): TurmaDomain {
+    override suspend fun buscarTurmaAtiva(): TurmaDomain? {
         Log.d(TAG, "Buscando Turma Ativa")
 
         val turma = dao.selectTurmaAtiva()
 
-        return TurmaDomain(
+        return if (turma != null) {
+            TurmaDomain(
                 id = turma.uuid,
                 nome = turma.nome,
                 escola = turma.escola,
@@ -31,6 +32,7 @@ class TurmaRepositoryImpl @Inject constructor(
                 dataFinal = turma.dataFinal,
                 concluido = turma.concluido
             )
+        } else null
     }
 
     override suspend fun buscarTurmaPorId(turmaId: String): TurmaDomain {

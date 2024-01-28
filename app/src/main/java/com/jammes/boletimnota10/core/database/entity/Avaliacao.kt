@@ -6,8 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "avaliacao")
 data class Avaliacao(
     @PrimaryKey val uuid: String,
-    val turmaId: String,
-    val disciplinaId: String,
+    val moduloId: String,
     val descricao: String,
     val nota: Float,
     val data: String,

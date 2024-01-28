@@ -9,22 +9,24 @@ class BuscarTurmaAtualUseCaseImpl @Inject constructor(
     private val turmaRepository: TurmaRepository
 ): BuscarTurmaAtualUseCase {
 
-    override suspend fun invoke(): TurmaItem {
+    override suspend fun invoke(): TurmaItem? {
 
         Log.d(TAG, "Obtendo a Turma Atual")
 
         val turma = turmaRepository.buscarTurmaAtiva()
 
-        return TurmaItem(
-                    id = turma.id,
-                    nome = turma.nome,
-                    escola = turma.escola,
-                    turno = turma.turno,
-                    ano = turma.ano,
-                    dataInicio = turma.dataInicio,
-                    dataFinal = turma.dataFinal,
-                    concluido = turma.concluido
-                )
+        return if (turma != null) {
+            TurmaItem(
+                id = turma.id,
+                nome = turma.nome,
+                escola = turma.escola,
+                turno = turma.turno,
+                ano = turma.ano,
+                dataInicio = turma.dataInicio,
+                dataFinal = turma.dataFinal,
+                concluido = turma.concluido
+            )
+        } else null
     }
 
     companion object {

@@ -8,6 +8,8 @@ import com.jammes.boletimnota10.core.repository.TurmaRepository
 import com.jammes.boletimnota10.core.repository.TurmaRepositoryImpl
 import com.jammes.boletimnota10.core.repository.AvaliacaoRepository
 import com.jammes.boletimnota10.core.repository.AvaliacaoRepositoryImpl
+import com.jammes.boletimnota10.core.repository.BoletimRepository
+import com.jammes.boletimnota10.core.repository.BoletimRepositoryImpl
 import com.jammes.boletimnota10.core.repository.PeriodoRepository
 import com.jammes.boletimnota10.core.repository.PeriodoRepositoryImpl
 import com.jammes.boletimnota10.core.repository.ModuloRepository
@@ -45,4 +47,8 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun providesAvaliacaoRepository(impl: AvaliacaoRepositoryImpl): AvaliacaoRepository
+
+    @Singleton
+    @Binds
+    abstract fun providesBoletimRepository(impl: BoletimRepositoryImpl): BoletimRepository
 }

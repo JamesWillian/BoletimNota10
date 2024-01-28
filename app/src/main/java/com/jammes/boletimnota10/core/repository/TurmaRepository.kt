@@ -6,7 +6,7 @@ interface TurmaRepository {
 
     suspend fun existeTurmaCadastrada(): Boolean
 
-    suspend fun buscarTurmaAtiva(): TurmaDomain
+    suspend fun buscarTurmaAtiva(): TurmaDomain?
 
     suspend fun buscarTurmaPorId(turmaId: String): TurmaDomain
 

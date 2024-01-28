@@ -16,9 +16,12 @@ class BoletimListAdapter(): RecyclerView.Adapter<BoletimListAdapter.ViewHolder>(
     ): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(boletim: BoletimItem) {
-            binding.disciplinaTextView.text = boletim.disciplina
+            binding.disciplinaTextView.text = boletim.modulo
+            binding.professorTextView.text = boletim.professor
+            binding.notaTotalTextView.text = boletim.notaTotal
+
             binding.root.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeFragmentToNavAvaliacoes(boletim.periodoId, boletim.id)
+                val action = HomeFragmentDirections.actionHomeFragmentToNavAvaliacoes(boletim.moduloId)
                 itemView.findNavController().navigate(action)
             }
         }
@@ -45,11 +48,11 @@ class BoletimListAdapter(): RecyclerView.Adapter<BoletimListAdapter.ViewHolder>(
     object DiffCallback : DiffUtil.ItemCallback<BoletimItem>() {
 
         override fun areItemsTheSame(oldItem: BoletimItem, newItem: BoletimItem): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.moduloId == newItem.moduloId
         }
 
         override fun areContentsTheSame(oldItem: BoletimItem, newItem: BoletimItem): Boolean {
-            return oldItem.disciplina == newItem.disciplina
+            return oldItem.modulo == newItem.modulo
         }
     }
 

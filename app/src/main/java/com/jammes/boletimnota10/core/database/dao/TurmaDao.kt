@@ -23,7 +23,7 @@ interface TurmaDao {
     suspend fun existeTurmaCadastrada(): Boolean
 
     @Query("SELECT * FROM turma WHERE NOT concluido LIMIT 1")
-    suspend fun selectTurmaAtiva(): Turma
+    suspend fun selectTurmaAtiva(): Turma?
 
     @Query("SELECT * FROM turma WHERE uuid = :turmaId")
     suspend fun selectTurmaPorId(turmaId: String): Turma

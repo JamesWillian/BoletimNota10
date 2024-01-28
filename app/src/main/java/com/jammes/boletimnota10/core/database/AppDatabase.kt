@@ -8,12 +8,14 @@ import com.jammes.boletimnota10.core.database.dao.AlunoDao
 import com.jammes.boletimnota10.core.database.dao.DisciplinaDao
 import com.jammes.boletimnota10.core.database.dao.TurmaDao
 import com.jammes.boletimnota10.core.database.dao.AvaliacaoDao
+import com.jammes.boletimnota10.core.database.dao.BoletimDao
 import com.jammes.boletimnota10.core.database.dao.PeriodoDao
 import com.jammes.boletimnota10.core.database.dao.ModuloDao
 import com.jammes.boletimnota10.core.database.entity.Aluno
 import com.jammes.boletimnota10.core.database.entity.Disciplina
 import com.jammes.boletimnota10.core.database.entity.Turma
 import com.jammes.boletimnota10.core.database.entity.Avaliacao
+import com.jammes.boletimnota10.core.database.entity.Boletim
 import com.jammes.boletimnota10.core.database.entity.Periodo
 import com.jammes.boletimnota10.core.database.entity.Modulo
 
@@ -25,7 +27,10 @@ import com.jammes.boletimnota10.core.database.entity.Modulo
         Periodo::class,
         Modulo::class,
         Avaliacao::class,],
-    version = 6,
+    views = [
+        Boletim::class
+            ],
+    version = 7,
     exportSchema = true)
 abstract class AppDatabase: RoomDatabase() {
 
@@ -35,6 +40,7 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun periodoDao(): PeriodoDao
     abstract fun moduloDao(): ModuloDao
     abstract fun avaliacaoDao(): AvaliacaoDao
+    abstract fun boletimDao(): BoletimDao
 
     companion object {
         private var instance: AppDatabase? = null

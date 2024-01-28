@@ -9,17 +9,16 @@ class BuscarTodasAvaliacoesUseCaseImpl @Inject constructor(
     private val avaliacaoRepository: AvaliacaoRepository
 ): BuscarTodasAvaliacoesUseCase {
 
-    override suspend fun invoke(turmaId: String, disciplinaId: String): List<AvaliacaoItem> {
-        Log.d(TAG, "Listando todas as Avaliações da disciplina: $disciplinaId")
+    override suspend fun invoke(moduloId: String): List<AvaliacaoItem> {
+        Log.d(TAG, "Listando todas as Avaliações do Módulo: $moduloId")
 
         return avaliacaoRepository
-            .buscarTodasAvaliacoes(turmaId, disciplinaId)
+            .buscarTodasAvaliacoes(moduloId)
             .map {
 
                 AvaliacaoItem(
                     id = it.id,
-                    turmaId = it.turmaId,
-                    disciplinaId = it.disciplinaId,
+                    moduloId = it.moduloId,
                     descricao = it.descricao,
                     nota = it.nota.toString(),
                     data = it.data,

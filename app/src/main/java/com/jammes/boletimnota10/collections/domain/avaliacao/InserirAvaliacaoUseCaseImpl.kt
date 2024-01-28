@@ -9,8 +9,7 @@ class InserirAvaliacaoUseCaseImpl @Inject constructor(
 ) : InserirAvaliacaoUseCase {
 
     override suspend fun invoke(
-        turmaId: String,
-        disciplinaId: String,
+        moduloId: String,
         descricao: String,
         nota: Float,
         data: String,
@@ -19,8 +18,7 @@ class InserirAvaliacaoUseCaseImpl @Inject constructor(
         Log.d(TAG, "Inserindo nova Avaliação: $descricao")
 
         avaliacaoRepository.add(
-            turmaId,
-            disciplinaId,
+            moduloId,
             descricao,
             nota,
             data,

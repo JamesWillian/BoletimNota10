@@ -13,15 +13,13 @@ class AvaliacaoRepositoryImpl @Inject constructor(
 ) : AvaliacaoRepository {
 
     override suspend fun buscarTodasAvaliacoes(
-        turmaId: String,
-        disciplinaId: String
+        moduloId: String
     ): List<AvaliacaoDomain> {
-        Log.d(TAG, "Listando todas as Avaliações da Disciplina: $disciplinaId")
-        return dao.buscarAvaliacoes(turmaId, disciplinaId).map {
+        Log.d(TAG, "Listando todas as Avaliações do Módulo: $moduloId")
+        return dao.buscarAvaliacoes(moduloId).map {
             AvaliacaoDomain(
                 id = it.uuid,
-                turmaId = it.turmaId,
-                disciplinaId = it.disciplinaId,
+                moduloId = it.moduloId,
                 descricao = it.descricao,
                 nota = it.nota,
                 data = it.data,
@@ -31,8 +29,7 @@ class AvaliacaoRepositoryImpl @Inject constructor(
     }
 
     override suspend fun add(
-        turmaId: String,
-        disciplinaId: String,
+        moduloId: String,
         descricao: String,
         nota: Float,
         data: String,
@@ -41,8 +38,7 @@ class AvaliacaoRepositoryImpl @Inject constructor(
         Log.d(TAG, "Adicionando nova Avaliação: $descricao")
         val avaliacao = Avaliacao(
             uuid = UUID.randomUUID().toString(),
-            turmaId = turmaId,
-            disciplinaId = disciplinaId,
+            moduloId = moduloId,
             descricao = descricao,
             nota = nota,
             data = data,

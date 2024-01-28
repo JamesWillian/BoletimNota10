@@ -25,20 +25,20 @@ class AvaliacaoViewModel @Inject constructor(
         return uiState
     }
 
-    private suspend fun atualizarAvaliacoesList(turmaId: String, disciplinaId: String) {
-        uiState.postValue(UiState(buscarTodasAvaliacoesUseCase(turmaId, disciplinaId)))
+    private suspend fun atualizarAvaliacoesList(moduloId: String) {
+        uiState.postValue(UiState(buscarTodasAvaliacoesUseCase(moduloId)))
     }
 
-    fun salvarAvaliacao(turmaId: String, disciplinaId: String, descricao: String, nota: Float, data: String, recuperacao: Boolean) {
+    fun salvarAvaliacao(moduloId: String, descricao: String, nota: Float, data: String, recuperacao: Boolean) {
         viewModelScope.launch {
-            inserirAvaliacaoUseCase(turmaId, disciplinaId, descricao, nota, data, recuperacao)
-            atualizarAvaliacoesList(turmaId, disciplinaId)
+            inserirAvaliacaoUseCase(moduloId, descricao, nota, data, recuperacao)
+            atualizarAvaliacoesList(moduloId)
         }
     }
 
-    fun onResume(turmaId: String, disciplinaId: String) {
+    fun onResume(moduloId: String) {
         viewModelScope.launch {
-            atualizarAvaliacoesList(turmaId, disciplinaId)
+            atualizarAvaliacoesList(moduloId)
         }
     }
 

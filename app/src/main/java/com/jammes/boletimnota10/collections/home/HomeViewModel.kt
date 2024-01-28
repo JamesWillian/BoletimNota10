@@ -65,12 +65,13 @@ class HomeViewModel @Inject constructor(
     private suspend fun obterTurmaAtual() {
         withContext(Dispatchers.Main) {
 
-            val turma = TurmaUiState(buscarTurmaAtualUseCase())
+            val turma = buscarTurmaAtualUseCase()?.let { TurmaUiState(it) }
 
-            uiStateTurma.postValue(turma)
+            if (turma != null) {
+                uiStateTurma.postValue(turma)
 
-            obterPeriodos(turma.turmaItem.id)
-
+                obterPeriodos(turma.turmaItem.id)
+            }
         }
     }
 
