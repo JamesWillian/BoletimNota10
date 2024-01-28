@@ -10,14 +10,16 @@ import javax.inject.Inject
 class PeriodoRepositoryImpl @Inject constructor(
     private val dao: PeriodoDao
 ): PeriodoRepository {
-    override suspend fun add(periodo: String, turmaId: String) {
+    override suspend fun add(periodo: String, turmaId: String): String {
         Log.d(TAG, "Adicionando novo período $periodo a turma $turmaId")
-        val newPeriodo = Periodo(
+        val novoPeriodo = Periodo(
             uuid = UUID.randomUUID().toString(),
             turmaId = turmaId,
             descricao = periodo
         )
-        dao.inserir(newPeriodo)
+        dao.inserir(novoPeriodo)
+
+        return novoPeriodo.uuid
     }
 
     override suspend fun fetch(turmaId: String): List<PeriodoDomain> {

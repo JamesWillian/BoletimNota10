@@ -69,6 +69,8 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun turmaAtual() = uiStateTurma.value?.turmaItem?.id
+
     data class TurmaUiState(val turmaItem: TurmaItem)
     data class BoletimUiState(val boletimItem: List<ModuloItem>)
 }

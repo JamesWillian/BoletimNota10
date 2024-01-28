@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jammes.boletimnota10.collections.domain.turma.BuscarTodasTurmasUseCase
+import com.jammes.boletimnota10.collections.domain.periodo.BuscarPeriodosDaTurmaUseCase
 import com.jammes.boletimnota10.collections.domain.turma.BuscarTurmaPorIdUseCase
 import com.jammes.boletimnota10.collections.domain.turma.InserirTurmaUseCase
-import com.jammes.boletimnota10.collections.domain.modulo.InserirModuloUseCase
-import com.jammes.boletimnota10.collections.model.ModuloItem
+import com.jammes.boletimnota10.collections.domain.periodo.InserirPeriodoUseCase
+import com.jammes.boletimnota10.collections.model.PeriodoItem
 import com.jammes.boletimnota10.collections.model.TurmaItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,60 +17,83 @@ import javax.inject.Inject
 @HiltViewModel
 class TurmaViewModel @Inject constructor(
     private val inserirTurmaUseCase: InserirTurmaUseCase,
-    private val inserirModuloUseCase: InserirModuloUseCase,
-    private val buscarTodasTurmasUseCase: BuscarTodasTurmasUseCase,
-    private val buscarTurmaPorIdUseCase: BuscarTurmaPorIdUseCase
+    private val buscarTurmaPorIdUseCase: BuscarTurmaPorIdUseCase,
+    private val inserirPeriodoUseCase: InserirPeriodoUseCase,
+    private val buscarPeriodosDaTurmaUseCase: BuscarPeriodosDaTurmaUseCase,
 ) : ViewModel() {
 
-//    val disciplinasSelecionadas: MutableList<ModuloItem> = mutableListOf()
-
-    private val uiStateTurmaList: MutableLiveData<UiStateTurmaList> by lazy {
-        MutableLiveData<UiStateTurmaList>(UiStateTurmaList(emptyList()))
+    private val uiStateTurma: MutableLiveData<UiStateTurma> by lazy {
+        MutableLiveData<UiStateTurma>()
     }
 
-    private val uiStateTurma: MutableLiveData<UiStateTurmaItem> by lazy {
-        MutableLiveData<UiStateTurmaItem>()
+    private val uiStatePeriodo: MutableLiveData<UiStatePeriodo> by lazy {
+        MutableLiveData<UiStatePeriodo>(UiStatePeriodo(emptyList()))
     }
 
-    fun stateTurmaListOnce(): LiveData<UiStateTurmaList> {
-        return uiStateTurmaList
-    }
-
-    fun stateTurmaItemOnce(): LiveData<UiStateTurmaItem> {
+    fun stateTurmaOnce(): LiveData<UiStateTurma> {
         return uiStateTurma
     }
 
-    private suspend fun buscarTurmaList() {
-        uiStateTurmaList.postValue(UiStateTurmaList(buscarTodasTurmasUseCase()))
+    fun statePeriodoOnce(): LiveData<UiStatePeriodo> {
+        return uiStatePeriodo
     }
 
     private suspend fun buscarTurmaPorId(turmaId: String) {
-        uiStateTurma.postValue(UiStateTurmaItem(buscarTurmaPorIdUseCase(turmaId)))
+        uiStateTurma.postValue(UiStateTurma(buscarTurmaPorIdUseCase(turmaId)))
+    }
+
+    private suspend fun buscarPeriodosDaTurma(turmaId: String) {
+        uiStatePeriodo.postValue(UiStatePeriodo(buscarPeriodosDaTurmaUseCase(turmaId)))
     }
 
     fun buscarTurma(turmaId: String) {
         viewModelScope.launch {
             buscarTurmaPorId(turmaId)
+            buscarPeriodosDaTurma(turmaId)
         }
     }
 
-    fun onResumeTurma() {
-        viewModelScope.launch {
-            buscarTurmaList()
+    fun onResume() {
+        val turmaId = turmaAtual()
+
+        if (turmaId != null) {
+            viewModelScope.launch {
+                buscarPeriodosDaTurma(turmaId)
+            }
         }
     }
 
-    fun saveTurma(nome: String, escola: String, turno: String, ano: String, dataInicio: String, dataFinal: String) {
+    fun salvarTurma(nome: String, escola: String, turno: String, ano: String, dataInicio: String, dataFinal: String) {
         viewModelScope.launch {
             val turmaId = inserirTurmaUseCase(nome, escola, turno, ano, dataInicio, dataFinal)
 
-//            for (disciplina in disciplinasSelecionadas) {
-//                inserirModuloUseCase(turmaId, disciplina.id)
-//            }
+            uiStateTurma.postValue(
+                UiStateTurma(
+                    TurmaItem(
+                        id = turmaId,
+                        nome = nome,
+                        escola = escola,
+                        turno = turno,
+                        ano = ano,
+                        dataInicio = dataInicio,
+                        dataFinal = dataFinal
+                    )
+                )
+            )
         }
     }
 
-    data class UiStateTurmaList(val turmaItemList: List<TurmaItem>)
-    data class UiStateTurmaItem(val turmaItem: TurmaItem)
+    fun salvarPeriodo(periodo: String) {
+        viewModelScope.launch {
+            val turmaId = turmaAtual()
+            val periodoId = inserirPeriodoUseCase(periodo, turmaId!!)
+            buscarPeriodosDaTurma(turmaId)
+        }
+    }
+
+    fun turmaAtual() = uiStateTurma.value?.turmaItem?.id
+
+    data class UiStateTurma(val turmaItem: TurmaItem)
+    data class UiStatePeriodo(val periodoItem: List<PeriodoItem>)
 
 }

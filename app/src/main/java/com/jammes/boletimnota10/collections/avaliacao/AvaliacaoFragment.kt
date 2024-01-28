@@ -56,10 +56,10 @@ class AvaliacaoFragment: Fragment() {
             AvaliacaoFormFragment(
                 viewModel,
                 turmaId,
-                disciplinaId)
-                .show(
-                    requireActivity().supportFragmentManager, "AvaliacaoFormDialog"
-                )
+                disciplinaId
+            ).show(
+                requireActivity().supportFragmentManager, "AvaliacaoFormDialog"
+            )
         }
 
         viewModel.stateOnceAndStream().observe(viewLifecycleOwner) {

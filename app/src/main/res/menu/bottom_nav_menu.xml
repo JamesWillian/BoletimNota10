@@ -6,10 +6,6 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_turma"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_turma" />
-        <item
             android:id="@+id/nav_disciplinas"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_disciplinas" />

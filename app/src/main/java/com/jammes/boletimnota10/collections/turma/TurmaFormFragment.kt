@@ -11,8 +11,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.jammes.boletimnota10.databinding.FragmentFormTurmaBinding
-import com.jammes.boletimnota10.collections.disciplina.DisciplinaViewModel
-import com.jammes.boletimnota10.collections.model.ModuloItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,17 +18,14 @@ class TurmaFormFragment : Fragment() {
 
     private var _binding: FragmentFormTurmaBinding? = null
     private val binding get() = _binding!!
-
-//    private lateinit var disciplinaViewModel: DisciplinaViewModel
     private lateinit var turmaViewModel: TurmaViewModel
-    private lateinit var adapter: ModuloListAdapter
+    private lateinit var adapter: PeriodoListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        disciplinaViewModel = ViewModelProvider(this)[DisciplinaViewModel::class.java]
-        turmaViewModel = ViewModelProvider(this)[TurmaViewModel::class.java]
-        adapter = ModuloListAdapter(turmaViewModel)
+        turmaViewModel = ViewModelProvider(requireActivity())[TurmaViewModel::class.java]
+        adapter = PeriodoListAdapter()
     }
 
     override fun onCreateView(
@@ -41,18 +36,14 @@ class TurmaFormFragment : Fragment() {
 
         _binding = FragmentFormTurmaBinding.inflate(inflater, container, false)
 
-        turmaViewModel.stateTurmaItemOnce().observe(viewLifecycleOwner) {
+        turmaViewModel.stateTurmaOnce().observe(viewLifecycleOwner) {
             bindTurmaUiState(it)
         }
-
-//        disciplinaViewModel.stateOnceAndStream().observe(viewLifecycleOwner) {
-//            bindUiState(it)
-//        }
 
         return binding.root
     }
 
-    private fun bindTurmaUiState(uiStateTurmaItem: TurmaViewModel.UiStateTurmaItem) {
+    private fun bindTurmaUiState(uiStateTurmaItem: TurmaViewModel.UiStateTurma) {
         val turmaItem = uiStateTurmaItem.turmaItem
 
         binding.turmaTextInputLayout.editText?.setText(turmaItem.nome)
@@ -66,48 +57,65 @@ class TurmaFormFragment : Fragment() {
 
         val args: TurmaFormFragmentArgs by navArgs()
 
-        if (arguments?.containsKey("turmaId") == true) {
+        if (arguments?.containsKey("turma_id") == true) {
             if (!args.turmaId.isNullOrEmpty())
                 turmaViewModel.buscarTurma(args.turmaId!!)
         }
 
-        binding.salvarButton.setOnClickListener {
+        binding.periodoRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.periodoRecyclerView.adapter = adapter
 
-            turmaViewModel.saveTurma(
-                binding.turmaTextInputLayout.editText?.text.toString(),
-                binding.escolaTextInputLayout.editText?.text.toString(),
-                binding.turnoTextInputLayout.editText?.text.toString(),
-                binding.anoTextInputLayout.editText?.text.toString(),
-                binding.dataInicioTextInputLayout.editText?.text.toString(),
-                binding.dataFinalTextInputLayout.editText?.text.toString(),
-            )
+        binding.novoPeriodoButton.setOnClickListener {
 
-            Snackbar.make(it, "Turma salva com sucesso!", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            if (turmaViewModel.turmaAtual().isNullOrEmpty()) {
 
+                turmaViewModel.salvarTurma(
+                    binding.turmaTextInputLayout.editText?.text.toString(),
+                    binding.escolaTextInputLayout.editText?.text.toString(),
+                    binding.turnoTextInputLayout.editText?.text.toString(),
+                    binding.anoTextInputLayout.editText?.text.toString(),
+                    binding.dataInicioTextInputLayout.editText?.text.toString(),
+                    binding.dataFinalTextInputLayout.editText?.text.toString(),
+                )
+
+                Snackbar.make(it, "Turma salva com sucesso!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+            }
+
+            PeriodoFormFragment(turmaViewModel)
+                .show(
+                    requireActivity().supportFragmentManager, "PeriodoFormDialog"
+                )
+        }
+
+        turmaViewModel.statePeriodoOnce().observe(viewLifecycleOwner){uiState ->
+            bindUiState(uiState)
         }
 
         binding.cancelarButton.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        binding.salvarButton.setOnClickListener {
+            Snackbar.make(it, "Turma salva com sucesso!", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun bindUiState(uiState: TurmaViewModel.UiStatePeriodo?) {
+
+        uiState?.periodoItem?.let {periodos ->
+            adapter.updatePeriodos(periodos)
+        }
     }
 
     override fun onResume() {
         super.onResume()
-//        disciplinaViewModel.onResume()
-    }
 
-//    private fun bindUiState(uiState: DisciplinaViewModel.UiState) {
-//        adapter.updateDisciplinas(
-//            uiState.disciplinaItemList.map {
-//                ModuloItem(
-//                    it.id,
-//                    "",
-//                    it.descricao
-//                )
-//            }
-//        )
-//    }
+        turmaViewModel.onResume()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

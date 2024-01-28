@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_homeFragment_to_nav_avaliacoes"
             app:destination="@id/nav_avaliacoes" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_form_turma"
+            app:destination="@id/nav_form_turma" />
     </fragment>
 
     <fragment
@@ -51,15 +54,5 @@
         android:name="com.jammes.boletimnota10.collections.aluno.AlunoFragment"
         android:label="@string/menu_aluno"
         tools:layout="@layout/fragment_aluno" />
-
-    <fragment
-        android:id="@+id/nav_turma"
-        android:name="com.jammes.boletimnota10.collections.turma.TurmaFragment"
-        android:label="@string/menu_turma"
-        tools:layout="@layout/fragment_turma">
-        <action
-            android:id="@+id/action_nav_turma_to_nav_form_turma"
-            app:destination="@id/nav_form_turma" />
-    </fragment>
 
 </navigation>

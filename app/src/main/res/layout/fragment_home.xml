@@ -68,9 +68,16 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/turmaTextView"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="Ativo"
                 android:textColor="@color/secondary_green"
                 tools:text="Ativo"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/editarTurmaButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_edit_24"
+                app:layout_constraintBottom_toBottomOf="@id/turnoTextView"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

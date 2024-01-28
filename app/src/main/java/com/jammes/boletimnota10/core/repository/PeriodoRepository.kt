@@ -4,7 +4,7 @@ import com.jammes.boletimnota10.core.model.PeriodoDomain
 
 interface PeriodoRepository {
 
-    suspend fun add(periodo: String, turmaId: String)
+    suspend fun add(periodo: String, turmaId: String): String
 
     suspend fun fetch(turmaId: String): List<PeriodoDomain>
 }

@@ -26,6 +26,10 @@ import com.jammes.boletimnota10.collections.domain.modulo.BuscarModulosDoPeriodo
 import com.jammes.boletimnota10.collections.domain.modulo.BuscarModulosDoPeriodoUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.modulo.InserirModuloUseCase
 import com.jammes.boletimnota10.collections.domain.modulo.InserirModuloUseCaseImpl
+import com.jammes.boletimnota10.collections.domain.periodo.BuscarPeriodosDaTurmaUseCase
+import com.jammes.boletimnota10.collections.domain.periodo.BuscarPeriodosDaTurmaUseCaseImpl
+import com.jammes.boletimnota10.collections.domain.periodo.InserirPeriodoUseCase
+import com.jammes.boletimnota10.collections.domain.periodo.InserirPeriodoUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -114,4 +118,16 @@ abstract class UseCaseModule {
     abstract fun providesInsertTurmaDisciplinasUseCase(
         impl: InserirModuloUseCaseImpl
     ): InserirModuloUseCase
+
+    @Singleton
+    @Binds
+    abstract fun providesInserirPeriodoUseCase(
+        impl: InserirPeriodoUseCaseImpl
+    ): InserirPeriodoUseCase
+
+    @Singleton
+    @Binds
+    abstract fun providesBuscarPeriodosDaTurmaUseCase(
+        impl: BuscarPeriodosDaTurmaUseCaseImpl
+    ): BuscarPeriodosDaTurmaUseCase
 }

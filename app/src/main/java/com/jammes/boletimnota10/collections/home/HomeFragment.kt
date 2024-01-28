@@ -58,6 +58,12 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.nav_form_turma)
         }
 
+        binding.editarTurmaButton.setOnClickListener {
+
+            val action = HomeFragmentDirections.actionNavHomeToNavFormTurma(homeViewModel.turmaAtual())
+            findNavController().navigate(action)
+        }
+
     }
 
     private fun bindUiStateTurma(uiState: HomeViewModel.TurmaUiState) {

@@ -2,6 +2,7 @@ package com.jammes.boletimnota10
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -33,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home,
-                R.id.nav_turma,
                 R.id.nav_disciplinas,
                 R.id.nav_aluno,
             ),
@@ -46,6 +46,19 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
+    }
+
+    /*
+    * Define a ação dos botões do toolbar
+    * action_nova_turma -> Tela para Inserir Nova Turma
+    * */
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_nova_turma -> {
+            val navController = findNavController(R.id.nav_host_fragment_content_main)
+            navController.navigate(R.id.nav_form_turma)
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {
