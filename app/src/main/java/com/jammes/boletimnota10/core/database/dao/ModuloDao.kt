@@ -18,4 +18,6 @@ interface ModuloDao {
     @Query("SELECT * FROM modulo WHERE periodoId=:periodoId")
     suspend fun buscarTodosModulosDoPeriodo(periodoId: String): List<Modulo>
 
+    @Query("SELECT * FROM modulo WHERE periodoId=:periodoId AND disciplinaId=:disciplinaId")
+    suspend fun buscarModulo(periodoId: String, disciplinaId: String): Modulo?
 }

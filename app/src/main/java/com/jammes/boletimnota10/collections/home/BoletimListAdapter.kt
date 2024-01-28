@@ -6,8 +6,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.jammes.boletimnota10.collections.model.BoletimItem
 import com.jammes.boletimnota10.databinding.BoletimItemBinding
-import com.jammes.boletimnota10.collections.model.ModuloItem
 
 class BoletimListAdapter(): RecyclerView.Adapter<BoletimListAdapter.ViewHolder>() {
 
@@ -15,16 +15,16 @@ class BoletimListAdapter(): RecyclerView.Adapter<BoletimListAdapter.ViewHolder>(
         private val binding: BoletimItemBinding
     ): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(disciplina: ModuloItem) {
-            binding.disciplinaTextView.text = disciplina.disciplina
+        fun bind(boletim: BoletimItem) {
+            binding.disciplinaTextView.text = boletim.disciplina
             binding.root.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeFragmentToNavAvaliacoes(disciplina.periodoId,disciplina.id)
+                val action = HomeFragmentDirections.actionHomeFragmentToNavAvaliacoes(boletim.periodoId, boletim.id)
                 itemView.findNavController().navigate(action)
             }
         }
     }
 
-    private val asyncListDiffer: AsyncListDiffer<ModuloItem> = AsyncListDiffer(this, DiffCallback)
+    private val asyncListDiffer: AsyncListDiffer<BoletimItem> = AsyncListDiffer(this, DiffCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -38,17 +38,17 @@ class BoletimListAdapter(): RecyclerView.Adapter<BoletimListAdapter.ViewHolder>(
         holder.bind(asyncListDiffer.currentList[position])
     }
 
-    fun buscarDisciplinas(disciplinas: List<ModuloItem>) {
-        asyncListDiffer.submitList(disciplinas)
+    fun buscarBoletim(boletim: List<BoletimItem>) {
+        asyncListDiffer.submitList(boletim)
     }
 
-    object DiffCallback : DiffUtil.ItemCallback<ModuloItem>() {
+    object DiffCallback : DiffUtil.ItemCallback<BoletimItem>() {
 
-        override fun areItemsTheSame(oldItem: ModuloItem, newItem: ModuloItem): Boolean {
+        override fun areItemsTheSame(oldItem: BoletimItem, newItem: BoletimItem): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: ModuloItem, newItem: ModuloItem): Boolean {
+        override fun areContentsTheSame(oldItem: BoletimItem, newItem: BoletimItem): Boolean {
             return oldItem.disciplina == newItem.disciplina
         }
     }

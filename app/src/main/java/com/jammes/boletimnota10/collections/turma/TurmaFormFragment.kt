@@ -24,7 +24,7 @@ class TurmaFormFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        turmaViewModel = ViewModelProvider(requireActivity())[TurmaViewModel::class.java]
+        turmaViewModel = ViewModelProvider(this)[TurmaViewModel::class.java]
         adapter = PeriodoListAdapter()
     }
 
@@ -50,6 +50,8 @@ class TurmaFormFragment : Fragment() {
         binding.escolaTextInputLayout.editText?.setText(turmaItem.escola)
         binding.turnoTextInputLayout.editText?.setText(turmaItem.turno)
         binding.anoTextInputLayout.editText?.setText(turmaItem.ano)
+        binding.dataInicioTextInputLayout.editText?.setText(turmaItem.dataInicio)
+        binding.dataFinalTextInputLayout.editText?.setText(turmaItem.dataFinal)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,8 +80,6 @@ class TurmaFormFragment : Fragment() {
                     binding.dataFinalTextInputLayout.editText?.text.toString(),
                 )
 
-                Snackbar.make(it, "Turma salva com sucesso!", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
             }
 
             PeriodoFormFragment(turmaViewModel)
@@ -97,10 +97,25 @@ class TurmaFormFragment : Fragment() {
         }
 
         binding.salvarButton.setOnClickListener {
-            Snackbar.make(it, "Turma salva com sucesso!", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
 
-            findNavController().popBackStack()
+            if (turmaViewModel.turmaAtual().isNullOrEmpty()) {
+
+                Snackbar.make(it, "Adicione um Período antes de finalizar a Turma!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+            } else {
+
+                turmaViewModel.alterarTurma(
+                    turmaViewModel.turmaAtual()!!,
+                    binding.turmaTextInputLayout.editText?.text.toString(),
+                    binding.escolaTextInputLayout.editText?.text.toString(),
+                    binding.turnoTextInputLayout.editText?.text.toString(),
+                    binding.anoTextInputLayout.editText?.text.toString(),
+                    binding.dataInicioTextInputLayout.editText?.text.toString(),
+                    binding.dataFinalTextInputLayout.editText?.text.toString(),
+                )
+
+                findNavController().popBackStack()
+            }
         }
     }
 

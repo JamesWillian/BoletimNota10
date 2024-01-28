@@ -2,6 +2,7 @@ package com.jammes.boletimnota10.collections.turma
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,11 @@ class PeriodoListAdapter: RecyclerView.Adapter<PeriodoListAdapter.ViewHolder>() 
 
         fun bind(periodo: PeriodoItem) {
             binding.periodoTextView.text = periodo.periodo
+
+            binding.root.setOnClickListener {
+                val action = TurmaFormFragmentDirections.actionNavFormTurmaToNavFormModulo(periodo.id,periodo.periodo)
+                itemView.findNavController().navigate(action)
+            }
         }
     }
 

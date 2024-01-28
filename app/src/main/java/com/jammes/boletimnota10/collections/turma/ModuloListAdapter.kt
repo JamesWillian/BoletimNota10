@@ -19,11 +19,11 @@ class ModuloListAdapter(
 
         fun bind(disciplina: ModuloItem) {
             binding.titleTextView.text = disciplina.disciplina
+            binding.checkbox.isChecked = disciplina.marcado
+            binding.checkbox.setOnClickListener {
+                viewModel.alternarModulo(disciplina)
+            }
 
-//            binding.checkbox.setOnCheckedChangeListener { _, isChecked ->
-//                if (isChecked) viewModel.disciplinasSelecionadas.add(disciplina)
-//                else viewModel.disciplinasSelecionadas.remove(disciplina)
-//            }
         }
     }
 
@@ -41,7 +41,7 @@ class ModuloListAdapter(
         holder.bind(asyncListDiffer.currentList[position])
     }
 
-    fun updateDisciplinas(disciplinas: List<ModuloItem>) {
+    fun updateModulos(disciplinas: List<ModuloItem>) {
         asyncListDiffer.submitList(disciplinas)
     }
 

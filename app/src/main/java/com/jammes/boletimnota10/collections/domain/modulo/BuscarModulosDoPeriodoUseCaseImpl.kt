@@ -16,18 +16,28 @@ class BuscarModulosDoPeriodoUseCaseImpl @Inject constructor(
 
         Log.d(TAG, "Listando todos os Módulos do Período: $periodoId")
 
-        return moduloRepository
+        val modulos = moduloRepository
             .fetchAll(periodoId)
-            .map {
 
-                val disciplina = disciplinaRepository.fetchById(it.disciplinaId)
+        return disciplinaRepository
+            .fetchAll()
+            .map {disciplina ->
+
+                //Encontra o id do módulo da disciplina atual
+                val moduloId = modulos.find { modulo ->
+                    modulo.disciplinaId == disciplina.id
+                }?.id
 
                 ModuloItem(
-                    id = it.id,
-                    periodoId = it.periodoId,
-                    disciplina = disciplina.descricao
+                    id = moduloId ?: "",
+                    periodoId = periodoId,
+                    disciplinaId = disciplina.id,
+                    disciplina = disciplina.descricao,
+                    marcado = moduloId != null
                 )
+
             }
+
     }
 
     companion object {

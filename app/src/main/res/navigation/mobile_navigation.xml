@@ -34,6 +34,9 @@
             android:name="turma_id"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_nav_form_turma_to_nav_form_modulo"
+            app:destination="@id/nav_form_modulo" />
     </fragment>
 
     <fragment
@@ -54,5 +57,18 @@
         android:name="com.jammes.boletimnota10.collections.aluno.AlunoFragment"
         android:label="@string/menu_aluno"
         tools:layout="@layout/fragment_aluno" />
+
+    <fragment
+        android:id="@+id/nav_form_modulo"
+        android:name="com.jammes.boletimnota10.collections.turma.ModuloFormFragment"
+        android:label="@string/menu_form_modulo"
+        tools:layout="@layout/fragment_form_modulo" >
+        <argument
+            android:name="periodo_id"
+            app:argType="string" />
+        <argument
+            android:name="periodo"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

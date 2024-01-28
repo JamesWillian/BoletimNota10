@@ -6,6 +6,8 @@ interface ModuloRepository {
 
     suspend fun fetchAll(periodoId: String): List<ModuloDomain>
 
+    suspend fun fetch(periodoId: String, disciplinaId: String): ModuloDomain?
+
     suspend fun add(periodoId: String, disciplinaId: String)
 
     suspend fun delete(moduloId: String)

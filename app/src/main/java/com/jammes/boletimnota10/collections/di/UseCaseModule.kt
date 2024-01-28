@@ -16,6 +16,8 @@ import com.jammes.boletimnota10.collections.domain.avaliacao.BuscarTodasAvaliaco
 import com.jammes.boletimnota10.collections.domain.avaliacao.BuscarTodasAvaliacoesUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.avaliacao.InserirAvaliacaoUseCase
 import com.jammes.boletimnota10.collections.domain.avaliacao.InserirAvaliacaoUseCaseImpl
+import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoPeriodoUseCase
+import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoPeriodoUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.turma.BuscarTodasTurmasUseCase
 import com.jammes.boletimnota10.collections.domain.turma.BuscarTodasTurmasUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.turma.BuscarTurmaPorIdUseCase
@@ -24,12 +26,14 @@ import com.jammes.boletimnota10.collections.domain.turma.ExisteTurmaCadastradaUs
 import com.jammes.boletimnota10.collections.domain.turma.ExisteTurmaCadastradaUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.modulo.BuscarModulosDoPeriodoUseCase
 import com.jammes.boletimnota10.collections.domain.modulo.BuscarModulosDoPeriodoUseCaseImpl
-import com.jammes.boletimnota10.collections.domain.modulo.InserirModuloUseCase
-import com.jammes.boletimnota10.collections.domain.modulo.InserirModuloUseCaseImpl
+import com.jammes.boletimnota10.collections.domain.modulo.AlternarModuloUseCase
+import com.jammes.boletimnota10.collections.domain.modulo.AlternarModuloUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.periodo.BuscarPeriodosDaTurmaUseCase
 import com.jammes.boletimnota10.collections.domain.periodo.BuscarPeriodosDaTurmaUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.periodo.InserirPeriodoUseCase
 import com.jammes.boletimnota10.collections.domain.periodo.InserirPeriodoUseCaseImpl
+import com.jammes.boletimnota10.collections.domain.turma.AlterarTurmaUseCase
+import com.jammes.boletimnota10.collections.domain.turma.AlterarTurmaUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -72,6 +76,12 @@ abstract class UseCaseModule {
 
     @Singleton
     @Binds
+    abstract fun providesAlterarTurmaUseCase(
+        impl: AlterarTurmaUseCaseImpl
+    ): AlterarTurmaUseCase
+
+    @Singleton
+    @Binds
     abstract fun providesGetAlunoUseCase(
         impl: GetAlunoUseCaseImpl
     ): GetAlunoUseCase
@@ -109,15 +119,15 @@ abstract class UseCaseModule {
 
     @Singleton
     @Binds
-    abstract fun providesGetAllTurmaDisciplinasUseCase(
+    abstract fun providesBuscarModulosDoPeriodoUseCase(
         impl: BuscarModulosDoPeriodoUseCaseImpl
     ): BuscarModulosDoPeriodoUseCase
 
     @Singleton
     @Binds
-    abstract fun providesInsertTurmaDisciplinasUseCase(
-        impl: InserirModuloUseCaseImpl
-    ): InserirModuloUseCase
+    abstract fun providesAlternarModuloUseCase(
+        impl: AlternarModuloUseCaseImpl
+    ): AlternarModuloUseCase
 
     @Singleton
     @Binds
@@ -130,4 +140,10 @@ abstract class UseCaseModule {
     abstract fun providesBuscarPeriodosDaTurmaUseCase(
         impl: BuscarPeriodosDaTurmaUseCaseImpl
     ): BuscarPeriodosDaTurmaUseCase
+
+    @Singleton
+    @Binds
+    abstract fun providesBuscarBoletimDoPeriodoUseCase(
+        impl: BuscarBoletimDoPeriodoUseCaseImpl
+    ): BuscarBoletimDoPeriodoUseCase
 }

@@ -78,7 +78,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun bindUiStateBoletim(uiState: HomeViewModel.BoletimUiState) {
-        adapter.buscarDisciplinas(uiState.boletimItem)
+        adapter.buscarBoletim(uiState.boletimItem)
     }
 
     override fun onResume() {

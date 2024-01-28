@@ -22,6 +22,20 @@ class ModuloRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun fetch(periodoId: String, disciplinaId: String): ModuloDomain? {
+        Log.d(TAG, "Buscando a disciplina $disciplinaId no período $periodoId")
+
+        val modulo = dao.buscarModulo(periodoId, disciplinaId)
+        return if (modulo != null) {
+            ModuloDomain(
+                id = modulo.uuid,
+                periodoId = modulo.periodoId,
+                disciplinaId = modulo.disciplinaId
+            )
+        } else null
+
+    }
+
     override suspend fun add(periodoId: String, disciplinaId: String) {
         Log.d(TAG, "Adicionando novo Modulo $disciplinaId do Periodo: $periodoId")
         val modulo = Modulo(
