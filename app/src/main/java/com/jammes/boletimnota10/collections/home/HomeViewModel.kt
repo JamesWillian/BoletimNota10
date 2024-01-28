@@ -5,10 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoPeriodoUseCase
+import com.jammes.boletimnota10.collections.domain.periodo.BuscarPeriodosDaTurmaUseCase
 import com.jammes.boletimnota10.collections.domain.turma.BuscarTurmaAtualUseCase
 import com.jammes.boletimnota10.collections.domain.turma.ExisteTurmaCadastradaUseCase
 import com.jammes.boletimnota10.collections.model.BoletimItem
+import com.jammes.boletimnota10.collections.model.PeriodoItem
 import com.jammes.boletimnota10.collections.model.TurmaItem
+import com.jammes.boletimnota10.core.database.entity.Periodo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,7 +22,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val buscarTurmaAtualUseCase: BuscarTurmaAtualUseCase,
     private val existeTurmaCadastradaUseCase: ExisteTurmaCadastradaUseCase,
-    private val buscarBoletimDoPeriodoUseCase: BuscarBoletimDoPeriodoUseCase
+    private val buscarBoletimDoPeriodoUseCase: BuscarBoletimDoPeriodoUseCase,
+    private val buscarPeriodosDaTurmaUseCase: BuscarPeriodosDaTurmaUseCase,
 ) : ViewModel() {
 
     private val uiStateTurma: MutableLiveData<TurmaUiState> by lazy {
@@ -30,12 +34,24 @@ class HomeViewModel @Inject constructor(
         MutableLiveData<BoletimUiState>(BoletimUiState(emptyList()))
     }
 
+    private val uiStatePeriodo: MutableLiveData<PeriodoUiState> by lazy {
+        MutableLiveData<PeriodoUiState>(PeriodoUiState(emptyList()))
+    }
+
     private val existeTurmaAtiva: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>(true)
     }
 
     fun stateTurmaUiState(): LiveData<TurmaUiState> {
         return uiStateTurma
+    }
+
+    fun statePeriodoUiState(): LiveData<PeriodoUiState> {
+        return uiStatePeriodo
+    }
+
+    fun stateBoletimUiStateOnce(): LiveData<BoletimUiState> {
+        return uiStateBoletim
     }
 
     private suspend fun verificarTurma() {
@@ -46,10 +62,6 @@ class HomeViewModel @Inject constructor(
         return existeTurmaAtiva
     }
 
-    fun stateBoletimUiStateOnce(): LiveData<BoletimUiState> {
-        return uiStateBoletim
-    }
-
     private suspend fun obterTurmaAtual() {
         withContext(Dispatchers.Main) {
 
@@ -57,15 +69,40 @@ class HomeViewModel @Inject constructor(
 
             uiStateTurma.postValue(turma)
 
-            uiStateBoletim.postValue(BoletimUiState(buscarBoletimDoPeriodoUseCase(turma.turmaItem.id)))
+            obterPeriodos(turma.turmaItem.id)
+
         }
+    }
+
+    private suspend fun obterPeriodos(turmaId: String) {
+        val periodos = buscarPeriodosDaTurmaUseCase(turmaId)
+        uiStatePeriodo.postValue(PeriodoUiState(periodos))
+
+        if (periodos.isNotEmpty()) {
+            val periodoId = periodos[0].id
+            obterBoletim(periodoId)
+        }
+    }
+
+    private suspend fun obterBoletim(periodoId: String?) {
+        if (!periodoId.isNullOrEmpty())
+            uiStateBoletim.postValue(BoletimUiState(buscarBoletimDoPeriodoUseCase(periodoId)))
     }
 
     fun listarBoletim() {
         viewModelScope.launch {
+
             verificarTurma()
-            if (existeTurmaAtiva.value == true)
+
+            if (existeTurmaAtiva.value == true) {
                 obterTurmaAtual()
+            }
+        }
+    }
+
+    fun listarBoletimDoPeriodo(periodoId: String) {
+        viewModelScope.launch {
+            obterBoletim(periodoId)
         }
     }
 
@@ -73,4 +110,5 @@ class HomeViewModel @Inject constructor(
 
     data class TurmaUiState(val turmaItem: TurmaItem)
     data class BoletimUiState(val boletimItem: List<BoletimItem>)
+    data class PeriodoUiState(val periodoItem: List<PeriodoItem>)
 }

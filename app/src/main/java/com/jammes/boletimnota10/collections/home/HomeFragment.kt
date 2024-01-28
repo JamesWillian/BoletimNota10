@@ -1,13 +1,17 @@
 package com.jammes.boletimnota10.collections.home
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.chip.Chip
 import com.jammes.boletimnota10.R
 import com.jammes.boletimnota10.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,6 +53,9 @@ class HomeFragment : Fragment() {
         homeViewModel.stateTurmaUiState().observe(viewLifecycleOwner) {uiState ->
             bindUiStateTurma(uiState)
         }
+        homeViewModel.statePeriodoUiState().observe(viewLifecycleOwner) {uiState ->
+            bindUiStatePeriodo(uiState)
+        }
         homeViewModel.stateBoletimUiStateOnce().observe(viewLifecycleOwner) {uiState ->
             bindUiStateBoletim(uiState)
         }
@@ -64,6 +71,27 @@ class HomeFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+    }
+
+    private fun bindUiStatePeriodo(uiState: HomeViewModel.PeriodoUiState) {
+        val periodos = uiState.periodoItem
+        val chipGroup = binding.chipGroup
+
+        for (chipPeriodo in periodos) {
+            val chip = Chip(requireContext())
+
+            chip.text = chipPeriodo.periodo
+            chip.isChecked = false
+            chip.isCheckable = true
+            chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.chip_background))
+
+            chip.setOnClickListener {
+                homeViewModel.listarBoletimDoPeriodo(chipPeriodo.id)
+            }
+
+            chipGroup.addView(chip)
+            chipGroup.check(chipGroup[0].id)
+        }
     }
 
     private fun bindUiStateTurma(uiState: HomeViewModel.TurmaUiState) {
