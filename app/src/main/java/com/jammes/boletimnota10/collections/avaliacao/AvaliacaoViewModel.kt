@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jammes.boletimnota10.collections.domain.avaliacao.BuscarTodasAvaliacoesUseCase
 import com.jammes.boletimnota10.collections.domain.avaliacao.InserirAvaliacaoUseCase
+import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoModuloUseCase
 import com.jammes.boletimnota10.collections.model.AvaliacaoItem
+import com.jammes.boletimnota10.collections.model.BoletimItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,11 +16,17 @@ import javax.inject.Inject
 @HiltViewModel
 class AvaliacaoViewModel @Inject constructor(
     private val buscarTodasAvaliacoesUseCase: BuscarTodasAvaliacoesUseCase,
-    private val inserirAvaliacaoUseCase: InserirAvaliacaoUseCase
+    private val inserirAvaliacaoUseCase: InserirAvaliacaoUseCase,
+    private val buscarBoletimDoModuloUseCase: BuscarBoletimDoModuloUseCase
 ) : ViewModel() {
 
     private val uiState: MutableLiveData<UiState> by lazy {
-        MutableLiveData<UiState>(UiState(avaliacaoItemList = emptyList()))
+        MutableLiveData<UiState>(
+            UiState(
+                boletimItem = null,
+                avaliacaoItemList = emptyList()
+            )
+        )
     }
 
     fun stateOnceAndStream(): LiveData<UiState> {
@@ -26,10 +34,19 @@ class AvaliacaoViewModel @Inject constructor(
     }
 
     private suspend fun atualizarAvaliacoesList(moduloId: String) {
-        uiState.postValue(UiState(buscarTodasAvaliacoesUseCase(moduloId)))
+        uiState.postValue(UiState(
+            boletimItem = buscarBoletimDoModuloUseCase(moduloId),
+            avaliacaoItemList = buscarTodasAvaliacoesUseCase(moduloId))
+        )
     }
 
-    fun salvarAvaliacao(moduloId: String, descricao: String, nota: Float, data: String, recuperacao: Boolean) {
+    fun salvarAvaliacao(
+        moduloId: String,
+        descricao: String,
+        nota: Float,
+        data: String,
+        recuperacao: Boolean
+    ) {
         viewModelScope.launch {
             inserirAvaliacaoUseCase(moduloId, descricao, nota, data, recuperacao)
             atualizarAvaliacoesList(moduloId)
@@ -42,5 +59,8 @@ class AvaliacaoViewModel @Inject constructor(
         }
     }
 
-    data class UiState(val avaliacaoItemList: List<AvaliacaoItem>)
+    data class UiState(
+        val boletimItem: BoletimItem?,
+        val avaliacaoItemList: List<AvaliacaoItem>
+    )
 }

@@ -70,6 +70,11 @@ class AvaliacaoFragment: Fragment() {
     }
 
     private fun bindUiState(uiState: AvaliacaoViewModel.UiState) {
+        val boletimItem = uiState.boletimItem
+
+        binding.moduloTextView.text = boletimItem?.modulo ?: ""
+        binding.professorTextView.text = boletimItem?.professor ?: ""
+
         adapter.recarregarAvaliacoes(uiState.avaliacaoItemList)
     }
 

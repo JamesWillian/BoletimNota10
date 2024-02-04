@@ -23,6 +23,20 @@ class BoletimRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun buscarBoletimDoModulo(moduloId: String): BoletimDomain {
+
+        Log.d(TAG, "Buscando o Boletim do Módulo: $moduloId")
+        val boletim = dao.buscarBoletimDoModulo(moduloId)
+
+        return BoletimDomain(
+                moduloId = boletim.moduloId,
+                periodoId = boletim.periodoId,
+                modulo = boletim.modulo,
+                professor = boletim.professor,
+                notaTotal = boletim.notaTotal
+            )
+    }
+
     companion object {
         private const val TAG = "BoletimRepository"
     }

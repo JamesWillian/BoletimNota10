@@ -51,4 +51,5 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun providesBoletimRepository(impl: BoletimRepositoryImpl): BoletimRepository
+
 }

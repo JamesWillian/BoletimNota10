@@ -9,4 +9,7 @@ interface BoletimDao {
 
     @Query("SELECT * FROM boletim WHERE periodoId = :periodoId")
     suspend fun buscarBoletim(periodoId: String): List<Boletim>
+
+    @Query("SELECT * FROM boletim WHERE moduloId = :moduloId")
+    suspend fun buscarBoletimDoModulo(moduloId: String): Boletim
 }

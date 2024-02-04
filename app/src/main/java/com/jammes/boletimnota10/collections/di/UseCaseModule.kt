@@ -16,6 +16,8 @@ import com.jammes.boletimnota10.collections.domain.avaliacao.BuscarTodasAvaliaco
 import com.jammes.boletimnota10.collections.domain.avaliacao.BuscarTodasAvaliacoesUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.avaliacao.InserirAvaliacaoUseCase
 import com.jammes.boletimnota10.collections.domain.avaliacao.InserirAvaliacaoUseCaseImpl
+import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoModuloUseCase
+import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoModuloUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoPeriodoUseCase
 import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoPeriodoUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.turma.BuscarTodasTurmasUseCase
@@ -146,4 +148,10 @@ abstract class UseCaseModule {
     abstract fun providesBuscarBoletimDoPeriodoUseCase(
         impl: BuscarBoletimDoPeriodoUseCaseImpl
     ): BuscarBoletimDoPeriodoUseCase
+
+    @Singleton
+    @Binds
+    abstract fun providesBuscarBoletimDoModuloUseCase(
+        impl: BuscarBoletimDoModuloUseCaseImpl
+    ): BuscarBoletimDoModuloUseCase
 }
