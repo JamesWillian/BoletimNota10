@@ -2,7 +2,6 @@ package com.jammes.boletimnota10.core.repository
 
 import android.util.Log
 import com.jammes.boletimnota10.core.database.dao.AvaliacaoDao
-import com.jammes.boletimnota10.core.database.entity.Disciplina
 import com.jammes.boletimnota10.core.database.entity.Avaliacao
 import com.jammes.boletimnota10.core.model.AvaliacaoDomain
 import java.util.UUID
@@ -45,6 +44,26 @@ class AvaliacaoRepositoryImpl @Inject constructor(
             recuperacao = recuperacao
         )
         dao.insert(avaliacao)
+    }
+
+    override suspend fun editar(
+        avaliacaoId: String,
+        moduloId: String,
+        descricao: String,
+        nota: Float,
+        data: String,
+        recuperacao: Boolean
+    ) {
+        Log.d(TAG, "Editando Avaliação: $descricao")
+        val avaliacao = Avaliacao(
+            uuid = avaliacaoId,
+            moduloId = moduloId,
+            descricao = descricao,
+            nota = nota,
+            data = data,
+            recuperacao = recuperacao
+        )
+        dao.update(avaliacao)
     }
 
     companion object {

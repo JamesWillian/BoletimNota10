@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jammes.boletimnota10.collections.domain.avaliacao.BuscarTodasAvaliacoesUseCase
-import com.jammes.boletimnota10.collections.domain.avaliacao.InserirAvaliacaoUseCase
+import com.jammes.boletimnota10.collections.domain.avaliacao.SalvarAvaliacaoUseCase
 import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoModuloUseCase
 import com.jammes.boletimnota10.collections.model.AvaliacaoItem
 import com.jammes.boletimnota10.collections.model.BoletimItem
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AvaliacaoViewModel @Inject constructor(
     private val buscarTodasAvaliacoesUseCase: BuscarTodasAvaliacoesUseCase,
-    private val inserirAvaliacaoUseCase: InserirAvaliacaoUseCase,
+    private val salvarAvaliacaoUseCase: SalvarAvaliacaoUseCase,
     private val buscarBoletimDoModuloUseCase: BuscarBoletimDoModuloUseCase
 ) : ViewModel() {
 
@@ -41,6 +41,7 @@ class AvaliacaoViewModel @Inject constructor(
     }
 
     fun salvarAvaliacao(
+        avaliacaoId: String?,
         moduloId: String,
         descricao: String,
         nota: Float,
@@ -48,7 +49,7 @@ class AvaliacaoViewModel @Inject constructor(
         recuperacao: Boolean
     ) {
         viewModelScope.launch {
-            inserirAvaliacaoUseCase(moduloId, descricao, nota, data, recuperacao)
+            salvarAvaliacaoUseCase(avaliacaoId, moduloId, descricao, nota, data, recuperacao)
             atualizarAvaliacoesList(moduloId)
         }
     }
@@ -57,6 +58,10 @@ class AvaliacaoViewModel @Inject constructor(
         viewModelScope.launch {
             atualizarAvaliacoesList(moduloId)
         }
+    }
+
+    fun moduloAtual(): String {
+        return uiState.value?.boletimItem?.moduloId ?: ""
     }
 
     data class UiState(

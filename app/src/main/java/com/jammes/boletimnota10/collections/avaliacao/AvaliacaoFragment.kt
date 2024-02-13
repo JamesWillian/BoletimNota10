@@ -58,7 +58,7 @@ class AvaliacaoFragment: Fragment() {
         binding.novaAvaliacaoButton.setOnClickListener {
             AvaliacaoFormFragment(
                 viewModel,
-                moduloId
+                null
             ).show(
                 requireActivity().supportFragmentManager, "AvaliacaoFormDialog"
             )

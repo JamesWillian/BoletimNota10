@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BoletimNota10</string>
+    <string name="app_name">Boletim Nota 10</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -14,4 +14,6 @@
     <string name="menu_avaliacoes">Avaliações</string>
     <string name="menu_aluno">Aluno</string>
     <string name="escolher_modulos_hint">Escolha as Disciplinas que farão parte do Período:</string>
+
+    <string name="foto_perfil_desc">Foto do Perfil do Aluno</string>
 </resources>

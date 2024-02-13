@@ -8,4 +8,6 @@ interface AvaliacaoRepository {
 
     suspend fun add(moduloId: String, descricao: String, nota: Float, data: String, recuperacao: Boolean)
 
+    suspend fun editar(avaliacaoId: String, moduloId: String, descricao: String, nota: Float, data: String, recuperacao: Boolean)
+
 }

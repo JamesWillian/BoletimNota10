@@ -4,6 +4,8 @@ import com.jammes.boletimnota10.collections.domain.aluno.GetAlunoUseCase
 import com.jammes.boletimnota10.collections.domain.aluno.GetAlunoUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.aluno.InsertAlunoUseCase
 import com.jammes.boletimnota10.collections.domain.aluno.InsertAlunoUseCaseImpl
+import com.jammes.boletimnota10.collections.domain.aluno.UpdateAlunoUseCase
+import com.jammes.boletimnota10.collections.domain.aluno.UpdateAlunoUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.disciplina.GetAllDisciplinasUseCase
 import com.jammes.boletimnota10.collections.domain.disciplina.GetAllDisciplinasUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.disciplina.InsertDisciplinaUseCase
@@ -14,8 +16,8 @@ import com.jammes.boletimnota10.collections.domain.turma.InserirTurmaUseCase
 import com.jammes.boletimnota10.collections.domain.turma.InserirTurmaUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.avaliacao.BuscarTodasAvaliacoesUseCase
 import com.jammes.boletimnota10.collections.domain.avaliacao.BuscarTodasAvaliacoesUseCaseImpl
-import com.jammes.boletimnota10.collections.domain.avaliacao.InserirAvaliacaoUseCase
-import com.jammes.boletimnota10.collections.domain.avaliacao.InserirAvaliacaoUseCaseImpl
+import com.jammes.boletimnota10.collections.domain.avaliacao.SalvarAvaliacaoUseCase
+import com.jammes.boletimnota10.collections.domain.avaliacao.SalvarAvaliacaoUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoModuloUseCase
 import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoModuloUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoPeriodoUseCase
@@ -94,6 +96,11 @@ abstract class UseCaseModule {
         impl: InsertAlunoUseCaseImpl
     ): InsertAlunoUseCase
 
+    @Singleton
+    @Binds
+    abstract fun providesUpdateAlunoUseCase(
+        impl: UpdateAlunoUseCaseImpl
+    ): UpdateAlunoUseCase
 
     @Singleton
     @Binds
@@ -116,8 +123,8 @@ abstract class UseCaseModule {
     @Singleton
     @Binds
     abstract fun providesInserirAvaliacaoUseCase(
-        impl: InserirAvaliacaoUseCaseImpl
-    ): InserirAvaliacaoUseCase
+        impl: SalvarAvaliacaoUseCaseImpl
+    ): SalvarAvaliacaoUseCase
 
     @Singleton
     @Binds

@@ -11,5 +11,5 @@ interface BoletimDao {
     suspend fun buscarBoletim(periodoId: String): List<Boletim>
 
     @Query("SELECT * FROM boletim WHERE moduloId = :moduloId")
-    suspend fun buscarBoletimDoModulo(moduloId: String): Boletim
+    suspend fun buscarBoletimDoModulo(moduloId: String): Boletim?
 }

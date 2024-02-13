@@ -9,19 +9,21 @@ class BuscarBoletimDoModuloUseCaseImpl @Inject constructor(
     private val boletimRepository: BoletimRepository
 ) : BuscarBoletimDoModuloUseCase {
 
-    override suspend fun invoke(moduloId: String): BoletimItem {
+    override suspend fun invoke(moduloId: String): BoletimItem? {
 
         Log.d(TAG, "Buscando o Boletim do Módulo: $moduloId")
 
         val boletim = boletimRepository.buscarBoletimDoModulo(moduloId)
 
-        return BoletimItem(
+        return if (boletim != null) {
+            BoletimItem(
                 moduloId = boletim.moduloId,
                 periodoId = boletim.periodoId,
                 modulo = boletim.modulo,
                 notaTotal = boletim.notaTotal.toString(),
                 professor = boletim.professor
             )
+        } else null
     }
 
     companion object {

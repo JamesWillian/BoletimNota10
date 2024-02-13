@@ -4,11 +4,12 @@ import android.util.Log
 import com.jammes.boletimnota10.core.repository.AvaliacaoRepository
 import javax.inject.Inject
 
-class InserirAvaliacaoUseCaseImpl @Inject constructor(
+class SalvarAvaliacaoUseCaseImpl @Inject constructor(
     private val avaliacaoRepository: AvaliacaoRepository
-) : InserirAvaliacaoUseCase {
+) : SalvarAvaliacaoUseCase {
 
     override suspend fun invoke(
+        avaliacaoId: String?,
         moduloId: String,
         descricao: String,
         nota: Float,
@@ -17,13 +18,24 @@ class InserirAvaliacaoUseCaseImpl @Inject constructor(
     ): Boolean {
         Log.d(TAG, "Inserindo nova Avaliação: $descricao")
 
-        avaliacaoRepository.add(
-            moduloId,
-            descricao,
-            nota,
-            data,
-            recuperacao
-        )
+        if (avaliacaoId.isNullOrEmpty()) {
+            avaliacaoRepository.add(
+                moduloId,
+                descricao,
+                nota,
+                data,
+                recuperacao
+            )
+        } else {
+            avaliacaoRepository.editar(
+                avaliacaoId,
+                moduloId,
+                descricao,
+                nota,
+                data,
+                recuperacao
+            )
+        }
 
         return true
     }

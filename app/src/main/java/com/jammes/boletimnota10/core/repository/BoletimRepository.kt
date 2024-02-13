@@ -7,5 +7,5 @@ interface BoletimRepository {
 
     suspend fun buscarBoletimDoPeriodo(periodoId: String): List<BoletimDomain>
 
-    suspend fun buscarBoletimDoModulo(moduloId: String): BoletimDomain
+    suspend fun buscarBoletimDoModulo(moduloId: String): BoletimDomain?
 }

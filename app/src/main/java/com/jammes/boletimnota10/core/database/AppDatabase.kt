@@ -30,7 +30,7 @@ import com.jammes.boletimnota10.core.database.entity.Modulo
     views = [
         Boletim::class
             ],
-    version = 7,
+    version = 8,
     exportSchema = true)
 abstract class AppDatabase: RoomDatabase() {
 

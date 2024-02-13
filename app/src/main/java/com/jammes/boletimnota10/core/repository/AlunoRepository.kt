@@ -6,8 +6,8 @@ interface AlunoRepository {
 
     suspend fun fetch(): AlunoDomain
 
-    suspend fun add(nome: String)
+    suspend fun add(nome: String): String
 
-    suspend fun post(alunoId: String, nome: String)
+    suspend fun post(alunoId: String, nome: String): Boolean
 
 }

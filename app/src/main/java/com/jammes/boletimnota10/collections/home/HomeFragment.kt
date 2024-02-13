@@ -80,6 +80,8 @@ class HomeFragment : Fragment() {
         val periodos = uiState.periodoItem
         val chipGroup = binding.chipGroup
 
+        chipGroup.removeAllViews()
+
         for (chipPeriodo in periodos) {
             val chip = Chip(requireContext())
 
