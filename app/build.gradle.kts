@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -5,6 +8,9 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs")
 }
+
+val localProperties = Properties()
+localProperties.load(FileInputStream(rootProject.file("local.properties")))
 
 android {
     namespace = "com.jammes.boletimnota10"
@@ -39,6 +45,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    defaultConfig{
+        buildConfigField("String", "REST_API_KEY", localProperties["restAPIKey"].toString())
+        buildConfigField("String", "APPLICATION_KEY", localProperties["applicationKey"].toString())
+    }
+    android.buildFeatures.buildConfig = true
 }
 
 dependencies {
@@ -51,6 +62,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("androidx.room:room-ktx:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
     implementation("com.google.dagger:hilt-android:2.48")
