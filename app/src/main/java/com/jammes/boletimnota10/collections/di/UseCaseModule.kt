@@ -38,6 +38,8 @@ import com.jammes.boletimnota10.collections.domain.periodo.InserirPeriodoUseCase
 import com.jammes.boletimnota10.collections.domain.periodo.InserirPeriodoUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.turma.AlterarTurmaUseCase
 import com.jammes.boletimnota10.collections.domain.turma.AlterarTurmaUseCaseImpl
+import com.jammes.boletimnota10.collections.domain.usuario.LoginUseCase
+import com.jammes.boletimnota10.collections.domain.usuario.LoginUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -161,4 +163,10 @@ abstract class UseCaseModule {
     abstract fun providesBuscarBoletimDoModuloUseCase(
         impl: BuscarBoletimDoModuloUseCaseImpl
     ): BuscarBoletimDoModuloUseCase
+
+    @Singleton
+    @Binds
+    abstract fun providesLoginUseCase(
+        impl: LoginUseCaseImpl
+    ): LoginUseCase
 }

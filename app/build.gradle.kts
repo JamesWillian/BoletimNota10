@@ -47,7 +47,7 @@ android {
     }
     defaultConfig{
         buildConfigField("String", "REST_API_KEY", localProperties["restAPIKey"].toString())
-        buildConfigField("String", "APPLICATION_KEY", localProperties["applicationKey"].toString())
+        buildConfigField("String", "APPLICATION_KEY", localProperties["applicationId"].toString())
     }
     android.buildFeatures.buildConfig = true
 }

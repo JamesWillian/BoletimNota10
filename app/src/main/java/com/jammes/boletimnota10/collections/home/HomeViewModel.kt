@@ -1,5 +1,6 @@
 package com.jammes.boletimnota10.collections.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoPeriod
 import com.jammes.boletimnota10.collections.domain.periodo.BuscarPeriodosDaTurmaUseCase
 import com.jammes.boletimnota10.collections.domain.turma.BuscarTurmaAtualUseCase
 import com.jammes.boletimnota10.collections.domain.turma.ExisteTurmaCadastradaUseCase
+import com.jammes.boletimnota10.collections.domain.usuario.LoginUseCase
 import com.jammes.boletimnota10.collections.model.BoletimItem
 import com.jammes.boletimnota10.collections.model.PeriodoItem
 import com.jammes.boletimnota10.collections.model.TurmaItem
@@ -24,6 +26,7 @@ class HomeViewModel @Inject constructor(
     private val existeTurmaCadastradaUseCase: ExisteTurmaCadastradaUseCase,
     private val buscarBoletimDoPeriodoUseCase: BuscarBoletimDoPeriodoUseCase,
     private val buscarPeriodosDaTurmaUseCase: BuscarPeriodosDaTurmaUseCase,
+    private val loginDoUsuarioUseCase: LoginUseCase
 ) : ViewModel() {
 
     private val uiStateTurma: MutableLiveData<TurmaUiState> by lazy {
@@ -108,6 +111,13 @@ class HomeViewModel @Inject constructor(
     }
 
     fun turmaAtual() = uiStateTurma.value?.turmaItem?.id
+
+    fun login() {
+        viewModelScope.launch {
+            val user = loginDoUsuarioUseCase("james", "senha")
+            Log.i("UserAPI", "${user.sessionToken} - ${user.username} - ${user.email}")
+        }
+    }
 
     data class TurmaUiState(val turmaItem: TurmaItem)
     data class BoletimUiState(val boletimItem: List<BoletimItem>)

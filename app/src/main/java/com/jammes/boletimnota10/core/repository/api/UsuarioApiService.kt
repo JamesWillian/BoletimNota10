@@ -1,5 +1,8 @@
 package com.jammes.boletimnota10.core.repository.api
 
+import com.google.gson.JsonObject
+import com.jammes.boletimnota10.core.model.LoginResponse
+import com.jammes.boletimnota10.core.model.UsuarioDomain
 import retrofit2.Response
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -23,5 +26,5 @@ interface UsuarioApiService {
     suspend fun login(
         @Query("username") usuario: String,
         @Query("password") senha: String
-    ): Response<String>
+    ): Response<LoginResponse?>
 }
