@@ -61,6 +61,14 @@ class AlunoFragment: Fragment() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
+//        binding.editarTurmaImageButton.setOnClickListener {
+//            if (binding.turmasCardView.height == 60) {
+//                binding.turmasCardView.layoutParams.height = 160
+//            } else {
+//                binding.turmasCardView.layoutParams.height = 60
+//            }
+//        }
+
         binding.salvarNomeButton.setOnClickListener {
             viewModel.saveAluno(
                 binding.nomeEditText.text.toString()

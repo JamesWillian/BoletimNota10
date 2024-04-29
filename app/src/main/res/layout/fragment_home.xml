@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light"
+    android:background="@color/white"
     tools:context=".collections.home.HomeFragment">
 
     <androidx.cardview.widget.CardView
@@ -13,11 +13,10 @@
         android:layout_height="100dp"
         android:layout_marginBottom="16dp"
         app:cardElevation="10dp"
-        android:backgroundTint="@color/secondary_green"
+        android:backgroundTint="@color/primary_green"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/horizontalScroll">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,6 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/escolaTextView"
@@ -38,6 +39,7 @@
                 android:id="@+id/escolaTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 app:layout_constraintTop_toBottomOf="@id/turmaTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/anoTextView"
@@ -47,6 +49,7 @@
                 android:id="@+id/anoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 app:layout_constraintTop_toBottomOf="@id/escolaTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -57,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:textColor="@color/white"
                 app:layout_constraintTop_toTopOf="@id/anoTextView"
                 app:layout_constraintStart_toEndOf="@id/anoTextView"
                 app:layout_constraintBottom_toBottomOf="@id/anoTextView"
@@ -73,8 +77,8 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/editarTurmaButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:background="@drawable/ic_edit_24"
                 app:layout_constraintBottom_toBottomOf="@id/turnoTextView"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -83,11 +87,24 @@
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/boletimTitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Boletim"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/turmaCardView"
+        app:layout_constraintStart_toStartOf="@id/disciplinasRecyclerView"
+        app:layout_constraintEnd_toEndOf="@id/disciplinasRecyclerView"
+        app:layout_constraintBottom_toTopOf="@id/horizontalScroll"/>
+
     <HorizontalScrollView
         android:id="@+id/horizontalScroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/turmaCardView"
+        app:layout_constraintTop_toBottomOf="@id/boletimTitleTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 

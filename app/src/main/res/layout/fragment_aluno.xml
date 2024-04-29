@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light"
     tools:context=".collections.aluno.AlunoFragment">
 
     <androidx.cardview.widget.CardView
@@ -56,6 +55,7 @@
                 android:maxLength="30"
                 android:hint="Informe seu Nome"
                 tools:text="James Willian"
+                android:textColor="#323232"
                 android:background="@android:color/transparent"
                 app:layout_constraintStart_toEndOf="@+id/fotoImageView"
                 app:layout_constraintEnd_toStartOf="@id/salvarNomeButton"
@@ -100,6 +100,17 @@
                 android:text="Turmas"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/editarTurmaImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit_24"
+                android:background="@color/white"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 

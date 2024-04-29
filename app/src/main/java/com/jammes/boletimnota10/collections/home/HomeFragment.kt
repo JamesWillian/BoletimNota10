@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
         binding.disciplinasRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.disciplinasRecyclerView.adapter = adapter
 
-        addingDividerDecoration()
+//        addingDividerDecoration()
 
         homeViewModel.stateTurmaUiState().observe(viewLifecycleOwner) {uiState ->
             bindUiStateTurma(uiState)
@@ -70,6 +70,7 @@ class HomeFragment : Fragment() {
 
         binding.editarTurmaButton.setOnClickListener {
 
+//            homeViewModel.login()
             val action = HomeFragmentDirections.actionNavHomeToNavFormTurma(homeViewModel.turmaAtual())
             findNavController().navigate(action)
         }
