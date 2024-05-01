@@ -1,5 +1,6 @@
 package com.jammes.boletimnota10
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,6 +10,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.appcompat.app.AppCompatActivity
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKey
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.jammes.boletimnota10.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,6 +41,23 @@ class MainActivity : AppCompatActivity() {
         )
 
         navView.setupWithNavController(navController)
+    }
+
+    fun securePrefs(): SharedPreferences {
+
+        val masterKey = MasterKey.Builder(this, MasterKey.DEFAULT_MASTER_KEY_ALIAS)
+            .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+            .build()
+
+        val sharedPreferences = EncryptedSharedPreferences.create(
+            this,
+            "secure_prefs",
+            masterKey,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+
+        return sharedPreferences
     }
 
     /*

@@ -1,7 +1,7 @@
 package com.jammes.boletimnota10.collections.domain.modulo
 
 import android.util.Log
-import com.jammes.boletimnota10.core.repository.ModuloRepository
+import com.jammes.boletimnota10.core.repository.room.ModuloRepository
 import javax.inject.Inject
 
 class AlternarModuloUseCaseImpl @Inject constructor(

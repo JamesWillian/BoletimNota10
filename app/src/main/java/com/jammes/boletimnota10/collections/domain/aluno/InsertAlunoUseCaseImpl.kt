@@ -1,7 +1,7 @@
 package com.jammes.boletimnota10.collections.domain.aluno
 
 import android.util.Log
-import com.jammes.boletimnota10.core.repository.AlunoRepository
+import com.jammes.boletimnota10.core.repository.room.AlunoRepository
 import javax.inject.Inject
 
 class InsertAlunoUseCaseImpl @Inject constructor(

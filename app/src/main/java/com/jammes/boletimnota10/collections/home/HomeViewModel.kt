@@ -13,7 +13,6 @@ import com.jammes.boletimnota10.collections.domain.usuario.LoginUseCase
 import com.jammes.boletimnota10.collections.model.BoletimItem
 import com.jammes.boletimnota10.collections.model.PeriodoItem
 import com.jammes.boletimnota10.collections.model.TurmaItem
-import com.jammes.boletimnota10.core.database.entity.Periodo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -114,8 +113,7 @@ class HomeViewModel @Inject constructor(
 
     fun login() {
         viewModelScope.launch {
-            val user = loginDoUsuarioUseCase("james", "senha")
-            Log.i("UserAPI", "${user.sessionToken} - ${user.username} - ${user.email}")
+            val user = loginDoUsuarioUseCase("james", "ABC123")
         }
     }
 

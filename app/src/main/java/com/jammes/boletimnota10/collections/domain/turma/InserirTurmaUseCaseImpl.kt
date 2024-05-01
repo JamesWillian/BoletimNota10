@@ -1,7 +1,7 @@
 package com.jammes.boletimnota10.collections.domain.turma
 
 import android.util.Log
-import com.jammes.boletimnota10.core.repository.TurmaRepository
+import com.jammes.boletimnota10.core.repository.room.TurmaRepository
 import javax.inject.Inject
 
 class InserirTurmaUseCaseImpl @Inject constructor(

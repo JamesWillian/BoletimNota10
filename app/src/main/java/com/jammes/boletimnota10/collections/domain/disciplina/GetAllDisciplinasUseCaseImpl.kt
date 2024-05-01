@@ -1,7 +1,7 @@
 package com.jammes.boletimnota10.collections.domain.disciplina
 
 import android.util.Log
-import com.jammes.boletimnota10.core.repository.DisciplinaRepository
+import com.jammes.boletimnota10.core.repository.room.DisciplinaRepository
 import com.jammes.boletimnota10.collections.model.DisciplinaItem
 import javax.inject.Inject
 

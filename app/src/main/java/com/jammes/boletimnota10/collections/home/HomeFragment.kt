@@ -2,6 +2,7 @@ package com.jammes.boletimnota10.collections.home
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.jammes.boletimnota10.R
+import com.jammes.boletimnota10.core.repository.EncryptedSharedPreferencesUtil
 import com.jammes.boletimnota10.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -69,8 +71,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.editarTurmaButton.setOnClickListener {
-
-//            homeViewModel.login()
+//            val sessionToken = EncryptedSharedPreferencesUtil.getSessionToken(requireContext())
             val action = HomeFragmentDirections.actionNavHomeToNavFormTurma(homeViewModel.turmaAtual())
             findNavController().navigate(action)
         }

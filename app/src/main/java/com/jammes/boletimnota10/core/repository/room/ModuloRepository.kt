@@ -1,4 +1,4 @@
-package com.jammes.boletimnota10.core.repository
+package com.jammes.boletimnota10.core.repository.room
 
 import com.jammes.boletimnota10.core.model.ModuloDomain
 

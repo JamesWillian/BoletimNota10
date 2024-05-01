@@ -2,7 +2,7 @@ package com.jammes.boletimnota10.collections.domain.boletim
 
 import android.util.Log
 import com.jammes.boletimnota10.collections.model.BoletimItem
-import com.jammes.boletimnota10.core.repository.BoletimRepository
+import com.jammes.boletimnota10.core.repository.room.BoletimRepository
 import javax.inject.Inject
 
 class BuscarBoletimDoPeriodoUseCaseImpl @Inject constructor(

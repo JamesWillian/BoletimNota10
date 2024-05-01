@@ -1,4 +1,4 @@
-package com.jammes.boletimnota10.core.repository
+package com.jammes.boletimnota10.core.repository.room
 
 import android.util.Log
 import com.jammes.boletimnota10.core.database.dao.AlunoDao

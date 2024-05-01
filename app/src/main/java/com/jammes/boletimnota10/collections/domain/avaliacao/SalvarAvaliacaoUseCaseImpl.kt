@@ -1,7 +1,7 @@
 package com.jammes.boletimnota10.collections.domain.avaliacao
 
 import android.util.Log
-import com.jammes.boletimnota10.core.repository.AvaliacaoRepository
+import com.jammes.boletimnota10.core.repository.room.AvaliacaoRepository
 import javax.inject.Inject
 
 class SalvarAvaliacaoUseCaseImpl @Inject constructor(

@@ -1,9 +1,7 @@
 package com.jammes.boletimnota10.core.repository.api
 
 import android.util.Log
-import com.google.gson.JsonObject
 import com.jammes.boletimnota10.core.model.LoginResponse
-import com.jammes.boletimnota10.core.model.UsuarioDomain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -16,25 +14,27 @@ class UsuarioApiServiceImpl @Inject constructor(
     suspend fun criarUsuarioAnonimo(
         usuario: String,
         senha: String
-    ): Result<String> {
+    ): Response<String> {
+        val response = usuarioApi.criarUsuarioAnonimo(
+            usuario = usuario,
+            senha = senha
+        )
         return try {
-            val response = usuarioApi.criarUsuarioAnonimo(
-                usuario = usuario,
-                senha = senha
-            )
 
             withContext(Dispatchers.IO) {
                 if (response.isSuccessful) {
-                    val sessionToken = response.body() ?: ""
-                    Result.success(sessionToken)
+                    Response.success(response.body())
                 } else {
-                    Log.e("UsuarioApiService","Não foi possivel obter resposta da API. Error: ${response.message()}")
-                    Result.failure(Exception("Error: ${response.message()}"))
+                    Log.e(
+                        "UsuarioApiService",
+                        "Não foi possivel obter resposta da API. Error: ${response.message()}"
+                    )
+                    Response.error(response.code(), response.errorBody()!!)
                 }
             }
         } catch (e: Exception) {
-            Log.e("UsuarioApiService","error: ${e.message}")
-            Result.failure(e)
+            Log.e("UsuarioApiService", "error: ${e.message}")
+            Response.error(response.code(), response.errorBody()!!)
         }
     }
 
@@ -42,26 +42,28 @@ class UsuarioApiServiceImpl @Inject constructor(
         id: String,
         email: String,
         senha: String
-    ): Result<String> {
+    ): Response<String> {
+        val response = usuarioApi.criarUsuario(
+            id = id,
+            email = email,
+            senha = senha
+        )
         return try {
-            val response = usuarioApi.criarUsuario(
-                id = id,
-                email = email,
-                senha = senha
-            )
 
             withContext(Dispatchers.IO) {
                 if (response.isSuccessful) {
-                    val sessionToken = response.body() ?: ""
-                    Result.success(sessionToken)
+                    Response.success(response.body())
                 } else {
-                    Log.e("UsuarioApiService","Não foi possivel obter resposta da API. Error: ${response.message()}")
-                    Result.failure(Exception("Error: ${response.message()}"))
+                    Log.e(
+                        "UsuarioApiService",
+                        "Não foi possivel obter resposta da API. Error: ${response.message()}"
+                    )
+                    Response.error(response.code(), response.errorBody()!!)
                 }
             }
         } catch (e: Exception) {
-            Log.e("UsuarioApiService","error: ${e.message}")
-            Result.failure(e)
+            Log.e("UsuarioApiService", "error: ${e.message}")
+            Response.error(response.code(), response.errorBody()!!)
         }
     }
 
@@ -75,14 +77,14 @@ class UsuarioApiServiceImpl @Inject constructor(
         )
 
         return try {
-            if (response.isSuccessful)
-                Log.i("UsuarioAPI", "${response.body()!!.result.sessionToken} - ${response.body()!!.result.username} - ${response.body()!!.result.email}")
-            else
-                Log.i("UsuarioAPI", "Vazio :(")
+            if (response.isSuccessful) {
+                Response.success(response.body())
+            } else {
+                Response.error(response.code(), response.errorBody()!!)
+            }
 
-            Response.success(response.body())
         } catch (e: Exception) {
-            Response.error<LoginResponse>(response.code(), response.errorBody()!!)
+            Response.error(response.code(), response.errorBody()!!)
         }
 
     }

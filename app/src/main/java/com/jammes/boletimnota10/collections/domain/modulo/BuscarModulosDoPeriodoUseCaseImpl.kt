@@ -1,9 +1,8 @@
 package com.jammes.boletimnota10.collections.domain.modulo
 
-import android.annotation.SuppressLint
 import android.util.Log
-import com.jammes.boletimnota10.core.repository.DisciplinaRepository
-import com.jammes.boletimnota10.core.repository.ModuloRepository
+import com.jammes.boletimnota10.core.repository.room.DisciplinaRepository
+import com.jammes.boletimnota10.core.repository.room.ModuloRepository
 import com.jammes.boletimnota10.collections.model.ModuloItem
 import javax.inject.Inject
 

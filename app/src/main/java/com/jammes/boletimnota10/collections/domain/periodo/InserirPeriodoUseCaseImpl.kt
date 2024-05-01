@@ -1,7 +1,7 @@
 package com.jammes.boletimnota10.collections.domain.periodo
 
 import android.util.Log
-import com.jammes.boletimnota10.core.repository.PeriodoRepository
+import com.jammes.boletimnota10.core.repository.room.PeriodoRepository
 import javax.inject.Inject
 
 class InserirPeriodoUseCaseImpl @Inject constructor(
