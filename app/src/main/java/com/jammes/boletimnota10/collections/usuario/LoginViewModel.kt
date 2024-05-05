@@ -6,6 +6,7 @@ import com.jammes.boletimnota10.collections.domain.usuario.CriarUsuarioAnonimoUs
 import com.jammes.boletimnota10.collections.domain.usuario.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.UUID
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,8 +16,9 @@ class LoginViewModel @Inject constructor(
 ): ViewModel() {
 
     fun criarUsuarioAnonimo() {
+        val usuario = UUID.randomUUID().toString()
         viewModelScope.launch {
-            val criado = criarUsuarioAnonimoUseCase("james", "ABC123")
+            val criado = criarUsuarioAnonimoUseCase(usuario, "123456")
         }
     }
 

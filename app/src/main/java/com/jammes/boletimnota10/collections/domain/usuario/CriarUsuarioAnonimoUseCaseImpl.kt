@@ -21,7 +21,6 @@ class CriarUsuarioAnonimoUseCaseImpl @Inject constructor(
 
             if (response.isSuccessful) {
                 EncryptedSharedPreferencesUtil.saveSessionToken(context, user!!)
-
                 true
             } else {
                 Log.d(TAG, "Sem Sucesso: ${response.message()} - errorBody: ${response.errorBody().toString()} - code: ${response.code()}")

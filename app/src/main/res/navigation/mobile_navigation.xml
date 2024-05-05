@@ -68,4 +68,10 @@
             app:argType="string" />
     </fragment>
 
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.jammes.boletimnota10.collections.usuario.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login"/>
+
 </navigation>

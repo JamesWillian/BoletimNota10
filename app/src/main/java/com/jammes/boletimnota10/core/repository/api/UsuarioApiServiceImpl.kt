@@ -23,6 +23,8 @@ class UsuarioApiServiceImpl @Inject constructor(
 
             withContext(Dispatchers.IO) {
                 if (response.isSuccessful) {
+                    Log.d("UsuarioApiService", "Response: ${response.body()}")
+
                     Response.success(response.body())
                 } else {
                     Log.e(

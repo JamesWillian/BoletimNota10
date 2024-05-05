@@ -1,18 +1,16 @@
 package com.jammes.boletimnota10
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.appcompat.app.AppCompatActivity
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKey
+import androidx.navigation.NavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.jammes.boletimnota10.core.repository.EncryptedSharedPreferencesUtil
 import com.jammes.boletimnota10.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +28,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        navController = findNavController(R.id.nav_host_fragment_content_main)
+
+        // Passa cada menu ID como um conjunto de Ids porque cada
+        // menu deve ser considerado como destino de nível superior.
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home,
@@ -41,28 +41,38 @@ class MainActivity : AppCompatActivity() {
         )
 
         navView.setupWithNavController(navController)
+
+        // Verifica se está chamando a tela de login e esconde o menu
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.loginFragment) {
+                navView.visibility = View.GONE
+            } else {
+                navView.visibility = View.VISIBLE
+            }
+        }
     }
 
-    fun securePrefs(): SharedPreferences {
+    override fun onResume() {
+        super.onResume()
 
-        val masterKey = MasterKey.Builder(this, MasterKey.DEFAULT_MASTER_KEY_ALIAS)
-            .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-            .build()
+        checkUserLogin()
+    }
 
-        val sharedPreferences = EncryptedSharedPreferences.create(
-            this,
-            "secure_prefs",
-            masterKey,
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
+    /*
+    * Verifica se o usuário está logado e se não estiver, chama a tela de login
+    * */
+    private fun checkUserLogin() {
+        val token = EncryptedSharedPreferencesUtil.getSessionToken(this)
 
-        return sharedPreferences
+        if (token == null)
+            navController.navigate(R.id.loginFragment)
     }
 
     /*
     * Define a ação dos botões do toolbar
     * action_nova_turma -> Tela para Inserir Nova Turma
+    *
+    * Removi o Toolbar, deixei o código apenas de exemplo
     * */
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_nova_turma -> {

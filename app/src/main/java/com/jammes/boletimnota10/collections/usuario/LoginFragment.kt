@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.jammes.boletimnota10.core.repository.EncryptedSharedPreferencesUtil
 import com.jammes.boletimnota10.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,9 +35,12 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val token = EncryptedSharedPreferencesUtil.getSessionToken(requireContext())
-        if (token == null) {
-            viewModel.criarUsuarioAnonimo()
+        binding.visitanteButton.setOnClickListener {
+            val token = EncryptedSharedPreferencesUtil.getSessionToken(requireContext())
+            if (token == null)
+                viewModel.criarUsuarioAnonimo()
+
+            findNavController().popBackStack()
         }
 
         binding.loginButton.setOnClickListener {
@@ -44,6 +48,8 @@ class LoginFragment : Fragment() {
             val password = binding.senhaEditText.text.toString()
 
             viewModel.login(username, password)
+
+            findNavController().popBackStack()
         }
     }
 
