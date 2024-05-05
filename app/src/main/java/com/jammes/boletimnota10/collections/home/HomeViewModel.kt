@@ -25,7 +25,6 @@ class HomeViewModel @Inject constructor(
     private val existeTurmaCadastradaUseCase: ExisteTurmaCadastradaUseCase,
     private val buscarBoletimDoPeriodoUseCase: BuscarBoletimDoPeriodoUseCase,
     private val buscarPeriodosDaTurmaUseCase: BuscarPeriodosDaTurmaUseCase,
-    private val loginDoUsuarioUseCase: LoginUseCase
 ) : ViewModel() {
 
     private val uiStateTurma: MutableLiveData<TurmaUiState> by lazy {
@@ -110,12 +109,6 @@ class HomeViewModel @Inject constructor(
     }
 
     fun turmaAtual() = uiStateTurma.value?.turmaItem?.id
-
-    fun login() {
-        viewModelScope.launch {
-            val user = loginDoUsuarioUseCase("james", "ABC123")
-        }
-    }
 
     data class TurmaUiState(val turmaItem: TurmaItem)
     data class BoletimUiState(val boletimItem: List<BoletimItem>)
