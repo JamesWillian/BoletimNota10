@@ -1,11 +1,14 @@
 package com.jammes.boletimnota10.di
 
+import android.content.Context
 import com.jammes.boletimnota10.BuildConfig
+import com.jammes.boletimnota10.core.repository.EncryptedSharedPreferencesUtil
 import com.jammes.boletimnota10.core.repository.api.ApiKeyInterceptor
 import com.jammes.boletimnota10.core.repository.api.UsuarioApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -20,8 +23,11 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideAPiKeyInterceptor(): ApiKeyInterceptor {
-        return ApiKeyInterceptor(BuildConfig.APPLICATION_KEY, BuildConfig.REST_API_KEY, "")
+    fun provideAPiKeyInterceptor(
+        @ApplicationContext context: Context
+    ): ApiKeyInterceptor {
+        val token = EncryptedSharedPreferencesUtil.getSessionToken(context) ?: ""
+        return ApiKeyInterceptor(BuildConfig.APPLICATION_KEY, BuildConfig.REST_API_KEY, token)
     }
 
     @Provides

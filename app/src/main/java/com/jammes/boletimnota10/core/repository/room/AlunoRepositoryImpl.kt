@@ -19,7 +19,10 @@ class AlunoRepositoryImpl @Inject constructor(
 
         return AlunoDomain(
             id = aluno.uuid,
-            nome = aluno.nome
+            nome = aluno.nome,
+            "",
+            "",
+            ""
         )
     }
 

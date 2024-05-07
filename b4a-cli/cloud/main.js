@@ -51,7 +51,6 @@ Parse.Cloud.define("login", async (request) => {
 		request.params.password
 	)
 
-	// const objectId = usuario.get("objectId");
 	const username = usuario.get("username");
 	const email = usuario.get("email");
 	const emailVerified = usuario.get("emailVerified");
@@ -81,8 +80,9 @@ Parse.Cloud.define("criar-aluno", async (request) => {
 	aluno.set("nome", "Estudante");
 	aluno.set("userId", user);
 
+	//Retornar apenas o ObjectId
 	const novoAluno = await aluno.save(null, {useMasterKey: true});
-	return novoAluno;
+	return novoAluno.id;
 });
 
 Parse.Cloud.define("alterar-aluno", async (request) => {
@@ -99,7 +99,6 @@ Parse.Cloud.define("alterar-aluno", async (request) => {
 	aluno.set("nome", nome);
 	aluno.set("matricula", matricula);
 
-	const novoAluno = await aluno.save(null, {useMasterKey: true});
 	return novoAluno;
 });
 

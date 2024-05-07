@@ -12,26 +12,23 @@ class LoginUseCaseImpl @Inject constructor(
     private val context: Context
 ) : LoginUseCase {
 
-    override suspend fun invoke(usuario: String, senha: String): UsuarioDomain {
+    override suspend fun invoke(usuario: String, senha: String): Boolean {
         Log.d(TAG, "Fazendo login do usuário $usuario")
         val emptyUser = UsuarioDomain("","",false,"")
+
         return try {
 
             val response = usuarioApiService.login(usuario, senha)
+            val user = response.body()?.result ?: emptyUser
 
-            val user = response.body()
+            Log.d(TAG, "Response: ${response.message()} - code: ${response.code()}")
 
-            if (response.isSuccessful) {
-                EncryptedSharedPreferencesUtil.saveSessionToken(context, user!!.result.sessionToken)
+            EncryptedSharedPreferencesUtil.saveUserPreference(context, user)
+            response.isSuccessful
 
-                user.result
-            } else {
-                Log.d(TAG, "Sem Sucesso: ${response.message()} - errorBody: ${response.errorBody().toString()} - code: ${response.code()}")
-                emptyUser
-            }
         } catch (e: Exception) {
             Log.d(TAG, "Exception ${e.message}")
-            emptyUser
+            false
         }
     }
 
