@@ -4,7 +4,6 @@ import android.util.Log
 import com.jammes.boletimnota10.core.database.dao.AlunoDao
 import com.jammes.boletimnota10.core.database.entity.Aluno
 import com.jammes.boletimnota10.core.model.AlunoDomain
-import java.util.UUID
 import javax.inject.Inject
 
 class AlunoRepositoryImpl @Inject constructor(
@@ -26,13 +25,13 @@ class AlunoRepositoryImpl @Inject constructor(
         )
     }
 
-    override suspend fun add(nome: String): String {
+    override suspend fun add(idAluno: String): String {
 
-        Log.d(TAG, "Adicionando novo Aluno: $nome")
+        Log.d(TAG, "Adicionando novo Aluno: $idAluno")
 
         val aluno = Aluno(
-            uuid = UUID.randomUUID().toString(),
-            nome = nome
+            uuid = idAluno,
+            nome = "Estudante"
         )
 
         dao.insert(aluno)

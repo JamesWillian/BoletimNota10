@@ -8,11 +8,11 @@ class InsertAlunoUseCaseImpl @Inject constructor(
     private val alunoRepository: AlunoRepository
 ): InsertAlunoUseCase {
 
-    override suspend fun invoke(nome: String): String {
+    override suspend fun invoke(idAluno: String): String {
 
-        Log.d(TAG, "Gravando novo Aluno: $nome")
+        Log.d(TAG, "Gravando novo Aluno: $idAluno")
 
-        return alunoRepository.add(nome)
+        return alunoRepository.add(idAluno)
     }
 
     companion object {
