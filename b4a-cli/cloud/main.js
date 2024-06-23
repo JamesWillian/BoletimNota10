@@ -25,26 +25,6 @@ Parse.Cloud.define("buscar-disciplinas", async (request) => {
 	return disciplina;
 });
 
-Parse.Cloud.define("criar-usuario-anonimo", async (request) => {
-	const user = new Parse.User();
-	user.set("username", request.params.username);
-	user.set("password", request.params.password);
-
-	const novoUsuario = await user.signUp(null, {useMasterKey: true});
-	return novoUsuario.get("sessionToken");
-});
-
-Parse.Cloud.define("criar-usuario", async (request) => {
-	const user = new Parse.User();
-	user.id = request.params.id;
-	user.set("username", request.params.email);
-	user.set("password", request.params.password);
-	user.set("email", request.params.email);
-
-	const novoUsuario = await user.save(null, {useMasterKey: true});
-	return novoUsuario;
-});
-
 Parse.Cloud.define("login", async (request) => {
 	const usuario = await Parse.User.logIn(
 		request.params.username, 
@@ -69,20 +49,63 @@ Parse.Cloud.define("current-user", async (request) => {
 	return request.user;
 });
 
-Parse.Cloud.define("criar-aluno", async (request) => {
-	
-	const userId = request.user.id;
+Parse.Cloud.define("criar-aluno-visitante", async (request) => {
 	
 	const user = new Parse.User();
-	user.id = userId;
+	user.set("username", request.params.username);
+	user.set("password", request.params.password);
+
+	const novoUsuario = await user.signUp(null, {useMasterKey: true});
+	const token = novoUsuario.getSessionToken();
+	const visitante = { "__type": "Pointer", "className": "_User", "objectId": novoUsuario.id };
 
 	const aluno = new Aluno();
 	aluno.set("nome", "Estudante");
-	aluno.set("userId", user);
+	aluno.set("userId", visitante);
 
-	//Retornar apenas o ObjectId
 	const novoAluno = await aluno.save(null, {useMasterKey: true});
-	return novoAluno.id;
+	const alunoId = novoAluno.id
+	return {
+		alunoId, 
+		token
+	};
+});
+
+Parse.Cloud.define("criar-aluno", async (request) => {
+	
+	const user = new Parse.User();
+	user.set("username", request.params.email);
+	user.set("password", request.params.password);
+	user.set("email", request.params.email);
+
+	const novoUsuario = await user.signUp(null, {useMasterKey: true});
+	const usuario = { "__type": "Pointer", "className": "_User", "objectId": novoUsuario.id };
+
+	const aluno = new Aluno();
+	aluno.set("nome", "Estudante");
+	aluno.set("userId", usuario);
+
+	const novoAluno = await aluno.save(null, {useMasterKey: true});
+	const alunoId = novoAluno.id
+	return {
+		alunoId, 
+		token
+	};
+});
+
+Parse.Cloud.define("converter-visitante-para-usuario", async (request) => {
+	
+	const user = new Parse.User();
+
+	const email = request.params.email;
+
+	if (email == null) throw 'Informe o email do Usuário!';
+
+	user.set("email", email);
+
+	const usuario = await user.save(null, {useMasterKey: true});
+
+	return usuario;
 });
 
 Parse.Cloud.define("alterar-aluno", async (request) => {
@@ -99,7 +122,8 @@ Parse.Cloud.define("alterar-aluno", async (request) => {
 	aluno.set("nome", nome);
 	aluno.set("matricula", matricula);
 
-	return novoAluno;
+	const alunoOk = await aluno.save(null, {useMasterKey: true});
+	return alunoOk;
 });
 
 Parse.Cloud.define("buscar-aluno", async (request) => {
@@ -118,7 +142,7 @@ Parse.Cloud.define("criar-turma", async (request) => {
 	const escola = request.params.escola;
 	const turno = request.params.turno;
 	const ano = request.params.ano;
-	const dataInicio = request.params.dataInicio;
+	const dataInicio = new Date(request.params.dataInicio);
 	const alunoId = request.params.alunoId;
 
 	if (nome == null || nome == "") throw "Nome da Turma não informado!"

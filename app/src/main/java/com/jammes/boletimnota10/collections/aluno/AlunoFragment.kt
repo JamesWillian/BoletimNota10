@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.jammes.boletimnota10.R
+import com.jammes.boletimnota10.core.repository.EncryptedSharedPreferencesUtil
 import com.jammes.boletimnota10.databinding.FragmentAlunoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -60,6 +63,11 @@ class AlunoFragment: Fragment() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
+
+        binding.sairButton.setOnClickListener {
+            EncryptedSharedPreferencesUtil.clearSessionToken(requireContext())
+            findNavController().navigate(R.id.loginFragment)
+        }
 
 //        binding.editarTurmaImageButton.setOnClickListener {
 //            if (binding.turmasCardView.height == 60) {

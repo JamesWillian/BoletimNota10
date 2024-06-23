@@ -4,35 +4,33 @@ import android.content.Context
 import android.util.Log
 import com.jammes.boletimnota10.collections.domain.aluno.InsertAlunoUseCase
 import com.jammes.boletimnota10.core.repository.EncryptedSharedPreferencesUtil
-import com.jammes.boletimnota10.core.repository.api.AlunoApiService
 import com.jammes.boletimnota10.core.repository.api.UsuarioApiService
+import com.jammes.boletimnota10.core.repository.api.params.UsuarioBody
 import javax.inject.Inject
 
-class CriarUsuarioAnonimoUseCaseImpl @Inject constructor(
+class CriarUsuarioVisitanteUseCaseImpl @Inject constructor(
     private val usuarioApiService: UsuarioApiService,
-    private val alunoApiService: AlunoApiService,
     private val inserirAlunoUseCase: InsertAlunoUseCase,
     private val context: Context
-): CriarUsuarioAnonimoUseCase {
+): CriarUsuarioVisitanteUseCase {
 
     override suspend fun invoke(usuario: String, senha: String): Boolean {
         Log.d(TAG, "Criando usuário anonimo $usuario")
+
+        val usuarioBody = UsuarioBody(usuario, senha)
+
         return try {
 
-            val response = usuarioApiService.criarUsuarioAnonimo(usuario, senha)
-
-            val user = response.body()
+            val response = usuarioApiService.criarUsuarioAnonimo(usuarioBody)
+            val token = response.body()?.result?.token ?: ""
+            val alunoId = response.body()?.result?.alunoId ?: ""
 
             if (response.isSuccessful) {
-                EncryptedSharedPreferencesUtil.saveSessionToken(context, user!!)
+                EncryptedSharedPreferencesUtil.saveSessionToken(context, token)
 
-                val aluno = alunoApiService.criarAluno()
-                if (aluno.isSuccessful) {
-                    val idAluno = inserirAlunoUseCase.invoke(aluno.body()!!)
-                    if (idAluno.isNotEmpty()) {
-                        Log.d(TAG, "Sucesso ao inserir aluno $idAluno")
-                    }
-                }
+                val idAluno = inserirAlunoUseCase.invoke(alunoId)
+                if (idAluno.isNotEmpty())
+                    Log.d(TAG, "Sucesso ao inserir aluno $idAluno")
 
                 true
             } else {
@@ -46,6 +44,6 @@ class CriarUsuarioAnonimoUseCaseImpl @Inject constructor(
     }
 
     companion object {
-        private const val TAG = "CriarUserAnonimoUseCase"
+        private const val TAG = "CriarUserVisitUseCase"
     }
 }

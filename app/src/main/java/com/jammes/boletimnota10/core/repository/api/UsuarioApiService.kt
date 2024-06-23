@@ -1,30 +1,26 @@
 package com.jammes.boletimnota10.core.repository.api
 
-import com.google.gson.JsonObject
-import com.jammes.boletimnota10.core.model.LoginResponse
-import com.jammes.boletimnota10.core.model.UsuarioDomain
+import com.jammes.boletimnota10.core.repository.api.params.UsuarioBody
+import com.jammes.boletimnota10.core.repository.api.responses.LoginResponse
+import com.jammes.boletimnota10.core.repository.api.responses.UsuarioResponse
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface UsuarioApiService {
 
-    @POST("criar-usuario-anonimo")
+    @POST("criar-aluno-visitante")
     suspend fun criarUsuarioAnonimo(
-        @Query("username") usuario: String,
-        @Query("password") senha: String
-    ): Response<String>
+        @Body usuario: UsuarioBody
+    ): Response<UsuarioResponse?>
 
-    @POST("criar-usuario")
+    @POST("criar-aluno")
     suspend fun criarUsuario(
-        @Query("id") id: String,
-        @Query("email") email: String,
-        @Query("password") senha: String
-    ): Response<String>
+        @Body usuario: UsuarioBody
+    ): Response<UsuarioResponse?>
 
     @POST("login")
     suspend fun login(
-        @Query("username") usuario: String,
-        @Query("password") senha: String
+        @Body usuario: UsuarioBody
     ): Response<LoginResponse?>
 }

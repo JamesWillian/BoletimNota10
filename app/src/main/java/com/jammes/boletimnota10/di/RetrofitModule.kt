@@ -4,6 +4,7 @@ import android.content.Context
 import com.jammes.boletimnota10.BuildConfig
 import com.jammes.boletimnota10.core.repository.EncryptedSharedPreferencesUtil
 import com.jammes.boletimnota10.core.repository.api.ApiKeyInterceptor
+import com.jammes.boletimnota10.core.repository.api.TurmaApiService
 import com.jammes.boletimnota10.core.repository.api.UsuarioApiService
 import dagger.Module
 import dagger.Provides
@@ -40,7 +41,7 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideUsuarioApiService(okHttpClient: OkHttpClient): UsuarioApiService {
+    fun providesUsuarioApiService(okHttpClient: OkHttpClient): UsuarioApiService {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
@@ -48,5 +49,16 @@ object RetrofitModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(UsuarioApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesTurmaApiService(okHttpClient: OkHttpClient): TurmaApiService {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(TurmaApiService::class.java)
     }
 }

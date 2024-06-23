@@ -38,8 +38,8 @@ import com.jammes.boletimnota10.collections.domain.periodo.InserirPeriodoUseCase
 import com.jammes.boletimnota10.collections.domain.periodo.InserirPeriodoUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.turma.AlterarTurmaUseCase
 import com.jammes.boletimnota10.collections.domain.turma.AlterarTurmaUseCaseImpl
-import com.jammes.boletimnota10.collections.domain.usuario.CriarUsuarioAnonimoUseCase
-import com.jammes.boletimnota10.collections.domain.usuario.CriarUsuarioAnonimoUseCaseImpl
+import com.jammes.boletimnota10.collections.domain.usuario.CriarUsuarioVisitanteUseCase
+import com.jammes.boletimnota10.collections.domain.usuario.CriarUsuarioVisitanteUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.usuario.LoginUseCase
 import com.jammes.boletimnota10.collections.domain.usuario.LoginUseCaseImpl
 import dagger.Binds
@@ -174,7 +174,7 @@ abstract class UseCaseModule {
 
     @Singleton
     @Binds
-    abstract fun providesCriarUsuarioAnonimoUseCase(
-        impl: CriarUsuarioAnonimoUseCaseImpl
-    ): CriarUsuarioAnonimoUseCase
+    abstract fun providesCriarUsuarioVisitanteUseCase(
+        impl: CriarUsuarioVisitanteUseCaseImpl
+    ): CriarUsuarioVisitanteUseCase
 }
