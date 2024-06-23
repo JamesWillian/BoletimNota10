@@ -1,5 +1,7 @@
 package com.jammes.boletimnota10.collections.di
 
+import com.jammes.boletimnota10.collections.domain.aluno.CriarAlunoUseCase
+import com.jammes.boletimnota10.collections.domain.aluno.CriarAlunoUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.aluno.GetAlunoUseCase
 import com.jammes.boletimnota10.collections.domain.aluno.GetAlunoUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.aluno.InsertAlunoUseCase
@@ -177,4 +179,10 @@ abstract class UseCaseModule {
     abstract fun providesCriarUsuarioVisitanteUseCase(
         impl: CriarUsuarioVisitanteUseCaseImpl
     ): CriarUsuarioVisitanteUseCase
+
+    @Singleton
+    @Binds
+    abstract fun providesCriarAlunoUseCase(
+        impl: CriarAlunoUseCaseImpl
+    ): CriarAlunoUseCase
 }

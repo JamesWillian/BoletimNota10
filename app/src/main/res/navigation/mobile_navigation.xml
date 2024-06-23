@@ -74,4 +74,10 @@
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login"/>
 
+
+    <fragment
+        android:id="@+id/usuarioFragment"
+        android:name="com.jammes.boletimnota10.collections.usuario.UsuarioFragment"
+        android:label="UsuarioFragment"
+        tools:layout="@layout/fragment_usuario"/>
 </navigation>

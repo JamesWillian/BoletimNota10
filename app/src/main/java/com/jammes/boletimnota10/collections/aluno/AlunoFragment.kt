@@ -65,8 +65,8 @@ class AlunoFragment: Fragment() {
         })
 
         binding.sairButton.setOnClickListener {
-            EncryptedSharedPreferencesUtil.clearSessionToken(requireContext())
-            findNavController().navigate(R.id.loginFragment)
+//            EncryptedSharedPreferencesUtil.clearSessionToken(requireContext())
+            findNavController().navigate(R.id.usuarioFragment)
         }
 
 //        binding.editarTurmaImageButton.setOnClickListener {

@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         // Verifica se está chamando a tela de login e esconde o menu
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.loginFragment) {
+            if (destination.id == R.id.usuarioFragment) {
                 navView.visibility = View.GONE
             } else {
                 navView.visibility = View.VISIBLE
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         val token = EncryptedSharedPreferencesUtil.getSessionToken(this)
 
         if (token == null)
-            navController.navigate(R.id.loginFragment)
+            navController.navigate(R.id.usuarioFragment)
     }
 
     /*

@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/appIcon"
@@ -17,14 +16,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/usuarioInputLayout"
+        android:id="@+id/emailInputLayout"
         style="@style/CardView.Dark"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
-        android:hint="@string/usuario_email"
+        android:hint="Email"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -32,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/appIcon">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/usuarioEditText"
+            android:id="@+id/emailEditText"
             style="@style/CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/usuarioInputLayout">
+        app:layout_constraintTop_toBottomOf="@id/emailInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/senhaEditText"
@@ -65,69 +64,54 @@
             android:paddingEnd="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/btnRecoverPassword"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/senha2InputLayout"
+        style="@style/Base.CardView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/recuperar_senha"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/senhaInputLayout"
-        app:layout_constraintEnd_toEndOf="@id/senhaInputLayout" />
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Repetir Senha"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/senhaInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/senha2EditText"
+            style="@style/Widget.Design.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:paddingStart="16sp"
+            android:paddingEnd="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/criarUsuarioButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/side_nav_bar"
-        android:text="@string/login"
+        android:text="Criar Conta"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnRecoverPassword" />
-
-    <Button
-        android:id="@+id/visitanteButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/soft_blue"
-        android:text="@string/continuar_como_visitante"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginButton" />
+        app:layout_constraintTop_toBottomOf="@id/senha2InputLayout" />
 
     <TextView
-        android:id="@+id/criarContaTextView"
+        android:id="@+id/voltarTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
-        android:text="@string/criar_conta"
+        android:text="Já tem um usuário? Fazer Login."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
-
-    <FrameLayout
-        android:id="@+id/pbLoading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:visibility="gone">
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
