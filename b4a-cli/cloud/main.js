@@ -79,6 +79,7 @@ Parse.Cloud.define("criar-aluno", async (request) => {
 	user.set("email", request.params.email);
 
 	const novoUsuario = await user.signUp(null, {useMasterKey: true});
+	const token = novoUsuario.getSessionToken();
 	const usuario = { "__type": "Pointer", "className": "_User", "objectId": novoUsuario.id };
 
 	const aluno = new Aluno();
@@ -163,7 +164,15 @@ Parse.Cloud.define("criar-turma", async (request) => {
 	turma.set("alunoId", aluno);
 
 	const novaTurma = await turma.save(null, {useMasterKey: true});
-	return novaTurma;
+
+	return {
+		id: novaTurma.id,
+        nome: novaTurma.get("nome"),
+        escola: novaTurma.get("escola"),
+        turno: novaTurma.get("turno"),
+        ano: novaTurma.get("ano"),
+        dataInicio: novaTurma.get("dataInicio").toISOString()
+	}
 });
 
 Parse.Cloud.define("alterar-turma", async (request) => {
@@ -175,27 +184,38 @@ Parse.Cloud.define("alterar-turma", async (request) => {
 	const nome = request.params.nome;
 	const escola = request.params.escola;
 	const turno = request.params.turno;
-	const ano = request.params.ano;
+	const ano = request.params.ano;	
 	const dataInicio = request.params.dataInicio;
 
 	turma.set("nome", nome);
 	turma.set("escola", escola);
 	turma.set("turno", turno);
 	turma.set("ano", ano);
-	turma.set("dataInicio", dataInicio);
+	if (dataInicio) {
+		turma.set("dataInicio", new Date(dataInicio));
+	}
 
-	const novaTurma = await turma.save(null, {useMasterKey: true});
-	return novaTurma;
+	const novaTurma = await turma.save(null, {useMasterKey: true});	
+	return novaTurma.id;
 });
 
 Parse.Cloud.define("buscar-turma", async (request) => {
 	if (request.params.turmaId == null) throw 'Informe o Código da Turma!';
 
 	const query = new Parse.Query(Turma);
-	query.equalTo("objectId", request.params.turmaId);
+	query.equalTo("objectId", request.query.turmaId);
 
 	const turma = await query.find({useMasterKey: true});
-	return turma;
+	return {
+		id: turma[0].id,
+        nome: turma[0].get("nome"),
+        escola: turma[0].get("escola"),
+        turno: turma[0].get("turno"),
+        ano: turma[0].get("ano"),
+        dataInicio: turma[0].get("dataInicio").toISOString(),
+		dataFinal: turma[0].get("dataFinal"),
+		concluido: turma[0].get("concluido")
+	}
 });
 
 Parse.Cloud.define("criar-periodo", async (request) => {

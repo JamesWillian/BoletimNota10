@@ -10,5 +10,7 @@ data class TurmaResult(
     val turno: String,
     val ano: String,
     val dataInicio: String,
+    val dataFinal: String? = null,
+    val concluido: Boolean? = false,
     val id: String
 )

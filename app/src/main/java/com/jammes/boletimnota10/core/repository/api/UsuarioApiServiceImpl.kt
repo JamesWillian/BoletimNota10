@@ -8,9 +8,9 @@ import javax.inject.Inject
 
 class UsuarioApiServiceImpl @Inject constructor(
     private val usuarioApi: UsuarioApiService,
-) {
+): UsuarioApiService {
 
-    suspend fun criarUsuarioAnonimo(
+    override suspend fun criarUsuarioAnonimo(
         usuario: UsuarioBody
     ): Response<UsuarioResponse?> {
         val response = usuarioApi.criarUsuarioAnonimo(
@@ -28,7 +28,7 @@ class UsuarioApiServiceImpl @Inject constructor(
         }
     }
 
-    suspend fun criarUsuario(
+    override suspend fun criarUsuario(
         usuario: UsuarioBody
     ): Response<UsuarioResponse?> {
         val response = usuarioApi.criarUsuario(
@@ -46,7 +46,7 @@ class UsuarioApiServiceImpl @Inject constructor(
         }
     }
 
-    suspend fun login(
+    override suspend fun login(
         usuario: UsuarioBody
     ): Response<LoginResponse?> {
         val response = usuarioApi.login(
