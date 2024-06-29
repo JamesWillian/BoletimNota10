@@ -11,10 +11,10 @@ interface BoletimApiService {
     @POST("buscar-boletim-periodo")
     suspend fun buscarBoletimPeriodo(
         @Query("periodoId") periodoId: String
-    ): Response<List<BoletimPeriodoResponse?>>
+    ): Response<BoletimPeriodoResponse>
 
     @POST("buscar-boletim-modulo")
     suspend fun buscarBoletimModulo(
         @Query("moduloId") moduloId: String
-    ): Response<List<BoletimModuloResponse?>>
+    ): Response<BoletimModuloResponse>
 }
