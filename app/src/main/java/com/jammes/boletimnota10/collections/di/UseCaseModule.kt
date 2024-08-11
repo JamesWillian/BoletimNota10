@@ -1,5 +1,7 @@
 package com.jammes.boletimnota10.collections.di
 
+import com.jammes.boletimnota10.collections.domain.aluno.BuscarIdAlunoUseCase
+import com.jammes.boletimnota10.collections.domain.aluno.BuscarIdAlunoUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.aluno.CriarAlunoUseCase
 import com.jammes.boletimnota10.collections.domain.aluno.CriarAlunoUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.aluno.GetAlunoUseCase
@@ -12,8 +14,6 @@ import com.jammes.boletimnota10.collections.domain.disciplina.GetAllDisciplinasU
 import com.jammes.boletimnota10.collections.domain.disciplina.GetAllDisciplinasUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.disciplina.InsertDisciplinaUseCase
 import com.jammes.boletimnota10.collections.domain.disciplina.InsertDisciplinaUseCaseImpl
-import com.jammes.boletimnota10.collections.domain.turma.BuscarTurmaAtualUseCase
-import com.jammes.boletimnota10.collections.domain.turma.BuscarTurmaAtualUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.turma.InserirTurmaUseCase
 import com.jammes.boletimnota10.collections.domain.turma.InserirTurmaUseCaseImpl
 import com.jammes.boletimnota10.collections.domain.avaliacao.BuscarTodasAvaliacoesUseCase
@@ -62,12 +62,6 @@ abstract class UseCaseModule {
 
     @Singleton
     @Binds
-    abstract fun providesBuscarTurmaAtualUseCase(
-        impl: BuscarTurmaAtualUseCaseImpl
-    ): BuscarTurmaAtualUseCase
-
-    @Singleton
-    @Binds
     abstract fun providesBuscarTodasTurmasUseCase(
         impl: BuscarTodasTurmasUseCaseImpl
     ): BuscarTodasTurmasUseCase
@@ -95,6 +89,12 @@ abstract class UseCaseModule {
     abstract fun providesGetAlunoUseCase(
         impl: GetAlunoUseCaseImpl
     ): GetAlunoUseCase
+
+    @Singleton
+    @Binds
+    abstract fun providesBuscarIdAlunoUseCase(
+        impl: BuscarIdAlunoUseCaseImpl
+    ): BuscarIdAlunoUseCase
 
     @Singleton
     @Binds

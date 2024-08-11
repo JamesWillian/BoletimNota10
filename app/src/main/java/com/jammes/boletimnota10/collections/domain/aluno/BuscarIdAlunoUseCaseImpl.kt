@@ -3,7 +3,7 @@ package com.jammes.boletimnota10.collections.domain.aluno
 import com.jammes.boletimnota10.core.repository.room.AlunoRepository
 import javax.inject.Inject
 
-class BuscarIdAlunoImpl @Inject constructor(
+class BuscarIdAlunoUseCaseImpl @Inject constructor(
     private val alunoRepository: AlunoRepository
 ): BuscarIdAlunoUseCase {
 

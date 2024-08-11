@@ -16,7 +16,9 @@ class GetAlunoUseCaseImpl @Inject constructor(
         val aluno = alunoRepository.fetch()
         return AlunoItem(
             id = aluno.id,
-            nome = aluno.nome
+            nome = aluno.nome,
+            matricula = aluno.matricula,
+            turmaId = aluno.turmaId
         )
 
     }

@@ -30,7 +30,7 @@ class UsuarioFragment : Fragment() {
         if (savedInstanceState == null) {
             requireActivity().supportFragmentManager.beginTransaction()
                 .add(R.id.usuarioFrame, LoginFragment())
-                .commitNow()
+                .commitAllowingStateLoss()
         }
     }
 

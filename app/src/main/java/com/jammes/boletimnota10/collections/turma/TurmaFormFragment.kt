@@ -76,8 +76,7 @@ class TurmaFormFragment : Fragment() {
                     binding.escolaTextInputLayout.editText?.text.toString(),
                     binding.turnoTextInputLayout.editText?.text.toString(),
                     binding.anoTextInputLayout.editText?.text.toString(),
-                    binding.dataInicioTextInputLayout.editText?.text.toString(),
-                    binding.dataFinalTextInputLayout.editText?.text.toString(),
+                    binding.dataInicioTextInputLayout.editText?.text.toString()
                 )
 
             }

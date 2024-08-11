@@ -20,7 +20,7 @@ class AlunoViewModel @Inject constructor(
 ): ViewModel()  {
 
     private val uiState: MutableLiveData<UiState> by lazy {
-        MutableLiveData<UiState>(UiState(alunoItem = AlunoItem("","")))
+        MutableLiveData<UiState>(UiState(alunoItem = AlunoItem("","", "", "")))
     }
 
     fun stateOnceAndStream(): LiveData<UiState> {

@@ -30,8 +30,8 @@ import com.jammes.boletimnota10.core.database.entity.Modulo
     views = [
         Boletim::class
             ],
-    version = 8,
-    exportSchema = true)
+    version = 9,
+    exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun AlunoDao(): AlunoDao

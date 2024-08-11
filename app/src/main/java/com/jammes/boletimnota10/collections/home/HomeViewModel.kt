@@ -5,9 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jammes.boletimnota10.collections.domain.aluno.GetAlunoUseCase
 import com.jammes.boletimnota10.collections.domain.boletim.BuscarBoletimDoPeriodoUseCase
 import com.jammes.boletimnota10.collections.domain.periodo.BuscarPeriodosDaTurmaUseCase
-import com.jammes.boletimnota10.collections.domain.turma.BuscarTurmaAtualUseCase
+import com.jammes.boletimnota10.collections.domain.turma.BuscarTurmaPorIdUseCase
 import com.jammes.boletimnota10.collections.domain.turma.ExisteTurmaCadastradaUseCase
 import com.jammes.boletimnota10.collections.domain.usuario.LoginUseCase
 import com.jammes.boletimnota10.collections.model.BoletimItem
@@ -21,10 +22,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val buscarTurmaAtualUseCase: BuscarTurmaAtualUseCase,
     private val existeTurmaCadastradaUseCase: ExisteTurmaCadastradaUseCase,
+    private val buscarTurmaPorIdUseCase: BuscarTurmaPorIdUseCase,
     private val buscarBoletimDoPeriodoUseCase: BuscarBoletimDoPeriodoUseCase,
     private val buscarPeriodosDaTurmaUseCase: BuscarPeriodosDaTurmaUseCase,
+    private val buscarAlunoUseCase: GetAlunoUseCase,
 ) : ViewModel() {
 
     private val uiStateTurma: MutableLiveData<TurmaUiState> by lazy {
@@ -66,13 +68,12 @@ class HomeViewModel @Inject constructor(
     private suspend fun obterTurmaAtual() {
         withContext(Dispatchers.Main) {
 
-            val turma = buscarTurmaAtualUseCase()?.let { TurmaUiState(it) }
+            val turmaId = buscarAlunoUseCase().turmaId
+            val turma = buscarTurmaPorIdUseCase.invoke(turmaId)
 
-            if (turma != null) {
-                uiStateTurma.postValue(turma)
+            uiStateTurma.postValue(TurmaUiState(turma))
 
-                obterPeriodos(turma.turmaItem.id)
-            }
+            obterPeriodos(turmaId)
         }
     }
 
