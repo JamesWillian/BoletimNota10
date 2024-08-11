@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
         navController = findNavController(R.id.nav_host_fragment_content_main)
 
+//        EncryptedSharedPreferencesUtil.clearSessionToken(this)
+
         // Passa cada menu ID como um conjunto de Ids porque cada
         // menu deve ser considerado como destino de nível superior.
         appBarConfiguration = AppBarConfiguration(

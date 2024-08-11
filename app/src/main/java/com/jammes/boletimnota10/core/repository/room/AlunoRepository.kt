@@ -12,4 +12,6 @@ interface AlunoRepository {
 
     suspend fun buscarIdAluno(): String
 
+    suspend fun atualizarTurma(turmaId: String): Boolean
+
 }

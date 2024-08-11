@@ -79,7 +79,7 @@
                 android:id="@+id/editarTurmaButton"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@drawable/ic_edit_24"
+                android:background="@drawable/baseline_edit_note_24"
                 app:layout_constraintBottom_toBottomOf="@id/turnoTextView"
                 app:layout_constraintEnd_toEndOf="parent" />
 

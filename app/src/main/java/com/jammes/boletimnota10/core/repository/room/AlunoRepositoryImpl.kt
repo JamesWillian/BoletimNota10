@@ -60,6 +60,15 @@ class AlunoRepositoryImpl @Inject constructor(
         return dao.buscarIdAluno()
     }
 
+    override suspend fun atualizarTurma(turmaId: String): Boolean {
+
+        Log.d(TAG, "Atualizando a Turma Atual para $turmaId")
+
+        dao.atualizarTurmaAtual(turmaId)
+
+        return true
+    }
+
     companion object {
         private const val TAG = "AlunoRepository"
     }

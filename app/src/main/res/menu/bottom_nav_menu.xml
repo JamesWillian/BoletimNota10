@@ -3,14 +3,14 @@
 
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/round_home_work_24"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_disciplinas"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/baseline_dataset_24"
             android:title="@string/menu_disciplinas" />
         <item
             android:id="@+id/nav_aluno"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/baseline_account_box_24"
             android:title="@string/menu_aluno" />
 </menu>

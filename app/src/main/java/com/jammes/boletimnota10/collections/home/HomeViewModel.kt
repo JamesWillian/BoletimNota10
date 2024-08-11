@@ -41,10 +41,6 @@ class HomeViewModel @Inject constructor(
         MutableLiveData<PeriodoUiState>(PeriodoUiState(emptyList()))
     }
 
-    private val existeTurmaAtiva: MutableLiveData<Boolean> by lazy {
-        MutableLiveData<Boolean>(true)
-    }
-
     fun stateTurmaUiState(): LiveData<TurmaUiState> {
         return uiStateTurma
     }
@@ -57,23 +53,20 @@ class HomeViewModel @Inject constructor(
         return uiStateBoletim
     }
 
-    private suspend fun verificarTurma() {
-        existeTurmaAtiva.postValue(existeTurmaCadastradaUseCase())
-    }
-
-    fun existeTurma(): LiveData<Boolean> {
-        return existeTurmaAtiva
-    }
+    private suspend fun verificarTurma() = existeTurmaCadastradaUseCase()
 
     private suspend fun obterTurmaAtual() {
         withContext(Dispatchers.Main) {
 
             val turmaId = buscarAlunoUseCase().turmaId
-            val turma = buscarTurmaPorIdUseCase.invoke(turmaId)
 
-            uiStateTurma.postValue(TurmaUiState(turma))
+            if (turmaId.isNotEmpty()) {
+                val turma = buscarTurmaPorIdUseCase.invoke(turmaId)
 
-            obterPeriodos(turmaId)
+                uiStateTurma.postValue(TurmaUiState(turma))
+
+                obterPeriodos(turmaId)
+            }
         }
     }
 
@@ -95,11 +88,14 @@ class HomeViewModel @Inject constructor(
     fun listarBoletim() {
         viewModelScope.launch {
 
-            verificarTurma()
+            val existeTurma = verificarTurma()
 
-            if (existeTurmaAtiva.value == true) {
+            if (existeTurma) {
                 obterTurmaAtual()
+            } else {
+                uiStateTurma.postValue(TurmaUiState(TurmaItem("", "", "", "", "", "", "")))
             }
+
         }
     }
 

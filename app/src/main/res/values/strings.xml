@@ -25,4 +25,9 @@
     <string name="continuar_como_visitante">Continuar como Visitante</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="alterar_foto">Alterar Foto</string>
+    <string name="informe_seu_nome">Informe seu Nome</string>
+    <string name="turmas">Turmas</string>
+    <string name="disciplinas">Disciplinas</string>
+    <string name="sair">Sair</string>
 </resources>

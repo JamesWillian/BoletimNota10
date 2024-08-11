@@ -65,10 +65,10 @@ class HomeFragment : Fragment() {
             bindUiStateBoletim(uiState)
         }
 
-        homeViewModel.existeTurma().observe(viewLifecycleOwner) {existeTurma ->
-            if (!existeTurma)
-                findNavController().navigate(R.id.nav_form_turma)
-        }
+//        homeViewModel.existeTurma().observe(viewLifecycleOwner) {existeTurma ->
+//            if (!existeTurma)
+//                findNavController().navigate(R.id.nav_form_turma)
+//        }
 
         binding.editarTurmaButton.setOnClickListener {
             val action = HomeFragmentDirections.actionNavHomeToNavFormTurma(homeViewModel.turmaAtual())
@@ -108,12 +108,17 @@ class HomeFragment : Fragment() {
     private fun bindUiStateTurma(uiState: HomeViewModel.TurmaUiState) {
         val turma = uiState.turmaItem
 
-        binding.turmaTextView.text = turma.nome
-        binding.escolaTextView.text = turma.escola
-        binding.turnoTextView.text = turma.turno
-        binding.anoTextView.text = turma.ano
-        if (turma.concluido)
-            binding.concluidoTextView.visibility = View.GONE
+        if (turma.id.isEmpty()) {//Chama a tela de cadastro de Turma, se não existir turma cadastrada para o aluno
+            findNavController().navigate(R.id.nav_form_turma)
+            return
+        } else {
+            binding.turmaTextView.text = turma.nome
+            binding.escolaTextView.text = turma.escola
+            binding.turnoTextView.text = turma.turno
+            binding.anoTextView.text = turma.ano
+            if (turma.concluido)
+                binding.concluidoTextView.visibility = View.GONE
+        }
     }
 
     private fun bindUiStateBoletim(uiState: HomeViewModel.BoletimUiState) {

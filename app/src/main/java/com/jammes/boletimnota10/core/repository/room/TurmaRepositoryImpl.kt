@@ -13,7 +13,7 @@ class TurmaRepositoryImpl @Inject constructor(
 
     override suspend fun existeTurmaCadastrada(): Boolean {
 
-        return dao.existeTurmaCadastrada()
+        return dao.existeTurmaCadastrada()?: false
     }
 
     override suspend fun buscarTurmaPorId(turmaId: String): TurmaDomain {
@@ -53,6 +53,7 @@ class TurmaRepositoryImpl @Inject constructor(
     }
 
     override suspend fun add(
+        id: String,
         nome: String,
         escola: String,
         turno: String,
@@ -61,7 +62,7 @@ class TurmaRepositoryImpl @Inject constructor(
     ): String {
         Log.d(TAG, "Adicionando nova Turma: $nome")
         val turma = Turma(
-            id = UUID.randomUUID().toString(),
+            id = id,
             nome = nome,
             escola = escola,
             turno = turno,

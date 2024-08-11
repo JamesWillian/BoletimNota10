@@ -21,4 +21,7 @@ interface AlunoDao {
 
     @Query("SELECT id FROM aluno LIMIT 1")
     suspend fun buscarIdAluno(): String
+
+    @Query("UPDATE aluno SET turmaAtualId = :turmaId")
+    suspend fun atualizarTurmaAtual(turmaId: String)
 }

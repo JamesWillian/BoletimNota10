@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/side_nav_bar"
     tools:context=".collections.aluno.AlunoFragment">
 
     <androidx.cardview.widget.CardView
@@ -11,10 +12,9 @@
         android:layout_width="0dp"
         android:layout_height="130dp"
         android:layout_margin="16dp"
-        android:background="@drawable/side_nav_bar"
         android:backgroundTint="@color/white"
-        app:cardElevation="10dp"
         app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,37 +29,48 @@
                 android:layout_height="90dp"
                 android:layout_margin="@dimen/profile_image_margin"
                 android:contentDescription="@string/foto_perfil_desc"
+                android:src="@drawable/baseline_account_circle_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/user_placeholder" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alterar Foto"
+                android:text="@string/alterar_foto"
                 android:textStyle="normal"
-                app:layout_constraintTop_toBottomOf="@id/fotoImageView"
-                app:layout_constraintStart_toStartOf="@id/fotoImageView"
-                app:layout_constraintEnd_toEndOf="@id/fotoImageView"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintEnd_toEndOf="@id/fotoImageView"
+                app:layout_constraintStart_toStartOf="@id/fotoImageView"
+                app:layout_constraintTop_toBottomOf="@id/fotoImageView" />
 
             <EditText
                 android:id="@+id/nomeEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:autofillHints="Nome do Aluno"
+                android:background="@android:color/transparent"
+                android:hint="@string/informe_seu_nome"
+                android:inputType="textMultiLine"
+                android:maxLength="30"
+                android:maxLines="2"
                 android:paddingHorizontal="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/nav_header_vertical_spacing"
-                android:inputType="textMultiLine"
-                android:maxLines="2"
-                android:maxLength="30"
-                android:hint="Informe seu Nome"
-                tools:text="James Willian"
                 android:textColor="#323232"
-                android:background="@android:color/transparent"
-                app:layout_constraintStart_toEndOf="@+id/fotoImageView"
                 app:layout_constraintEnd_toStartOf="@id/salvarNomeButton"
-                app:layout_constraintTop_toTopOf="@+id/fotoImageView" />
+                app:layout_constraintStart_toEndOf="@+id/fotoImageView"
+                app:layout_constraintTop_toTopOf="@+id/fotoImageView"
+                tools:text="James Willian" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                app:layout_constraintEnd_toStartOf="@id/salvarNomeButton"
+                app:layout_constraintStart_toEndOf="@+id/fotoImageView"
+                app:layout_constraintTop_toBottomOf="@+id/nomeEditText"
+                tools:text="Matrícula: 20540.2015" />
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/salvarNomeButton"
@@ -68,10 +79,10 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/ic_baseline_save_24"
                 android:visibility="gone"
-                app:layout_constraintTop_toTopOf="@id/nomeEditText"
                 app:layout_constraintBottom_toBottomOf="@id/nomeEditText"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/nomeEditText"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toTopOf="@id/nomeEditText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -83,8 +94,8 @@
         android:layout_height="60dp"
         android:layout_margin="16dp"
         android:backgroundTint="@color/white"
-        app:cardElevation="10dp"
         app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/alunoCardView">
@@ -97,22 +108,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                android:text="Turmas"
+                android:text="@string/turmas"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/editarTurmaImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_edit_24"
-                android:background="@color/white"
                 android:layout_marginEnd="15dp"
+                android:background="@color/white"
+                android:src="@drawable/ic_edit_24"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -124,8 +135,8 @@
         android:layout_height="60dp"
         android:layout_margin="16dp"
         android:backgroundTint="@color/white"
-        app:cardElevation="10dp"
         app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/turmasCardView">
@@ -138,11 +149,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                android:text="Disciplinas"
+                android:text="@string/disciplinas"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -153,7 +164,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Sair"
+        android:text="@string/sair"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/disciplinasCardView" />
 

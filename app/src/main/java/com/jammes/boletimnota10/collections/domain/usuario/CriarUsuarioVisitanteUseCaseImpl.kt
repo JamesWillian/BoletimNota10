@@ -15,15 +15,22 @@ class CriarUsuarioVisitanteUseCaseImpl @Inject constructor(
 ): CriarUsuarioVisitanteUseCase {
 
     override suspend fun invoke(usuario: String, senha: String): Boolean {
-        Log.d(TAG, "Criando usuário anonimo $usuario")
+        Log.d(TAG, "Debug:: Criando usuário anonimo $usuario")
 
-        val usuarioBody = UsuarioBody(usuario, senha)
+//        val idAluno = inserirAlunoUseCase.invoke("1")
+//        if (idAluno.isNotEmpty())
+//            Log.d(TAG, "Sucesso ao inserir aluno $idAluno")
+
+        val usuarioBody = UsuarioBody(usuario, senha, "")
+
+        val response = usuarioApiService.criarUsuarioAnonimo(usuarioBody)
+        val token = response.body()?.result?.token ?: ""
+        val alunoId = response.body()?.result?.alunoId ?: ""
+
+        Log.d(TAG, "Result:: $alunoId :: ${response.message()} - errorBody: ${response.errorBody().toString()} - code: ${response.code()}")
 
         return try {
 
-            val response = usuarioApiService.criarUsuarioAnonimo(usuarioBody)
-            val token = response.body()?.result?.token ?: ""
-            val alunoId = response.body()?.result?.alunoId ?: ""
 
             if (response.isSuccessful) {
                 EncryptedSharedPreferencesUtil.saveSessionToken(context, token)

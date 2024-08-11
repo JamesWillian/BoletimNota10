@@ -11,6 +11,7 @@ interface TurmaRepository {
     suspend fun buscarTodasTurmas(): List<TurmaDomain>
 
     suspend fun add(
+        id: String,
         nome: String,
         escola: String,
         turno: String,
