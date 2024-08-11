@@ -6,8 +6,6 @@ interface TurmaRepository {
 
     suspend fun existeTurmaCadastrada(): Boolean
 
-    suspend fun buscarTurmaAtiva(): TurmaDomain?
-
     suspend fun buscarTurmaPorId(turmaId: String): TurmaDomain
 
     suspend fun buscarTodasTurmas(): List<TurmaDomain>
@@ -17,8 +15,7 @@ interface TurmaRepository {
         escola: String,
         turno: String,
         ano: String,
-        dataInicio: String,
-        dataFinal: String
+        dataInicio: String
     ): String
 
     suspend fun post(
@@ -28,7 +25,7 @@ interface TurmaRepository {
         turno: String,
         ano: String,
         dataInicio: String,
-        dataFinal: String
+        dataFinal: String?
     )
 
     suspend fun delete(turmaId: String)

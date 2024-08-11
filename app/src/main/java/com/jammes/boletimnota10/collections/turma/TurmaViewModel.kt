@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jammes.boletimnota10.collections.domain.aluno.BuscarIdAlunoUseCase
 import com.jammes.boletimnota10.collections.domain.disciplina.GetAllDisciplinasUseCase
 import com.jammes.boletimnota10.collections.domain.modulo.AlternarModuloUseCase
 import com.jammes.boletimnota10.collections.domain.modulo.BuscarModulosDoPeriodoUseCase
@@ -27,7 +28,9 @@ class TurmaViewModel @Inject constructor(
     private val inserirPeriodoUseCase: InserirPeriodoUseCase,
     private val buscarPeriodosDaTurmaUseCase: BuscarPeriodosDaTurmaUseCase,
     private val buscarModulosDoPeriodoUseCase: BuscarModulosDoPeriodoUseCase,
-    private val alternarModuloUseCase: AlternarModuloUseCase
+    private val alternarModuloUseCase: AlternarModuloUseCase,
+    private val buscarIdAlunoUseCase: BuscarIdAlunoUseCase
+
 ) : ViewModel() {
 
     private val uiStateTurma: MutableLiveData<UiStateTurma> by lazy {
@@ -89,9 +92,11 @@ class TurmaViewModel @Inject constructor(
         }
     }
 
-    fun salvarTurma(nome: String, escola: String, turno: String, ano: String, dataInicio: String, dataFinal: String) {
+    fun salvarTurma(nome: String, escola: String, turno: String, ano: String, dataInicio: String) {
         viewModelScope.launch {
-            val turmaId = inserirTurmaUseCase(nome, escola, turno, ano, dataInicio, dataFinal)
+
+            val alunoId = buscarIdAlunoUseCase.invoke()
+            val turmaId = inserirTurmaUseCase(nome, escola, turno, ano, dataInicio, alunoId)
 
             uiStateTurma.postValue(
                 UiStateTurma(
@@ -102,7 +107,7 @@ class TurmaViewModel @Inject constructor(
                         turno = turno,
                         ano = ano,
                         dataInicio = dataInicio,
-                        dataFinal = dataFinal
+                        dataFinal = ""
                     )
                 )
             )

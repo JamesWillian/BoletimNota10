@@ -10,4 +10,6 @@ interface AlunoRepository {
 
     suspend fun post(alunoId: String, nome: String): Boolean
 
+    suspend fun buscarIdAluno(): String
+
 }

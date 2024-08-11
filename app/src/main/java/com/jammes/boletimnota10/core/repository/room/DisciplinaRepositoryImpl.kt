@@ -15,7 +15,7 @@ class DisciplinaRepositoryImpl @Inject constructor(
         Log.d(TAG, "Listando todas as Disciplinas")
         return dao.fetchDisciplina().map { disciplina ->
             DisciplinaDomain(
-                id = disciplina.uuid,
+                id = disciplina.id,
                 descricao = disciplina.descricao
             )
         }
@@ -25,7 +25,7 @@ class DisciplinaRepositoryImpl @Inject constructor(
         Log.d(TAG, "Buscando Disciplina por Id: $disciplinaId")
         val disciplina = dao.fetchDisciplinaById(disciplinaId)
         return DisciplinaDomain(
-            disciplina.uuid,
+            disciplina.id,
             disciplina.descricao
         )
     }
@@ -33,7 +33,7 @@ class DisciplinaRepositoryImpl @Inject constructor(
     override suspend fun add(descricao: String) {
         Log.d(TAG, "Adicionando nova Disciplina: $descricao")
         val disciplina = Disciplina(
-            uuid = UUID.randomUUID().toString(),
+            id = UUID.randomUUID().toString(),
             descricao = descricao
         )
         dao.insert(disciplina)
@@ -42,7 +42,7 @@ class DisciplinaRepositoryImpl @Inject constructor(
     override suspend fun post(disciplinaId: String, descricao: String) {
         Log.d(TAG, "Atualizando a Disciplina: $descricao")
         val disciplina = Disciplina(
-            uuid = disciplinaId,
+            id = disciplinaId,
             descricao = descricao
         )
         dao.update(disciplina)
@@ -51,7 +51,7 @@ class DisciplinaRepositoryImpl @Inject constructor(
     override suspend fun delete(disciplinaId: String) {
         Log.d(TAG, "Excluindo a Disciplina: $disciplinaId")
         val disciplina = Disciplina(
-            uuid = disciplinaId,
+            id = disciplinaId,
             descricao = ""
         )
         dao.delete(disciplina)

@@ -15,7 +15,7 @@ class ModuloRepositoryImpl @Inject constructor(
         Log.d(TAG, "Listando todas os Modulos do Periodo: $periodoId")
         return dao.buscarTodosModulosDoPeriodo(periodoId).map {
             ModuloDomain(
-                id = it.uuid,
+                id = it.id,
                 periodoId = it.periodoId,
                 disciplinaId = it.disciplinaId
             )
@@ -28,7 +28,7 @@ class ModuloRepositoryImpl @Inject constructor(
         val modulo = dao.buscarModulo(periodoId, disciplinaId)
         return if (modulo != null) {
             ModuloDomain(
-                id = modulo.uuid,
+                id = modulo.id,
                 periodoId = modulo.periodoId,
                 disciplinaId = modulo.disciplinaId
             )
@@ -39,7 +39,7 @@ class ModuloRepositoryImpl @Inject constructor(
     override suspend fun add(periodoId: String, disciplinaId: String) {
         Log.d(TAG, "Adicionando novo Modulo $disciplinaId do Periodo: $periodoId")
         val modulo = Modulo(
-            uuid = UUID.randomUUID().toString(),
+            id = UUID.randomUUID().toString(),
             periodoId = periodoId,
             disciplinaId = disciplinaId
         )
@@ -49,7 +49,7 @@ class ModuloRepositoryImpl @Inject constructor(
     override suspend fun delete(moduloId: String) {
         Log.d(TAG, "Excluindo o Modulo: $moduloId")
         val modulo = Modulo(
-            uuid = moduloId,
+            id = moduloId,
             periodoId = "",
             disciplinaId = ""
         )

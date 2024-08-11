@@ -5,12 +5,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "turma")
 data class Turma(
-    @PrimaryKey val uuid: String,
+    @PrimaryKey val id: String,
     val nome: String,
     val escola: String,
     val turno: String,
     val ano: String,
     val dataInicio: String,
-    val dataFinal: String,
+    val dataFinal: String? = "",
     val concluido: Boolean = false
 )

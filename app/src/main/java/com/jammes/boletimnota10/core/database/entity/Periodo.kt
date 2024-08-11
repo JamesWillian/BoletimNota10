@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "periodo")
 data class Periodo(
-    @PrimaryKey val uuid: String,
+    @PrimaryKey val id: String,
     val turmaId: String,
     val descricao: String
 )

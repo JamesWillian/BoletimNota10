@@ -5,6 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "disciplina")
 data class Disciplina(
-    @PrimaryKey val uuid: String,
+    @PrimaryKey val id: String,
     val descricao: String
 )

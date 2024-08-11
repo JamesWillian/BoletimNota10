@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "modulo")
 data class Modulo(
-    @PrimaryKey val uuid: String,
+    @PrimaryKey val id: String,
     val periodoId: String,
     val disciplinaId: String,
     val professor: String? = ""

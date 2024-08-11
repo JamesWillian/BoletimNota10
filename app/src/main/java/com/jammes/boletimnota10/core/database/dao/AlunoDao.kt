@@ -19,4 +19,6 @@ interface AlunoDao {
     @Query("SELECT * FROM aluno LIMIT 1")
     suspend fun fetchAluno(): Aluno
 
+    @Query("SELECT id FROM aluno LIMIT 1")
+    suspend fun buscarIdAluno(): String
 }

@@ -17,10 +17,10 @@ class AlunoRepositoryImpl @Inject constructor(
         val aluno = dao.fetchAluno()
 
         return AlunoDomain(
-            id = aluno.uuid,
+            id = aluno.id,
             nome = aluno.nome,
-            "",
-            "",
+            matricula = aluno.matricula?: "",
+            turmaId = aluno.turmaAtualId?: "",
             ""
         )
     }
@@ -30,13 +30,13 @@ class AlunoRepositoryImpl @Inject constructor(
         Log.d(TAG, "Adicionando novo Aluno: $idAluno")
 
         val aluno = Aluno(
-            uuid = idAluno,
+            id = idAluno,
             nome = "Estudante"
         )
 
         dao.insert(aluno)
 
-        return aluno.uuid
+        return aluno.id
     }
 
     override suspend fun post(alunoId: String, nome: String): Boolean {
@@ -44,13 +44,20 @@ class AlunoRepositoryImpl @Inject constructor(
         Log.d(TAG, "Atualizando os dados do Aluno: $nome")
 
         val aluno = Aluno(
-            uuid = alunoId,
+            id = alunoId,
             nome = nome
         )
 
         dao.update(aluno)
 
         return true
+    }
+
+    override suspend fun buscarIdAluno(): String {
+
+        Log.d(TAG, "Buscando Id do Aluno")
+
+        return dao.buscarIdAluno()
     }
 
     companion object {

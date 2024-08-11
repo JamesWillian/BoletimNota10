@@ -19,13 +19,10 @@ interface TurmaDao {
     @Delete
     suspend fun delete(turma: Turma)
 
-    @Query("SELECT count(uuid) <> 0 FROM turma")
+    @Query("SELECT count(id) <> 0 FROM turma")
     suspend fun existeTurmaCadastrada(): Boolean
 
-    @Query("SELECT * FROM turma WHERE NOT concluido LIMIT 1")
-    suspend fun selectTurmaAtiva(): Turma?
-
-    @Query("SELECT * FROM turma WHERE uuid = :turmaId")
+    @Query("SELECT * FROM turma WHERE id = :turmaId")
     suspend fun selectTurmaPorId(turmaId: String): Turma
 
     @Query("SELECT * FROM turma")

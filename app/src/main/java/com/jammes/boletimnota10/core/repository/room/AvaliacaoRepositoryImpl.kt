@@ -17,7 +17,7 @@ class AvaliacaoRepositoryImpl @Inject constructor(
         Log.d(TAG, "Listando todas as Avaliações do Módulo: $moduloId")
         return dao.buscarAvaliacoes(moduloId).map {
             AvaliacaoDomain(
-                id = it.uuid,
+                id = it.id,
                 moduloId = it.moduloId,
                 descricao = it.descricao,
                 nota = it.nota,
@@ -36,7 +36,7 @@ class AvaliacaoRepositoryImpl @Inject constructor(
     ) {
         Log.d(TAG, "Adicionando nova Avaliação: $descricao")
         val avaliacao = Avaliacao(
-            uuid = UUID.randomUUID().toString(),
+            id = UUID.randomUUID().toString(),
             moduloId = moduloId,
             descricao = descricao,
             nota = nota,
@@ -56,7 +56,7 @@ class AvaliacaoRepositoryImpl @Inject constructor(
     ) {
         Log.d(TAG, "Editando Avaliação: $descricao")
         val avaliacao = Avaliacao(
-            uuid = avaliacaoId,
+            id = avaliacaoId,
             moduloId = moduloId,
             descricao = descricao,
             nota = nota,

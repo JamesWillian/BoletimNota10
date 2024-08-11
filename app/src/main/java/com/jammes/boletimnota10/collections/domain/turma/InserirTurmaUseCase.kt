@@ -8,6 +8,6 @@ interface InserirTurmaUseCase {
         turno: String,
         ano: String,
         dataInicio: String,
-        dataFinal: String
+        alunoId: String
     ): String
 }

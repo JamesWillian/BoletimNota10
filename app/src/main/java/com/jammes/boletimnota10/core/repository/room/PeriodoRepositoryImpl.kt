@@ -13,20 +13,20 @@ class PeriodoRepositoryImpl @Inject constructor(
     override suspend fun add(periodo: String, turmaId: String): String {
         Log.d(TAG, "Adicionando novo período $periodo a turma $turmaId")
         val novoPeriodo = Periodo(
-            uuid = UUID.randomUUID().toString(),
+            id = UUID.randomUUID().toString(),
             turmaId = turmaId,
             descricao = periodo
         )
         dao.inserir(novoPeriodo)
 
-        return novoPeriodo.uuid
+        return novoPeriodo.id
     }
 
     override suspend fun fetch(turmaId: String): List<PeriodoDomain> {
         Log.d(TAG, "Listando todos períodos da turma $turmaId")
         return dao.buscarTodosPeriodosDaTurma(turmaId).map {
             PeriodoDomain(
-                id = it.uuid,
+                id = it.id,
                 turmaId = it.turmaId,
                 descricao = it.descricao
             )

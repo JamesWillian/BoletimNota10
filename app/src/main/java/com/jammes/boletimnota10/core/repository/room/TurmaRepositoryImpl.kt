@@ -16,25 +16,6 @@ class TurmaRepositoryImpl @Inject constructor(
         return dao.existeTurmaCadastrada()
     }
 
-    override suspend fun buscarTurmaAtiva(): TurmaDomain? {
-        Log.d(TAG, "Buscando Turma Ativa")
-
-        val turma = dao.selectTurmaAtiva()
-
-        return if (turma != null) {
-            TurmaDomain(
-                id = turma.uuid,
-                nome = turma.nome,
-                escola = turma.escola,
-                turno = turma.turno,
-                ano = turma.ano,
-                dataInicio = turma.dataInicio,
-                dataFinal = turma.dataFinal,
-                concluido = turma.concluido
-            )
-        } else null
-    }
-
     override suspend fun buscarTurmaPorId(turmaId: String): TurmaDomain {
 
         Log.d(TAG, "Buscando Turma: $turmaId")
@@ -42,13 +23,13 @@ class TurmaRepositoryImpl @Inject constructor(
         val turma = dao.selectTurmaPorId(turmaId)
 
         return TurmaDomain(
-            id = turma.uuid,
+            id = turma.id,
             nome = turma.nome,
             escola = turma.escola,
             turno = turma.turno,
             ano = turma.ano,
             dataInicio = turma.dataInicio,
-            dataFinal = turma.dataFinal,
+            dataFinal = turma.dataFinal?: "",
             concluido = turma.concluido
         )
     }
@@ -59,13 +40,13 @@ class TurmaRepositoryImpl @Inject constructor(
 
         return dao.selectTodasTurmas().map { turma ->
             TurmaDomain(
-                id = turma.uuid,
+                id = turma.id,
                 nome = turma.nome,
                 escola = turma.escola,
                 turno = turma.turno,
                 ano = turma.ano,
                 dataInicio = turma.dataInicio,
-                dataFinal = turma.dataFinal,
+                dataFinal = turma.dataFinal?: "",
                 concluido = turma.concluido
             )
         }
@@ -76,21 +57,19 @@ class TurmaRepositoryImpl @Inject constructor(
         escola: String,
         turno: String,
         ano: String,
-        dataInicio: String,
-        dataFinal: String
+        dataInicio: String
     ): String {
         Log.d(TAG, "Adicionando nova Turma: $nome")
         val turma = Turma(
-            uuid = UUID.randomUUID().toString(),
+            id = UUID.randomUUID().toString(),
             nome = nome,
             escola = escola,
             turno = turno,
             ano = ano,
-            dataInicio = dataInicio,
-            dataFinal = dataFinal,
+            dataInicio = dataInicio
         )
         dao.insert(turma)
-        return turma.uuid
+        return turma.id
     }
 
     override suspend fun post(
@@ -100,17 +79,17 @@ class TurmaRepositoryImpl @Inject constructor(
         turno: String,
         ano: String,
         dataInicio: String,
-        dataFinal: String
+        dataFinal: String?
     ) {
         Log.d(TAG, "Atualizando a Turma: $nome")
         val turma = Turma(
-            uuid = turmaId,
+            id = turmaId,
             nome = nome,
             escola = escola,
             turno = turno,
             ano = ano,
             dataInicio = dataInicio,
-            dataFinal = dataFinal,
+            dataFinal = dataFinal?: "",
         )
         dao.update(turma)
     }
@@ -118,7 +97,7 @@ class TurmaRepositoryImpl @Inject constructor(
     override suspend fun delete(turmaId: String) {
         Log.d(TAG, "Excluindo a Turma: $turmaId")
         val turma = Turma(
-            uuid = turmaId,
+            id = turmaId,
             nome = "",
             escola = "",
             turno = "",
