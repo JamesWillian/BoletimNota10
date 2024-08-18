@@ -116,6 +116,7 @@ class TurmaViewModel @Inject constructor(
 
     fun alterarTurma(turmaId: String, nome: String, escola: String, turno: String, ano: String, dataInicio: String, dataFinal: String) {
         viewModelScope.launch {
+            val alunoId = buscarIdAlunoUseCase.invoke()
             alterarTurmaUseCase(
                 turmaId,
                 nome,
@@ -123,7 +124,22 @@ class TurmaViewModel @Inject constructor(
                 turno,
                 ano,
                 dataInicio,
-                dataFinal
+                dataFinal,
+                alunoId
+            )
+
+            uiStateTurma.postValue(
+                UiStateTurma(
+                    TurmaItem(
+                        id = turmaId,
+                        nome = nome,
+                        escola = escola,
+                        turno = turno,
+                        ano = ano,
+                        dataInicio = dataInicio,
+                        dataFinal = dataFinal
+                    )
+                )
             )
         }
     }

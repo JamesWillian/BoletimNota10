@@ -9,6 +9,7 @@ interface AlterarTurmaUseCase {
         turno: String,
         ano: String,
         dataInicio: String,
-        dataFinal: String
+        dataFinal: String,
+        alunoId: String
     )
 }

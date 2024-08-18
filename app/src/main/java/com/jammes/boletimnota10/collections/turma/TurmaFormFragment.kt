@@ -11,6 +11,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.jammes.boletimnota10.databinding.FragmentFormTurmaBinding
+import com.santalu.maskara.Mask
+import com.santalu.maskara.MaskChangedListener
+import com.santalu.maskara.MaskStyle
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -116,6 +119,19 @@ class TurmaFormFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
+
+        formatarEditData()
+    }
+
+    private fun formatarEditData() {
+        val mask = Mask(
+            value = "__-__-____",
+            character = '_',
+            style = MaskStyle.NORMAL
+        )
+        val listener = MaskChangedListener(mask)
+        binding.dataInicioTextInputLayout.editText?.addTextChangedListener(listener)
+        binding.dataFinalTextInputLayout.editText?.addTextChangedListener(listener)
     }
 
     private fun bindUiState(uiState: TurmaViewModel.UiStatePeriodo?) {
